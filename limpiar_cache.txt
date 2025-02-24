@@ -1,0 +1,9 @@
+# 1. Parar Odoo
+pkill -f odoo-bin
+
+# 2. Limpiar caché
+rm -rf odoo/__pycache__ custom-addons/marketing_eyetracking/__pycache__
+
+# 3. Reiniciar el servidor y actualizar el módulo
+python3 odoo-bin --config=odoo.conf -u marketing_eyetracking --stop-after-init
+python3 odoo-bin --config=odoo.conf

@@ -1,0 +1,11 @@
+<odoo>
+    <templates>
+        <t t-name="marketing_eyetracking.webcam_template">
+            <div class="oe_webcam_widget">
+                <a href="#" class="btn btn-primary start_webcam">Activar Cámara</a>
+                <br/>
+                <video width="640" height="480" autoplay="autoplay" style="border: 1px solid black; display: none;"></video>
+            </div>
+        </t>
+    </templates>
+</odoo>
