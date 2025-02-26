@@ -1,0 +1,701 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mass_mailing_themes
+# 
+# Translators:
+# Hamed Mohammadi <hamed@dehongi.com>, 2023
+# ghasem yaghoubi <y.ghasem@gmail.com>, 2023
+# Martin Trigaux, 2023
+# Hanna Kheradroosta, 2023
+# Mostafa Barmshory <mostafa.barmshory@gmail.com>, 2024
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-06 13:32+0000\n"
+"PO-Revision-Date: 2022-09-22 05:53+0000\n"
+"Last-Translator: Mostafa Barmshory <mostafa.barmshory@gmail.com>, 2024\n"
+"Language-Team: Persian (https://app.transifex.com/odoo/teams/41243/fa/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fa\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid "$100 OFF"
+msgstr "۱۰۰ دلار تخفیف"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "&amp;nbsp; &amp;nbsp;"
+msgstr "&nbsp; &nbsp;"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;"
+msgstr "&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid "*But hurry! Offer ends on"
+msgstr "*اما عجله کنید! پیشنهاد به پایان می‌رسد در"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid "*For orders over $39."
+msgstr "*برای سفارش‌های بالای $39."
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid "24/7 <br/>Customer Service"
+msgstr "24/7 <br/>خدمات مشتریان"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "5 Ways Drones Can Better Your Live Events"
+msgstr "۵ روش که پهپادها می‌توانند رویدادهای زنده شما را بهبود بخشند"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid "<font style=\"background-color: rgb(231, 148, 57);\">TRAVEL</font>"
+msgstr ""
+"```html\n"
+"<font style=\"background-color: rgb(231, 148, 57);\">سفر</font>\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid "<font style=\"background-color: rgb(231, 99, 99);\">LIFESTYLE</font>"
+msgstr "<font style=\"background-color: rgb(231, 99, 99);\">سبک زندگی</font>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid "<font style=\"background-color: rgb(57, 123, 33);\">FOOD</font>"
+msgstr ""
+"```html\n"
+"<font style=\"background-color: rgb(57, 123, 33);\">غذا</font>\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "<font style=\"color: rgb(173, 173, 173);\">Unsubscribe</font>"
+msgstr "<font style=\"color: rgb(173, 173, 173);\">لغو اشتراک</font>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid ""
+"<font style=\"color: rgb(255, 255, 255);\">And it won't cost you a "
+"thing!</font>"
+msgstr ""
+"<font style=\"color: rgb(255, 255, 255);\">و هیچ هزینه‌ای برای شما نخواهد "
+"داشت!</font>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid ""
+"<font style=\"color: rgb(255, 255, 255);\">EXCLUSIVE</font>\n"
+"                        <br/><span style=\"font-weight: bolder\"><font style=\"color: rgb(255, 255, 255);\">DEALS</font></span>"
+msgstr ""
+"```html\n"
+"<font style=\"color: rgb(255, 255, 255);\">انحصاری</font>\n"
+"                        <br/><span style=\"font-weight: bolder\"><font style=\"color: rgb(255, 255, 255);\">معاملات</font></span>\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid ""
+"<font style=\"color: rgb(255, 255, 255);\">FREE</font>\n"
+"                        <br/><span style=\"font-weight: bolder\"><font style=\"color: rgb(255, 255, 255);\">SHIPPING</font></span>"
+msgstr ""
+"```html\n"
+"<font style=\"color: rgb(255, 255, 255);\">رایگان</font>\n"
+"                        <br/><span style=\"font-weight: bolder\"><font style=\"color: rgb(255, 255, 255);\">حمل و نقل</font></span>\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid "<font style=\"color: rgb(255, 255, 255);\">Hi there!</font>"
+msgstr ""
+"```html\n"
+"<font style=\"color: rgb(255, 255, 255);\">سلام!</font>\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid ""
+"<font style=\"color: rgb(255, 255, 255);\">The next edition of <span style=\"font-weight: bolder;\">Odoo Experience Online</span> is coming soon!\n"
+"                    <br/>To stir up your curiosity, have a look at all the great talks scheduled and highlighted in our agenda!</font>"
+msgstr ""
+"```html\n"
+"<font style=\"color: rgb(255, 255, 255);\">نسخه بعدی <span style=\"font-weight: bolder;\">Odoo Experience Online</span> به زودی می‌آید!\n"
+"                    <br/>برای تحریک کنجکاویتان، نگاهی به تمام سخنرانی‌های عالی که در برنامه ما زمانبندی و برجسته شده‌اند بیندازید!</font>\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid ""
+"<font style=\"color: rgb(255, 255, 255);\">Zero, zilch, nada! Odoo "
+"Experience is free for everyone!</font>"
+msgstr ""
+"<font style=\"color: rgb(255, 255, 255);\">صفر، هیچ، هیچی! تجربه اودوو برای "
+"همه رایگان است!</font>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid ""
+"<font style=\"font-size: 62px; background-color: rgb(255, 255, 255);\">&amp;nbsp;10% OFF&amp;nbsp;</font>\n"
+"                    <br/>\n"
+"                        <font style=\"font-size: 62px; background-color: rgb(255, 255, 255);\">&amp;nbsp;SALES&amp;nbsp;</font>"
+msgstr ""
+"```html\n"
+"<font style=\"font-size: 62px; background-color: rgb(255, 255, 255);\">&amp;nbsp;٪۱۰ تخفیف&amp;nbsp;</font>\n"
+"                    <br/>\n"
+"                        <font style=\"font-size: 62px; background-color: rgb(255, 255, 255);\">&amp;nbsp;فروش&amp;nbsp;</font>\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid ""
+"<i class=\"fa fa-2x fa-ticket\" style=\"color: rgb(36, 37, 48) "
+"!important;\"/>​"
+msgstr ""
+"```html\n"
+"<i class=\"fa fa-2x fa-ticket\" style=\"color: rgb(36, 37, 48) !important;\"/>​\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid ""
+"<span class=\"fa fa-facebook\" style=\"color: rgb(54, 166, 210) !important; "
+"font-size: 18px;\"/>​"
+msgstr ""
+"```html\n"
+"<span class=\"fa fa-facebook\" style=\"color: rgb(54, 166, 210) !important; font-size: 18px;\"/>​\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid ""
+"<span class=\"fa fa-linkedin\" style=\"color: rgb(54, 166, 210) !important; "
+"font-size: 18px;\"/>​"
+msgstr ""
+"```html\n"
+"<span class=\"fa fa-linkedin\" style=\"color: rgb(54, 166, 210) !important; font-size: 18px;\"/>​\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "<span class=\"fa fa-play\"/>&amp;nbsp;&amp;nbsp;WATCH VIDEO"
+msgstr ""
+"```html\n"
+"<span class=\"fa fa-play\"/>&amp;nbsp;&amp;nbsp;تماشای ویدیو\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid ""
+"<span class=\"fa fa-twitter\" style=\"color: rgb(54, 166, 210) !important; "
+"font-size: 18px;\"/>​"
+msgstr ""
+"```html\n"
+"<span class=\"fa fa-twitter\" style=\"color: rgb(54, 166, 210) !important; font-size: 18px;\"/>​\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid ""
+"<span style=\"font-size: 32px;\"><font style=\"font-weight: bolder; color: "
+"rgb(255, 255, 255); background-color: rgb(255, 187, "
+"0);\">SOLAR</font></span>"
+msgstr ""
+"```html\n"
+"<span style=\"font-size: 32px;\"><font style=\"font-weight: bolder; color: rgb(255, 255, 255); background-color: rgb(255, 187, 0);\">سولار</font></span>\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid "<span style=\"font-weight: bolder; color: white;\">VIP10</span>"
+msgstr ""
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid ""
+"<span style=\"font-weight: bolder;\">\n"
+"                                <font style=\"background-color: rgb(255, 255, 255); color: rgb(255, 187, 0);\">SOLAR</font>\n"
+"                            </span>"
+msgstr ""
+"```html\n"
+"<span style=\"font-weight: bolder;\">\n"
+"                                <font style=\"background-color: rgb(255, 255, 255); color: rgb(255, 187, 0);\">خورشیدی</font>\n"
+"                            </span>\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid ""
+"<span style=\"font-weight: bolder;\">View online</span>&amp;nbsp;<span "
+"class=\"fa fa-external-link\"/>"
+msgstr ""
+"```html\n"
+"<span style=\"font-weight: bolder;\">مشاهده آنلاین</span>&amp;nbsp;<span class=\"fa fa-external-link\"/>\n"
+"```"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid "All Rights Reserved"
+msgstr "کلیه حقوق محفوظ است"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid ""
+"An interactive, fun\n"
+"                                    <br/>and comprehensive experience"
+msgstr ""
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid ""
+"Anyone with an ounce of business acumen knows that any business that wants "
+"to succeed needs a website."
+msgstr ""
+"<مهم>هر فردی که ذره‌ای از شم تجاری داشته باشد می‌داند که هر کسب‌وکاری که "
+"بخواهد موفق شود به یک وب‌سایت نیاز دارد.</مهم>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
+msgid "BEGINNING"
+msgstr "متن را ارائه دهید تا بتوانم کار ترجمه را برای شما انجام دهم."
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.email_designer_snippets
+msgid "Big News"
+msgstr "بزرگ‌ ترین خبر"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid ""
+"Bitten by the travel bug but looking to travel consciously? Eco-travel is "
+"the way forward."
+msgstr ""
+"بیماری سفر به شما هم سرایت کرده است اما به دنبال سفر با آگاهی هستید؟ سفر سبز"
+" راه پیش رو است."
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.email_designer_snippets
+msgid "Blogging"
+msgstr "وبلاگ‌نویسی"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid ""
+"Breaking IT news\n"
+"                            <br/>and Analysis"
+msgstr ""
+"اخبار فناوری اطلاعات\n"
+"<br/>و تحلیل‌ها"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.email_designer_snippets
+msgid "Coupon Code"
+msgstr "کد کوپن"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid "Cover"
+msgstr "پوشش"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
+msgid "Cover image"
+msgstr "تصویر جلد"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid ""
+"Create your very own chat room or join an existing one that sparks your "
+"interest."
+msgstr ""
+"اتاق گفتگوی خود را بسازید یا به یک اتاق موجود که توجه شما را جلب می‌کند "
+"بپیوندید."
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid "Customer Service"
+msgstr "خدمات مشتریان"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid "Delicious recipes from around the world"
+msgstr "دستور پخت‌های خوشمزه از سراسر جهان"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid ""
+"Delicious recipes from around the world&amp;nbsp;\n"
+"                                <span class=\"fa fa-angle-right\"/>"
+msgstr ""
+"وصفات خوشمزه از سراسر جهان&nbsp;\n"
+"                                <span class=\"fa fa-angle-right\"/>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid "Destinations for an eco-holiday"
+msgstr "مقاصد برای یک تعطیلات سازگار با محیط زیست"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid ""
+"Destinations for an eco-holiday&amp;nbsp;\n"
+"                                <span class=\"fa fa-angle-right\"/>"
+msgstr ""
+"مقاصدی برای تعطیلات زیست‌محیطی&amp;nbsp;\n"
+"                                <span class=\"fa fa-angle-right\"/>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid "ENDOFSUMMER20"
+msgstr "پایان تابستان ۲۰"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid "Easy Returns"
+msgstr "بازگشت آسان"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.email_designer_snippets
+msgid "Event Promo"
+msgstr "پرومو رویداد"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid ""
+"Experience everything from a virtual exhibitor's hall to multiple "
+"interactive presentations and demos."
+msgstr ""
+"تجربه کنید همه چیز را از یک سالن مجازی نمایشگاهی تا ارائه‌ها و دموهای تعاملی"
+" متعدد."
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "Facebook"
+msgstr "فیسبوک"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid "Find out more"
+msgstr "کشف بیشتر"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid "Find out more&amp;nbsp;<span class=\"fa fa-angle-right\"/>"
+msgstr "کشف کنید بیشتر&nbsp;<span class=\"fa fa-angle-right\"/>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid "Free Delivery"
+msgstr "تحویل رایگان"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid "Free delivery*"
+msgstr "تحویل رایگان*"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid "GET 10%&amp;nbsp;OFF"
+msgstr "۱۰٪&amp;nbsp;تخفیف بگیرید"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid ""
+"Get 6-months' worth of knowledge\n"
+"                                    <br/>in just 2 days"
+msgstr ""
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid "Go to the chatrooms"
+msgstr "به اتاق‌های گفتگو بروید"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid "Here's your coupon code* :"
+msgstr ""
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "How to Code a Website Without Experience"
+msgstr "چگونه یک وبسایت بدون تجربه کدنویسی کنیم"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid "IN THIS ISSUE"
+msgstr "در این شماره"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid ""
+"Imagine waking up with more energy, more flexibility, with less stress and "
+"fewer instances of anxiously rushing out the door."
+msgstr ""
+"تجسم کنید با انرژی بیشتر، انعطاف‌پذیری بیشتر، با استرس کمتر و موارد کمتری از"
+" عجله با اضطراب از خانه خارج می‌شوید."
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "Instagram"
+msgstr "اینستاگرام"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid ""
+"Interview with Janet James&amp;nbsp;\n"
+"                                <span class=\"fa fa-angle-right\"/>"
+msgstr ""
+"مصاحبه با جنت جیمز&amp;nbsp;\n"
+"                                <span class=\"fa fa-angle-right\"/>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid ""
+"Issue\n"
+"                            <br/><span style=\"font-weight: bolder;\">#42</span>"
+msgstr ""
+"مسئله  \n"
+"                            <br/><span style=\"font-weight: bolder;\">#۴۲</span>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid ""
+"Join the community to see our latest news, events, discounts and much more!"
+msgstr ""
+"به جامعه بپیوندید تا از آخرین اخبار، رویدادها، تخفیف‌ها و بسیاری موارد دیگر "
+"مطلع شوید!"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid "Join us"
+msgstr "به ما بپیوندید"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid ""
+"Learn through workshops, product demos, and inspiring talks from Odoo "
+"Experts and Partners."
+msgstr ""
+"از طریق کارگاه‌ها، نمایش‌های محصول، و گفتگوهای الهام‌بخش با متخصصان و شرکای "
+"اودوو یاد بگیرید."
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "LinkedIn"
+msgstr "لینکدین"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid "Man on a rock looking at mountains in the distance"
+msgstr "مردی روی سنگ ایستاده و به کوه‌ها در دوردست نگاه می‌کند"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid ""
+"Meet (other) awesome members\n"
+"                                    <br/>of the community"
+msgstr ""
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
+msgid ""
+"Michael Fletcher<br/>\n"
+"                   <span style=\"font-size: 12px; font-weight: bolder;\">Customer Service</span>"
+msgstr ""
+"Michael Fletcher<br/>\n"
+"<span style=\"font-size: 12px; font-weight: bolder;\">خدمات مشتریان</span>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid ""
+"Modern smartphones have all the built-in tech equal to a majority of the "
+"current professional cameras."
+msgstr ""
+"امروزه گوشی‌های هوشمند مدرن همه فناوری‌های داخلی را که با اکثر دوربین‌های "
+"حرفه‌ای کنونی برابر است، دارند."
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.email_designer_snippets
+msgid "Newsletter"
+msgstr "خبرنامه"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid ""
+"One clever use of drones is for delivering gifts — but another that's "
+"becoming popular for event safety purposes."
+msgstr ""
+"یکی از کاربردهای هوشمندانه پهپادها، تحویل هدایا است — اما استفاده دیگر که به"
+" دلیل اهداف امنیتی رویدادها محبوبیت پیدا کرده است."
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid ""
+"Our roundup of the most popular and latest tech related videos from last "
+"week.<br/>"
+msgstr ""
+"گردآوری ما از محبوب‌ترین و جدیدترین ویدیوهای مرتبط با فناوری از هفته "
+"گذشته.<br/>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.email_designer_snippets
+msgid "Promotion Program"
+msgstr "برنامه تبلیغاتی"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "READ MORE"
+msgstr "بیشتر بخوانید"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid ""
+"Rainy day ideas&amp;nbsp;\n"
+"                                <span class=\"fa fa-angle-right\"/>"
+msgstr ""
+"ایده‌های روز بارانی&amp;nbsp;\n"
+"                                <span class=\"fa fa-angle-right\"/>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid "Read More&amp;nbsp;<span class=\"fa fa-angle-right\"/>"
+msgstr "<p dir=\"rtl\">بیشتر بخوانید&amp;nbsp;<span class=\"fa fa-angle-right\"/></p>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid "Redeem it now"
+msgstr "اکنون آن را بازخرید کنید"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid "Register now!"
+msgstr "هم‌اکنون ثبت‌نام کنید!"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid "See what we've got planned"
+msgstr "ببینید چه برنامه‌ای داریم"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
+msgid "See you there,"
+msgstr "ببینمت اونجا،"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
+msgid "Signature"
+msgstr "امضا"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid "THE DAILY"
+msgstr "روزانه"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid "Thank you for being one of our most loyal customers."
+msgstr "<p>با تشکر از اینکه یکی از وفادارترین مشتریان ما هستید.</p>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "The future of smartphone video production"
+msgstr "آینده تولید ویدئویی با گوشی‌های هوشمند"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid "Top 5 energy-boosting morning routines"
+msgstr "برترین ۵ عادات صبحگاهی برای افزایش انرژی"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid ""
+"Top 5 energy-boosting morning routines&amp;nbsp;\n"
+"                                <span class=\"fa fa-angle-right\"/>"
+msgstr ""
+"برترین ۵ روال صبحگاهی افزایش‌دهنده انرژی&amp;nbsp;\n"
+"                                <span class=\"fa fa-angle-right\"/>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid ""
+"Travel without leaving your kitchen with these international recipes. From "
+"Canada to Australia, Mexico to Sweden, and everywhere in between."
+msgstr ""
+"با این دستورات بین المللی، بدون ترک آشپزخانه خود، به سفر بروید. از کانادا تا"
+" استرالیا، مکزیک تا سوئد و هر جای دیگر در این میان."
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "Twitter"
+msgstr "توییتر"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid "Unsubscribe"
+msgstr "لغو اشتراک"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_vip_template
+msgid "VIP members only"
+msgstr "فقط برای اعضای VIP"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_tech_template
+msgid "VISIT OUR WEBSITE"
+msgstr "از وب‌سایت ما بازدید کنید"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid "Valid on all sales prices in our webshop."
+msgstr "قابل استفاده برای تمام قیمت‌های فروش در فروشگاه اینترنتی ما."
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_solar_template
+msgid "Visit the website"
+msgstr "به وبسایت مراجعه کنید"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
+msgid "WE'RE MOVING"
+msgstr "نقل مکان می‌کنیم"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
+msgid ""
+"We are proud to announce that due to our remarkable growth in the Springfield area, we are moving to a new location on July 1.\n"
+"                   <br/>We will continue to offer the same friendly service at our new address on <span style=\"font-weight: bolder\">1600 Main Street</span>,\n"
+"                   <br/>which will allow us to offer an even larger selection of products and services."
+msgstr ""
+"ما خوشحالیم که به دلیل رشد چشمگیرمان در منطقه اسپرینگفیلد، در تاریخ اول جولای به مکان جدیدی منتقل می‌شویم.\n"
+"                   <br/>ما به ارائه خدمات دوستانه در آدرس جدیدمان در <span style=\"font-weight: bolder\">خیابان اصلی ۱۶۰۰</span> ادامه خواهیم داد،\n"
+"                   <br/>که به ما اجازه می‌دهد تا مجموعه وسیع‌تری از محصولات و خدمات را ارائه دهیم."
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bold_template
+msgid "Woman having breakfast in bed"
+msgstr "زن در حال خوردن صبحانه در تختخواب"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
+msgid "Your Logo"
+msgstr "لوگوی شما"
