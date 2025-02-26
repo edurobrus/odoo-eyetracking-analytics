@@ -1,0 +1,198 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_fi
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20200204\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-16 17:01+0000\n"
+"PO-Revision-Date: 2020-03-16 17:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_base_turnover_0_vat
+msgid "0-verokannan alainen liikevaihto"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_sales_10
+msgid "10 %:n vero"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_sales_14
+msgid "14 %:n vero"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_sales_24
+msgid "24% tax"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_sales_25_5
+msgid "25.5% tax"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_sales_25_5_and_24
+msgid "25.5% tax + 24% tax"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.vat_report_relief
+msgid "Alarajahuojennuksen määrä"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.column,name:l10n_fi.vat_report_balance
+msgid "Balance"
+msgstr ""
+
+#. module: l10n_fi
+#: model:ir.model.fields,field_description:l10n_fi.field_account_journal__invoice_reference_model
+msgid "Communication Standard"
+msgstr ""
+
+#. module: l10n_fi
+#: model:ir.model.fields.selection,name:l10n_fi.selection__account_journal__invoice_reference_model__fi_rf
+msgid "Finnish Creditor Reference (RF)"
+msgstr ""
+
+#. module: l10n_fi
+#: model:ir.model.fields.selection,name:l10n_fi.selection__account_journal__invoice_reference_model__fi
+msgid "Finnish Standard Reference"
+msgstr ""
+
+#. module: l10n_fi
+#. odoo-python
+#: code:addons/l10n_fi/models/account_move.py:0
+#, python-format
+msgid "Invoice number must contain numeric characters"
+msgstr ""
+
+#. module: l10n_fi
+#: model:ir.model,name:l10n_fi.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_fi
+#: model:ir.model,name:l10n_fi.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_tax_payable
+msgid "Maksettava vero / Palautukseen oikeuttava vero (-)"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_base_sales_service_eu
+msgid "Palvelujen myynnit muihin EU-maihin"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_base_purchase_service_eu
+msgid "Palveluostot muista EU-maista"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_base_sales_construct_service
+msgid ""
+"Rakentamispalvelun ja metalliromun myynnit (käännetty verovelvollisuus)"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_base_purchase_construct_service
+msgid "Rakentamispalvelun ja metalliromun ostot (käännetty verovelvollisuus)"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_base_purchase_goods_eu
+msgid "Tavaraostot muista EU-maista"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_base_import_goods_no_eu
+msgid "Tavaroiden maahantuonnit EU:n ulkopuolelta"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_base_sales_goods_eu
+msgid "Tavaroiden myynnit muihin EU-maihin"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_sales_title
+msgid "Tax on domestic sales by tax rates"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.tax.group,name:l10n_fi.tax_group_0
+msgid "VAT 0%"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.tax.group,name:l10n_fi.tax_group_10
+msgid "VAT 10%"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.tax.group,name:l10n_fi.tax_group_14
+msgid "VAT 14%"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.tax.group,name:l10n_fi.tax_group_24
+msgid "VAT 24%"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.tax.group,name:l10n_fi.tax_group_25_5
+msgid "VAT 25.5%"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report,name:l10n_fi.vat_report
+msgid "VAT Report"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_tax_purchase_service_eu
+msgid "Vero palveluostoista muista EU-maista"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_tax_purchase_construct_service
+msgid ""
+"Vero rakentamispalvelun ja metalliromun ostoista (käännetty "
+"verovelvollisuus)"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_tax_purchase_goods_eu
+msgid "Vero tavaraostoista muista EU-maista"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_tax_import_goods_no_eu
+msgid "Vero tavaroiden maahantuonneista EU:n ulkopuolelta"
+msgstr ""
+
+#. module: l10n_fi
+#: model:account.report.line,name:l10n_fi.tax_report_deductible
+msgid "Verokauden vähennettävä vero"
+msgstr ""
+
+#. module: l10n_fi
+#: model:ir.model.fields,help:l10n_fi.field_account_journal__invoice_reference_model
+msgid ""
+"You can choose different models for each type of reference. The default one "
+"is the Odoo reference."
+msgstr ""
