@@ -1,0 +1,7 @@
+<odoo>
+    <template id="assets_backend" name="webcam integration assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/marketing_eyetracking/static/src/js/webcam_dialog.js"></script>
+        </xpath>
+    </template>
+</odoo>

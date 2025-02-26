@@ -1,26 +1,26 @@
 {
     'name': 'Eye Tracking for Marketing',
     'version': '1.0',
-    'summary': 'Analyze marketing campaigns using eye tracking techniques',
-    'description': """This module allows recording and analyzing eye tracking data during marketing campaigns.
-                      Additionally, it integrates a webcam functionality to capture live video.""",
+    'summary': 'Analiza campañas de marketing utilizando técnicas de eye tracking',
+    'description': """Este módulo permite grabar y analizar datos de eye tracking durante campañas de marketing.
+                      Además, integra una funcionalidad de webcam para capturar video en vivo.""",
     'author': 'Eduardo Robles Russo',
     'category': 'Marketing',
     'depends': ['base', 'web'],
     'data': [
-        'security/ir.model.access.csv',
-        'views/eyetracking_analysis_views.xml',
-        'views/eyetracking_session_views.xml',
-        'views/menu_views.xml',
+        'views/assets.xml',  # Asegúrate de que tu archivo de assets esté aquí
+        'views/form_view.xml',  # El archivo con el formulario y el botón de cámara
     ],
-    'images': ['static/description/icon.png'],
-    "assets": {
-        "web.assets_backend": [
-            "marketing_eyetracking/static/src/js/webcam_dialog.js",
-            "marketing_eyetracking/static/src/js/image_field.js",
-            "marketing_eyetracking/static/src/xml/web_widget_image_webcam.xml",
+    'assets': {
+        'web.assets_backend': [
+            'marketing_eyetracking/static/src/js/webcam_dialog.js',
+        ],
+        'web.assets_frontend': [
+            'marketing_eyetracking/static/src/js/webcam_dialog.js',
         ],
     },
+
+    'images': ['static/description/icon.png'],
     'installable': True,
     'application': True,
 }

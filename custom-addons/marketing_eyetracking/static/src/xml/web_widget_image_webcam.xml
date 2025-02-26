@@ -1,42 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<templates xml:space="preserve">
-    <t t-name="web.ImageFieldWebcam" t-inherit="web.ImageField" t-inherit-mode="extension" owl="1">
-        <xpath expr="//FileUploader" position="after">
-            <button t-on-click="_openRearCamera" class="btn btn-light border-0 rounded-circle m-1 p-1"
-                    data-tooltip="WebCam" aria-label="WebCam">
-                <i class="fa fa-camera fa-fw"/>
-            </button>
+<!-- static/src/xml/web_widget_image_webcam.xml -->
+<odoo>
+    <template id="assets_frontend" name="webcam widget" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript">
+                odoo.define('marketing_eyetracking.web_widget_image_webcam', function (require) {
+                    var FieldChar = require('web.basic_fields').FieldChar;
+                    var core = require('web.core');
+                    var QWeb = core.qweb;
+
+                    var FieldWebcam = FieldChar.extend({
+                        template: 'web_widget_image_webcam',
+                        events: {
+                            'click .open-webcam': '_onOpenWebcam',
+                        },
+
+                        _onOpenWebcam: function () {
+                            // Abre el diálogo para capturar la imagen
+                            this.trigger_up('open_webcam_dialog');
+                        },
+                    });
+
+                    return {
+                        FieldWebcam: FieldWebcam
+                    };
+                });
+            </script>
         </xpath>
-    </t>
-
-    <t t-name="legion_webcam_image.WebcamDialog" owl="1">
-        <Dialog contentClass="'AttachmentWebcamDialog'" title="getTitle()" size="'xl'">
-            <p class="o_AttachmentWebcamDialog_mainText" t-esc="getBody()"/>
-
-            <div style="display: flex; justify-content: center; align-content: space-between;  align-items: center;flex-direction: column;">
-                <div>
-                    <select t-ref="selectCamera" t-on-change="(ev) => this.onChangeDevice(ev)">
-                        <option value="">Select camera</option>
-                    </select>
-                </div>
-                <video t-ref="video" width="100%" height="100%" autoplay="" playsinline=""/>
-                <img t-attf-src="{{state.snapshot}}"/>
-            </div>
-
-            <t t-set-slot="footer">
-                <button class="btn btn-primary" t-on-click="_onWebcamSnapshot">
-                    <i class="fa fa-camera mr8"/>
-                    <t>Take Snapshot</t>
-                </button>
-                <button t-ref="saveButton" class="btn btn-primary" t-on-click="_onWebcamSave"
-                        t-att-disabled="!state.snapshot ? 'disabled' : ''">
-                    <i class="fa fa-save mr8"/>
-                    <t>Save and Close</t>
-                </button>
-                <button class="btn btn-secondary" t-on-click="_onClickCancel">
-                    <t>Cancel</t>
-                </button>
-            </t>
-        </Dialog>
-    </t>
-</templates>
+    </template>
+</odoo>

@@ -1,27 +1,35 @@
-/** @odoo-module **/
+// static/src/js/image_field.js
+odoo.define('marketing_eyetracking.image_field', function (require) {
+    var FormController = require('web.FormController');
+    var Dialog = require('web.Dialog');
+    var core = require('web.core');
 
-import { ImageField } from '@web/views/fields/image/image_field';
-import { useService } from "@web/core/utils/hooks";
-import { patch } from 'web.utils';
-import WebcamDialog from '@marketing_eyetracking/js/webcam_dialog';
-
-
-patch(ImageField.prototype, 'marketing_eyetracking', {
-
-    setup() {
-        this._super(...arguments);
-        this.dialogService = useService("dialog");
-    },
-
-    _openRearCamera(ev) {
-        this.dialogService.add(WebcamDialog, {
-            mode: true,
-            onWebcamCallback: (data) => this.onWebcamCallback(data),
-        });
-    },
-
-    async onWebcamCallback(base64) {
-        this.props.update(base64)
-    }
-
-})
+    FormController.include({
+        _onOpenWebcamDialog: function () {
+            // Mostrar un diálogo para capturar la imagen
+            var self = this;
+            new Dialog(this, {
+                title: 'Capturar imagen de la cámara',
+                size: 'medium',
+                $content: $('<video autoplay></video>').attr('id', 'webcam'),
+                buttons: [
+                    {
+                        text: 'Capturar',
+                        classes: 'btn-primary',
+                        click: function () {
+                            // Lógica para capturar la imagen
+                            var video = document.getElementById('webcam');
+                            var canvas = document.createElement('canvas');
+                            canvas.width = video.videoWidth;
+                            canvas.height = video.videoHeight;
+                            canvas.getContext('2d').drawImage(video, 0, 0);
+                            var imageUrl = canvas.toDataURL();
+                            self._setValue(imageUrl);  // Establecer la imagen en el campo
+                            self.close();
+                        }
+                    }
+                ]
+            }).open();
+        }
+    });
+});

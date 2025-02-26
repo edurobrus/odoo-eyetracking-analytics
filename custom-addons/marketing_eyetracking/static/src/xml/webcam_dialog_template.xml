@@ -1,0 +1,15 @@
+<!-- static/src/xml/webcam_dialog_template.xml -->
+<odoo>
+    <template id="webcam_dialog_template">
+        <div class="webcam-dialog">
+            <h3>Captura de Imagen desde la Cámara Web</h3>
+            <div class="video-container">
+                <video id="webcam" autoplay></video>
+            </div>
+            <div class="controls">
+                <button type="button" class="btn btn-primary" id="capture-btn">Capturar Imagen</button>
+                <button type="button" class="btn btn-secondary" id="cancel-btn">Cancelar</button>
+            </div>
+        </div>
+    </template>
+</odoo>
