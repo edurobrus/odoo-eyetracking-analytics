@@ -1,0 +1,35 @@
+/* Estilos para el diálogo de webcam */
+.o_webcam_video_dialog .o_webcam_content {
+    background-color: #222;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.o_webcam_video_dialog .o_webcam_video_container {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Efecto de parpadeo para simular grabación */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.o_webcam_video_dialog .blink {
+    animation: blink 1s infinite;
+    display: inline-block;
+}
+
+/* Estilos para el selector de cámara */
+.o_webcam_video_dialog .camera-selector {
+    min-width: 200px;
+}
+
+/* Estilos para la vista previa de la captura */
+.o_webcam_video_dialog .o_webcam_snapshot_container {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Eye Tracking Analysis Form View -->
+        <record id="view_eyetracking_analysis_form" model="ir.ui.view">
+            <field name="name">eyetracking.analysis.form</field>
+            <field name="model">eyetracking.analysis</field>
+            <field name="arch" type="xml">
+                <form string="Eye Tracking Analysis">
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Eye Tracking Analysis Tree View -->
+        <record id="view_eyetracking_analysis_tree" model="ir.ui.view">
+            <field name="name">eyetracking.analysis.tree</field>
+            <field name="model">eyetracking.analysis</field>
+            <field name="arch" type="xml">
+                <tree string="Eye Tracking Analysis">
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Eye Tracking Analysis Action -->
+        <record id="action_eyetracking_analysis" model="ir.actions.act_window">
+            <field name="name">Eye Tracking Analysis</field>
+            <field name="res_model">eyetracking.analysis</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Eye Tracking Analysis Menu -->
+        <menuitem id="menu_eyetracking_root" name="Eye Tracking"/>
+        <menuitem id="menu_eyetracking_analysis" name="Analysis" parent="menu_eyetracking_root" action="action_eyetracking_analysis"/>
+    </data>
+</odoo>
