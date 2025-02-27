@@ -148,6 +148,30 @@ class WebcamDialog extends Component {
         this.state.snapshot = this.takeSnapshot(this.video.el)
     }
 
+    _onStartEyeTracking() {
+        if (!window.webgazer) {
+            console.error("WebGazer no está cargado.");
+            return;
+        }
+    
+        // Iniciar WebGazer y registrar la mirada en la consola
+        webgazer.setGazeListener((data, elapsedTime) => {
+            if (data === null) return;
+    
+            console.log(`Mirada detectada: X=${data.x}, Y=${data.y}, Tiempo transcurrido=${elapsedTime}ms`);
+        }).begin();
+    }
+    
+    _onStopEyeTracking() {
+        if (!window.webgazer) {
+            console.error("WebGazer no está cargado.");
+            return;
+        }
+        webgazer.end();
+        console.log("Seguimiento ocular detenido.");
+    }
+    
+
     async _onWebcamSave(ev) {
         if (!this.state.snapshot)
             return;

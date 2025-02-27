@@ -26,6 +26,14 @@
                     <i class="fa fa-camera mr-2"/>
                     <t>Take Snapshot</t>
                 </button>
+                <button class="btn btn-success" t-on-click="_onStartEyeTracking">
+                    <i class="fa fa-eye mr-2"/>
+                    <t>Iniciar Seguimiento Ocular</t>
+                </button>
+                <button class="btn btn-danger" t-on-click="_onStopEyeTracking">
+                    <i class="fa fa-eye-slash mr-2"/>
+                    <t>Detener Seguimiento Ocular</t>
+                </button>
                 <button t-ref="saveButton" class="btn btn-primary" t-on-click="_onWebcamSave"
                     t-att-disabled="!state.snapshot ? 'disabled' : ''">
                     <i class="fa fa-save mr-2"/>

@@ -14,7 +14,7 @@
     ],
     'assets': {
         'web.assets_backend': [
-            # Original assets
+            'marketing_eyetracking/static/src/lib/webgazer.js',
             'marketing_eyetracking/static/src/js/webcam_dialog.js',
             'marketing_eyetracking/static/src/css/webcam_dialog.css',
             'marketing_eyetracking/static/src/js/image_field.js',

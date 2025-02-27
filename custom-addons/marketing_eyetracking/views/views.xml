@@ -32,15 +32,18 @@
             </field>
         </record>
 
-        <!-- Eye Tracking Analysis Action -->
-        <record id="action_eyetracking_analysis" model="ir.actions.act_window">
+        <!-- Action to open Eye Tracking Analysis Form in a Dialog -->
+        <record id="action_eyetracking_analysis_dialog" model="ir.actions.act_window">
             <field name="name">Eye Tracking Analysis</field>
             <field name="res_model">eyetracking.analysis</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_eyetracking_analysis_form"/>
+            <field name="target">new</field> <!-- This makes the form open as a dialog -->
         </record>
 
         <!-- Eye Tracking Analysis Menu -->
         <menuitem id="menu_eyetracking_root" name="Eye Tracking"/>
-        <menuitem id="menu_eyetracking_analysis" name="Analysis" parent="menu_eyetracking_root" action="action_eyetracking_analysis"/>
+        <menuitem id="menu_eyetracking_analysis" name="Analysis" parent="menu_eyetracking_root" action="action_eyetracking_analysis_dialog"/>
+
     </data>
 </odoo>
