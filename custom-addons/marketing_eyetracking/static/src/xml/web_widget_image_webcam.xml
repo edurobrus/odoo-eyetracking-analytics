@@ -26,6 +26,7 @@
                     </div>
                 </div>
                 <video t-ref="video" width="100%" height="100%" autoplay="" playsinline=""/>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
                 <img t-attf-src="{{state.snapshot}}"/>
                 <canvas id="plotting_canvas" width="500" height="500" style="cursor:crosshair;"></canvas>
                 <!-- Calibration points -->
