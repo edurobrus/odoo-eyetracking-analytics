@@ -14,9 +14,19 @@
     ],
     'assets': {
         'web.assets_backend': [
+            'marketing_eyetracking/static/src/lib/ridgeWorker.js',
             'marketing_eyetracking/static/src/lib/webgazer.js',
+            'marketing_eyetracking/static/src/lib/sweetalert.min.js',
             'marketing_eyetracking/static/src/js/webcam_dialog.js',
+            'marketing_eyetracking/static/src/js/calibration.js',
+            'marketing_eyetracking/static/src/js/main.js',
+            'marketing_eyetracking/static/src/js/collision.js',
+            'marketing_eyetracking/static/src/js/heatmap-demo.js',
+            'marketing_eyetracking/static/src/js/precision_store_points.js',
+            'marketing_eyetracking/static/src/js/precision_calculation.js',
+            'marketing_eyetracking/static/src/js/resize_canvas.js',
             'marketing_eyetracking/static/src/css/webcam_dialog.css',
+            'marketing_eyetracking/static/src/css/style.css',
             'marketing_eyetracking/static/src/js/image_field.js',
             "marketing_eyetracking/static/src/xml/web_widget_image_webcam.xml"
         ],
