@@ -28,11 +28,6 @@
                 <video t-ref="video" width="100%" height="100%" autoplay="" playsinline=""/>
                 <img t-attf-src="{{state.snapshot}}"/>
                 <canvas id="plotting_canvas" width="500" height="500" style="cursor:crosshair;"></canvas>
-                <script src="../../lib/sweetalert.min.js"></script>
-                <script src="../../js/calibration.js"></script>
-                <script src="../../js/main.js"></script>
-                <script src="../../js/precision_calculation.js"></script>
-                <script src="../../js/precision_store_points.js"></script>
                 <!-- Calibration points -->
                 <div class="calibrationDiv">
                     <input type="button" class="Calibration" id="Pt1"></input>
@@ -45,9 +40,6 @@
                     <input type="button" class="Calibration" id="Pt8"></input>
                     <input type="button" class="Calibration" id="Pt9"></input>
                 </div>
-
-                <!-- Latest compiled JavaScript -->
-                <script src="../../js/resize_canvas.js"></script>
 
             </div>
             <t t-set-slot="footer">
