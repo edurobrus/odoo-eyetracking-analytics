@@ -18,14 +18,7 @@
             'marketing_eyetracking/static/src/js/webcam_dialog.js',
             'marketing_eyetracking/static/src/css/webcam_dialog.css',
             'marketing_eyetracking/static/src/js/image_field.js',
-            "marketing_eyetracking/static/src/xml/web_widget_image_webcam.xml",
-
-            # Eye tracking assets
-            'marketing_eyetracking/static/lib/webgazer.js',
-            'marketing_eyetracking/static/src/js/webcam_eye_tracking.js',
-            'marketing_eyetracking/static/src/js/calibration.js',
-            'marketing_eyetracking/static/src/js/precision_calculation.js',
-            'marketing_eyetracking/static/src/js/precision_store_points.js',
+            "marketing_eyetracking/static/src/xml/web_widget_image_webcam.xml"
         ],
     },
     'installable': True,
