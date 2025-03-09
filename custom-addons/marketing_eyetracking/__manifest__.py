@@ -17,6 +17,7 @@
             'marketing_eyetracking/static/src/lib/ridgeWorker.js',
             'marketing_eyetracking/static/src/lib/webgazer.js',
             'marketing_eyetracking/static/src/lib/sweetalert.min.js',
+            'marketing_eyetracking/static/src/lib/html2canvas.min.js',
             'marketing_eyetracking/static/src/js/webcam_dialog.js',
             'marketing_eyetracking/static/src/js/calibration.js',
             'marketing_eyetracking/static/src/js/main.js',

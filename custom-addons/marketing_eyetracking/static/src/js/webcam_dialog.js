@@ -3,7 +3,6 @@ const { Component, useRef, useState, onMounted } = owl;
 import { Dialog } from "@web/core/dialog/dialog";
 import { session } from '@web/session';
 
-
 class WebcamDialog extends Component {
     async setup() {
         super.setup();
@@ -22,42 +21,67 @@ class WebcamDialog extends Component {
     }
 
     async initSelectCamera() {
-        // добавляем все доступные камеры в селекшен
+        // Agregar todos los dispositivos de cámara disponibles al selector
         const devices = await navigator.mediaDevices.enumerateDevices();
         const videoDevices = devices.filter(device => device.kind === 'videoinput');
         videoDevices.map(videoDevice => {
             let opt = document.createElement('option');
             opt.value = videoDevice.deviceId;
-            opt.innerHTML = videoDevice.label;
+            opt.innerHTML = videoDevice.label || `Camera ${videoDevice.deviceId}`;
             this.selectCamera.el.append(opt);
             return opt;
         });
     }
 
     onChangeDevice(e) {
-        // добавляем обработчик смены камеры
+        // Cambiar la cámara seleccionada
         const device = $(e.target).val();
-        this.stopVideo()
-        this.startVideo(device)
+        this.stopVideo();
+        this.startVideo(device);
     }
 
+    // Método para tomar la foto con puntos de la mirada
     takeSnapshot(video) {
         const canvas = document.createElement("canvas");
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         const canvasContext = canvas.getContext("2d");
+
+        // Dibujar el video en el canvas
         canvasContext.drawImage(video, 0, 0);
+
+        // Si hay datos de la mirada, dibujar los puntos sobre el video
+        if (window.gazeData && window.gazeData.length > 0) {
+            window.gazeData.forEach(({ x, y }) => {
+                this.drawGazePoint(canvasContext, x, y);
+            });
+        }
+
+        // Retornar la imagen en base64
         return canvas.toDataURL('image/jpeg');
+    }
+
+    // Función para dibujar los puntos de la mirada sobre el canvas
+    drawGazePoint(ctx, x, y) {
+        const radius = 15;
+        const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+        gradient.addColorStop(0, 'rgba(255, 255, 0, 1)'); // Amarillo brillante
+        gradient.addColorStop(0.5, 'rgba(255, 165, 0, 0.7)'); // Naranja
+        gradient.addColorStop(1, 'rgba(255, 0, 0, 0)'); // Rojo transparente
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, 2 * Math.PI);
+        ctx.fill();
     }
 
     async handleStream(stream) {
         const def = $.Deferred();
 
-        // устанавливаем выбранную камеру в селекшене
+        // Establecer la cámara seleccionada en el selector
         if (stream && stream.getVideoTracks().length)
             this.selectCamera.el.value = stream.getVideoTracks()[0].getSettings().deviceId;
 
-        // отображаем видео в диалоге
+        // Mostrar el video en el diálogo
         this.video.el.srcObject = stream;
 
         this.video.el.addEventListener("canplay", () => {
@@ -69,7 +93,7 @@ class WebcamDialog extends Component {
             def.resolve();
         }, false);
 
-        return def
+        return def;
     }
 
     async startVideo(device = null) {
@@ -77,26 +101,24 @@ class WebcamDialog extends Component {
             let config = {
                 width: { ideal: session.am_webcam_width || 1280 },
                 height: { ideal: session.am_webcam_height || 720 },
-                // facingMode: this.props.mode ? 'user' : 'environment',
             }
             if (device)
                 config.deviceId = { exact: device }
 
             const videoStream = await navigator.mediaDevices.getUserMedia({
                 video: config
-            })
-            await this.handleStream(videoStream)
+            });
+            await this.handleStream(videoStream);
         } catch (e) {
-            console.error('*** getUserMedia', e)
-        } finally {
+            console.error('Error al iniciar video:', e);
         }
     }
 
     stopVideo() {
-        // останавливае видео поток
+        // Detener el flujo de video
         this.streamStarted = false;
 
-        // если захват видео из предыдущего устройства был успешным, остановить его
+        // Si el flujo de video está activo, detenerlo
         if (this.video.el.srcObject)
             this.video.el.srcObject.getTracks().forEach((track) => {
                 track.stop();
@@ -107,16 +129,14 @@ class WebcamDialog extends Component {
      * @returns {string}
      */
     getBody() {
-        return _.str.sprintf(
-            this.env._t(`You can setting default photo size and quality in general settings`),
-        );
+        return this.env._t('You can adjust the default photo size and quality in the general settings.');
     }
 
     /**
      * @returns {string}
      */
     getTitle() {
-        return this.env._t("Attachments manager Webcam");
+        return this.env._t("Attachments Manager Webcam");
     }
 
     urltoFile(url, filename, mimeType) {
@@ -130,13 +150,7 @@ class WebcamDialog extends Component {
         await this.props.onWebcamCallback(base64);
     }
 
-    //--------------------------------------------------------------------------
     // Handlers
-    //--------------------------------------------------------------------------
-
-    /**
-     * @private
-     */
     _onClickCancel(ev) {
         ev.stopPropagation();
         ev.preventDefault();
@@ -145,7 +159,8 @@ class WebcamDialog extends Component {
     }
 
     _onWebcamSnapshot() {
-        this.state.snapshot = this.takeSnapshot(this.video.el)
+        // Capturar la imagen con los puntos de la mirada
+        this.state.snapshot = this.takeSnapshot(this.video.el);
     }
 
     _onStartEyeTracking() {
@@ -153,34 +168,61 @@ class WebcamDialog extends Component {
             console.error("WebGazer no está cargado.");
             return;
         }
-    
-        // Iniciar WebGazer y registrar la mirada en la consola
+        window.gazeData = [];
         webgazer.setGazeListener((data, elapsedTime) => {
-            if (data === null) return;
-    
-            console.log(`Mirada detectada: X=${data.x}, Y=${data.y}, Tiempo transcurrido=${elapsedTime}ms`);
+            if (data !== null) {
+                window.gazeData.push({ x: data.x, y: data.y });
+            }
         }).begin();
+
+        console.log("Seguimiento ocular iniciado.");
     }
-    
+
     _onStopEyeTracking() {
         if (!window.webgazer) {
             console.error("WebGazer no está cargado.");
             return;
         }
+
         webgazer.end();
         console.log("Seguimiento ocular detenido.");
+
+        // Al finalizar, guardar los puntos capturados en la imagen
+        this.drawAllPoints();
     }
-    
+
+    // Función para dibujar todos los puntos
+    drawAllPoints() {
+        if (window.gazeData && window.gazeData.length > 0) {
+            // Usar html2canvas para capturar toda la página
+            const canvas = document.createElement('canvas');
+            canvas.width = 100;  // Establecer el tamaño correcto
+            canvas.height = 100;
+            const context = canvas.getContext('2d');
+            html2canvas(document.body, {
+                useCORS: true, // Permite cargar imágenes de dominios cruzados
+                backgroundColor: '#ffffff', // Fondo blanco en caso de que no se pueda cargar el fondo
+            }).then((canvas) => {
+                const imageData = canvas.toDataURL('image/png');
+                const fileName = 'full_page_screenshot.png';
+                const link = document.createElement('a');
+                link.download = fileName;
+                link.href = imageData;
+                link.click();
+                console.log("Captura completa descargada.");
+            }).catch((error) => {
+                console.error("Error al capturar el HTML:", error);
+            });
+        }
+    }
 
     async _onWebcamSave(ev) {
-        if (!this.state.snapshot)
-            return;
+        if (!this.state.snapshot) return;
 
+        // Enviar la imagen capturada al callback
         await this.onwebcam(this.state.snapshot.split(',')[1], "image/jpeg");
         this._onClickCancel(ev);
-
     }
-
 }
 
 WebcamDialog.props = {
@@ -198,6 +240,6 @@ WebcamDialog.defaultProps = {
     onWebcamCallback: () => { },
 };
 
-WebcamDialog.template = 'marketing_eyetracking.WebcamDialog'
+WebcamDialog.template = 'marketing_eyetracking.WebcamDialog';
 
 export default WebcamDialog;

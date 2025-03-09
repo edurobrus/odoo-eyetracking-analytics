@@ -11,24 +11,248 @@
     
     <t t-name="marketing_eyetracking.WebcamDialog" owl="1">
         <Dialog contentClass="'AttachmentWebcamDialog'" title="getTitle()" size="'xl'">
-            <p class="o_AttachmentWebcamDialog_mainText" t-esc="getBody()"/>
-            <div style="display: flex; justify-content: center; align-content: space-between; align-items: center;flex-direction: column;">
-                <div style="display: flex; justify-content: flex-end; align-items: center;">
-                    <div style="margin-right: 20px;">
-                        <select t-ref="selectCamera" t-on-change="(ev) => this.onChangeDevice(ev)">
-                        <option value="">Select camera</option>
+                <style>
+                        /* Estilos base compatibles con Odoo */
+                        .AttachmentWebcamDialog {
+                            background-color: #ffffff;
+                            padding: 1rem;
+                            margin: 0 auto;
+                            width: 100%;
+                            height: 100%;
+                            overflow: hidden;
+                        }
+
+                        .dialog-content-container {
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+                            height: calc(100vh - 150px);
+                            padding: 0;
+                            margin: 0 auto;
+                            overflow: hidden;
+                            position: relative;
+                            border: 1px solid #dee2e6;
+                            border-radius: 0.25rem;
+                            background-color: #f8f9fa;
+                        }
+
+                        .webcam-container {
+                            position: relative;
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: #ffffff;
+                            padding: 1rem;
+                        }
+
+                        .video-container {
+                            width: 85%;
+                            height: 70%;
+                            position: relative;
+                            margin: 0 auto;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 0.25rem;
+                            overflow: hidden;
+                            border: 1px solid #ced4da;
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                        }
+
+                        .AttachmentWebcamDialog video {
+                            background-color: #f1f1f1;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                            border: none;
+                            border-radius: 0.25rem;
+                            padding: 0;
+                            margin: 0;
+                        }
+
+                        /* Header de la webcam estilo Odoo */
+                        .webcam-header {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: 0.75rem 1rem;
+                            background-color: #f8f9fa;
+                            color: #212529;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: 10;
+                            border-bottom: 1px solid #dee2e6;
+                        }
+
+                        .calibrationDiv {
+                            display: flex;
+                            justify-content: center;
+                            gap: 1.25rem;
+                            margin-top: 1rem;
+                            position: absolute;
+                            bottom: 5rem;
+                            left: 0;
+                            width: 100%;
+                            z-index: 10;
+                        }
+
+                        .calibrationDiv .Calibration {
+                            opacity: 0;
+                            width: 30px;
+                            height: 30px;
+                            background-color: #017e84;
+                            border: 1px solid #00666c;
+                            border-radius: 50%;
+                            cursor: pointer;
+                            outline: none;
+                            transition: all 0.2s ease;
+                        }
+
+                        .calibrationDiv .Calibration:hover {
+                            background-color: #00666c;
+                        }
+
+                        #Accuracy {
+                            font-size: 0.95em;
+                        }
+
+                        #plotting_canvas {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            z-index: 5;
+                            pointer-events: none; /* Evita que interfiera con la interacción del video */
+                        }
+
+                        .AttachmentWebcamDialog select {
+                            width: 220px;
+                            padding: 0.375rem 0.75rem;
+                            border: 1px solid #ced4da;
+                            border-radius: 0.25rem;
+                            background-color: white;
+                            font-size: 0.95em;
+                            color: #495057;
+                        }
+
+                        /* Botones de control estilo Odoo */
+                        .control-buttons {
+                            position: absolute;
+                            bottom: 1.25rem;
+                            left: 0;
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            gap: 1rem;
+                            z-index: 10;
+                        }
+
+                        .control-buttons .btn {
+                            padding: 0.375rem 0.75rem;
+                            border-radius: 0.25rem;
+                            font-weight: 400;
+                        }
+
+                        /* Footer estilo Odoo */
+                        .modal-footer {
+                            background-color: #f8f9fa;
+                            padding: 1rem;
+                            border-top: 1px solid #dee2e6;
+                            display: flex;
+                            justify-content: flex-end;
+                            gap: 0.5rem;
+                        }
+
+                        /* Ajustes para el diálogo estilo Odoo */
+                        .modal-dialog {
+                            max-width: 85%;
+                            margin: 1.75rem auto;
+                        }
+
+                        .modal-content {
+                            border-radius: 0.25rem;
+                            border: 1px solid rgba(0, 0, 0, 0.2);
+                            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+                        }
+
+                        .modal-header {
+                            background-color: #ffffff;
+                            color: #212529;
+                            border-bottom: 1px solid #dee2e6;
+                            padding: 1rem;
+                            border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+                        }
+
+                        .modal-body {
+                            padding: 1rem;
+                            background-color: #ffffff;
+                        }
+
+                        /* Estilo para el snapshot estilo Odoo */
+                        .snapshot-preview {
+                            position: absolute;
+                            bottom: 5rem;
+                            right: 1.25rem;
+                            width: 200px;
+                            height: 150px;
+                            background-color: #f8f9fa;
+                            border: 1px solid #ced4da;
+                            border-radius: 0.25rem;
+                            z-index: 15;
+                            display: none;
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                            overflow: hidden;
+                        }
+
+                        .snapshot-preview img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                </style>
+            <div class="dialog-content-container">
+                <div class="webcam-container">
+                    <div class="webcam-header">
+                        <select t-ref="selectCamera" t-on-change="(ev) => this.onChangeDevice(ev)" class="camera-select">
+                            <option value="">Select Camera</option>
                         </select>
-                    </div>
-                    <div>
                         <ul style="margin: 0; padding: 0; list-style: none;">
-                        <li id="Accuracy"><a>Not yet Calibrated</a></li>
+                            <li id="Accuracy"></li>
                         </ul>
                     </div>
+                    
+                    <!-- Video -->
+                    <div class="video-container">
+                        <video t-ref="video" autoplay="" playsinline=""/>
+                        <canvas id="plotting_canvas" style="cursor:crosshair;"></canvas>
+                    </div>
+                    
+                    <!-- Control buttons -->
+                    <div class="control-buttons">
+                        <button class="btn btn-info" onclick="Restart()">
+                            <i class="fa fa-refresh mr-2"/>
+                            <t>Calibrate</t>
+                        </button>
+                        <button class="btn btn-info" onclick="webgazer.applyKalmanFilter(!webgazer.params.applyKalmanFilter)">
+                            <i class="fa fa-toggle-on mr-2"/>
+                            <t>Toggle Kalman Filter</t>
+                        </button>
+                    </div>
                 </div>
-                <video t-ref="video" width="100%" height="100%" autoplay="" playsinline=""/>
+                
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
-                <img t-attf-src="{{state.snapshot}}"/>
-                <canvas id="plotting_canvas" width="500" height="500" style="cursor:crosshair;"></canvas>
+                
+                <!-- Snapshot preview container -->
+                <div class="snapshot-preview">
+                    <img t-attf-src="{{state.snapshot}}"/>
+                </div>
+                
                 <!-- Calibration points -->
                 <div class="calibrationDiv">
                     <input type="button" class="Calibration" id="Pt1"></input>
@@ -41,38 +265,83 @@
                     <input type="button" class="Calibration" id="Pt8"></input>
                     <input type="button" class="Calibration" id="Pt9"></input>
                 </div>
-
             </div>
+            
             <t t-set-slot="footer">
-                <button class="btn btn-primary" t-on-click="_onWebcamSnapshot">
-                    <i class="fa fa-camera mr-2"/>
-                    <t>Take Snapshot</t>
-                </button>
-                <button class="btn btn-success" t-on-click="_onStartEyeTracking">
-                    <i class="fa fa-eye mr-2"/>
-                    <t>Iniciar Seguimiento Ocular</t>
-                </button>
-                <button class="btn btn-info" onclick="Restart()">
-                    <i class="fa fa-refresh mr-2"/>
-                    <t>Calibrate</t>
-                </button>
-                <button class="btn btn-info" onclick="webgazer.applyKalmanFilter(!webgazer.params.applyKalmanFilter)">
-                    <i class="fa fa-toggle-on mr-2"/>
-                    <t>Toggle Kalman Filter</t>
-                </button>
-                <button class="btn btn-danger" t-on-click="_onStopEyeTracking">
-                    <i class="fa fa-eye-slash mr-2"/>
-                    <t>Detener Seguimiento Ocular</t>
-                </button>
-                <button t-ref="saveButton" class="btn btn-primary" t-on-click="_onWebcamSave"
-                    t-att-disabled="!state.snapshot ? 'disabled' : ''">
-                    <i class="fa fa-save mr-2"/>
-                    <t>Save and Close</t>
-                </button>
-                <button class="btn btn-secondary" t-on-click="_onClickCancel">
-                    <t>Cancel</t>
-                </button>
+                <div>
+                    <!-- Vista de escritorio: botones en línea -->
+                    <div class="d-none d-md-flex justify-content-between w-100">
+                        <!-- Grupo izquierdo: seguimiento ocular -->
+                        <div class="btn-group">
+                            <button class="btn btn-success ms-3" t-on-click="_onStartEyeTracking">
+                                <i class="fa fa-eye mr-2"/>
+                                <t>Iniciar Seguimiento Ocular</t>
+                            </button>
+                            <button class="btn btn-danger ms-3" t-on-click="_onStopEyeTracking">
+                                <i class="fa fa-eye-slash mr-2"/>
+                                <t>Detener Seguimiento Ocular</t>
+                            </button>
+                        </div>
+                        <!-- Grupo derecho: snapshot, guardar y cancelar -->
+                        <div class="btn-group">
+                            <button class="btn btn-primary ms-3" t-on-click="_onWebcamSnapshot">
+                                <i class="fa fa-camera mr-2"/>
+                                <t>Take Snapshot</t>
+                            </button>
+                            <button t-ref="saveButton" class="btn btn-primary ms-3" t-on-click="_onWebcamSave"
+                                t-att-disabled="!state.snapshot ? 'disabled' : ''">
+                                <i class="fa fa-save mr-2"/>
+                                <t>Save and Close</t>
+                            </button>
+                            <button class="btn btn-secondary ms-3" t-on-click="_onClickCancel">
+                                <t>Cancel</t>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Vista móvil: menú desplegable -->
+                    <div class="d-flex d-md-none justify-content-end w-100">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="mobileActionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Acciones
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="mobileActionsDropdown">
+                                <li>
+                                    <a class="dropdown-item" t-on-click="_onStartEyeTracking">
+                                        <i class="fa fa-eye mr-2"/>
+                                        <t>Iniciar Seguimiento Ocular</t>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" t-on-click="_onStopEyeTracking">
+                                        <i class="fa fa-eye-slash mr-2"/>
+                                        <t>Detener Seguimiento Ocular</t>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" t-on-click="_onWebcamSnapshot">
+                                        <i class="fa fa-camera mr-2"/>
+                                        <t>Take Snapshot</t>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" t-on-click="_onWebcamSave"
+                                        t-att-disabled="!state.snapshot ? 'disabled' : ''">
+                                        <i class="fa fa-save mr-2"/>
+                                        <t>Save and Close</t>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" t-on-click="_onClickCancel">
+                                        <t>Cancel</t>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </t>
-            </Dialog>
+
+        </Dialog>
     </t> 
 </templates>
