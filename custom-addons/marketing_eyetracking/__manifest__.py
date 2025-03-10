@@ -26,7 +26,6 @@
             'marketing_eyetracking/static/src/js/precision_store_points.js',
             'marketing_eyetracking/static/src/js/precision_calculation.js',
             'marketing_eyetracking/static/src/js/resize_canvas.js',
-            'marketing_eyetracking/static/src/css/webcam_dialog.css',
             'marketing_eyetracking/static/src/css/style.css',
             'marketing_eyetracking/static/src/js/image_field.js',
             "marketing_eyetracking/static/src/xml/web_widget_image_webcam.xml"
