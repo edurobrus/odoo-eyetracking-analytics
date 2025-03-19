@@ -14,6 +14,31 @@
                             <field name="date_start"/>
                             <field name="date_end"/>
                         </group>
+                        <notebook>
+                            <page string="User Actions">
+                                <field name="user_action_ids">
+                                    <tree>
+                                        <field name="model"/>
+                                        <field name="url"/>
+                                        <field name="timestamp"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Gaze Points">
+                                <field name="gaze_point_ids">
+                                    <tree>
+                                        <field name="x"/>
+                                        <field name="y"/>
+                                        <field name="timestamp"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Raw Data">
+                                <group>
+                                    <field name="log_content"/>
+                                </group>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
@@ -32,18 +57,48 @@
             </field>
         </record>
 
-        <!-- Action to open Eye Tracking Analysis Form in a Dialog -->
-        <record id="action_eyetracking_analysis_dialog" model="ir.actions.act_window">
+        <!-- Eye Tracking Analysis Kanban View -->
+        <record id="view_eyetracking_analysis_kanban" model="ir.ui.view">
+            <field name="name">eyetracking.analysis.kanban</field>
+            <field name="model">eyetracking.analysis</field>
+            <field name="arch" type="xml">
+                <kanban string="Eye Tracking Analysis">
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="image"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image: url(#{kanban_image('eyetracking.analysis', 'image', record.id.raw_value)});"/>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <div class="o_kanban_record_subtitle">
+                                        <strong>Desde:</strong> <field name="date_start"/>
+                                    </div>
+                                    <div class="o_kanban_record_subtitle">
+                                        <strong>Hasta:</strong> <field name="date_end"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action to open Eye Tracking Analysis -->
+        <record id="action_eyetracking_analysis" model="ir.actions.act_window">
             <field name="name">Eye Tracking Analysis</field>
             <field name="res_model">eyetracking.analysis</field>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="view_eyetracking_analysis_form"/>
-            <field name="target">new</field> <!-- This makes the form open as a dialog -->
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_id" ref="view_eyetracking_analysis_tree"/>
         </record>
 
         <!-- Eye Tracking Analysis Menu -->
         <menuitem id="menu_eyetracking_root" name="Eye Tracking"/>
-        <menuitem id="menu_eyetracking_analysis" name="Analysis" parent="menu_eyetracking_root" action="action_eyetracking_analysis_dialog"/>
-
+        <menuitem id="menu_eyetracking_analysis" name="Analysis" parent="menu_eyetracking_root" action="action_eyetracking_analysis"/>
     </data>
 </odoo>

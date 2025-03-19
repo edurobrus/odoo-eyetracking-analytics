@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_eyetracking_analysis,access.eyetracking.analysis,model_eyetracking_analysis,base.group_user,1,1,1,1
+access_eyetracking_analysis_user,eyetracking.analysis.user,model_eyetracking_analysis,base.group_user,1,1,1,1
+access_eyetracking_user_action_user,eyetracking.user.action.user,model_eyetracking_user_action,base.group_user,1,1,1,1
+access_eyetracking_gaze_point_user,eyetracking.gaze.point.user,model_eyetracking_gaze_point,base.group_user,1,1,1,1

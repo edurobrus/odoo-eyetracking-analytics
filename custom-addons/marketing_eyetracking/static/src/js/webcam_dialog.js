@@ -2,6 +2,7 @@
 const { Component, useRef, useState, onMounted } = owl;
 import { Dialog } from "@web/core/dialog/dialog";
 import { session } from '@web/session';
+import { useService } from "@web/core/utils/hooks";
 
 class WebcamDialog extends Component {
     async setup() {
@@ -9,19 +10,32 @@ class WebcamDialog extends Component {
         this.state = useState({
             snapshot: ""
         });
+        this.rpcService = useService("rpc");
         this.video = useRef("video");
         this.saveButton = useRef("saveButton");
         this.selectCamera = useRef("selectCamera");
         onMounted(() => this._mounted());
     }
-
+    
     async _mounted() {
         await this.initSelectCamera();
         await this.startVideo();
     }
+    
+    async _clearOdooLog() {
+        try {
+            const result = await this.rpcService("/marketing_eyetracking/clear_log", {});
+            if (result.status === "success") {
+                console.log("Log de Odoo borrado con éxito.");
+            } else {
+                console.error("Error al borrar el log:", result.message);
+            }
+        } catch (error) {
+            console.error("Error en la solicitud RPC:", error);
+        }
+    }
 
     async initSelectCamera() {
-        // Agregar todos los dispositivos de cámara disponibles al selector
         const devices = await navigator.mediaDevices.enumerateDevices();
         const videoDevices = devices.filter(device => device.kind === 'videoinput');
         videoDevices.map(videoDevice => {
@@ -168,16 +182,27 @@ class WebcamDialog extends Component {
             console.error("WebGazer no está cargado.");
             return;
         }
+        
+        // Reset and initialize the gaze data with timestamps
         window.gazeData = [];
+        this.eyeTrackingStartTime = new Date();
+        
         webgazer.setGazeListener((data, elapsedTime) => {
             if (data !== null) {
-                window.gazeData.push({ x: data.x, y: data.y });
+                // Store x, y coordinates with timestamp
+                const now = new Date();
+                window.gazeData.push({
+                    x: data.x,
+                    y: data.y,
+                    timestamp: now.toISOString().slice(0, 19).replace("T", " ")
+                });
             }
         }).begin();
 
+        this._clearOdooLog();
         console.log("Seguimiento ocular iniciado.");
     }
-
+    
     _onStopEyeTracking() {
         if (!window.webgazer) {
             console.error("WebGazer no está cargado.");
@@ -186,9 +211,32 @@ class WebcamDialog extends Component {
 
         webgazer.end();
         console.log("Seguimiento ocular detenido.");
-
-        // Al finalizar, guardar los puntos capturados en la imagen
+        
+        // Save the gaze data to Odoo
+        this._saveGazeData(window.gazeData);
+        
+        // Draw the points on the snapshot
         this.drawAllPoints();
+    }
+    
+    async _saveGazeData(gazeData) {
+        if (!gazeData || gazeData.length === 0) {
+            console.warn("No hay datos de seguimiento ocular para guardar.");
+            return;
+        }
+        
+        try {
+            const result = await this.rpcService("/web/dataset/call_kw/eyetracking.analysis/save_gaze_data", {
+                model: "eyetracking.analysis",
+                method: "save_gaze_data",
+                args: [gazeData],
+                kwargs: {}
+            });
+            
+            console.log("Datos de seguimiento ocular guardados con éxito, ID:", result);
+        } catch (error) {
+            console.error("Error al guardar los datos de seguimiento ocular:", error);
+        }
     }
 
     // Función para dibujar todos los puntos
