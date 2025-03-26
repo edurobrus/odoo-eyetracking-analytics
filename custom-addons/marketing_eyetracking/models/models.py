@@ -5,7 +5,6 @@ import re
 import pytz
 from datetime import datetime
 
-
 class EyetrackingAnalysis(models.Model):
     _name = "eyetracking.analysis"
     _description = "Análisis de EyeTracking"
@@ -15,12 +14,9 @@ class EyetrackingAnalysis(models.Model):
     date_end = fields.Datetime("End Date")
     image = fields.Binary("Image", attachment=True)
     log_content = fields.Text("Log Content")
-    user_action_ids = fields.One2many(
-        "eyetracking.user.action", "analysis_id", string="User Actions"
-    )
-    gaze_point_ids = fields.One2many(
-        "eyetracking.gaze.point", "analysis_id", string="Gaze Points"
-    )
+    user_action_ids = fields.One2many("eyetracking.user.action", "analysis_id", string="User Actions")
+    gaze_point_ids = fields.One2many("eyetracking.gaze.point", "analysis_id", string="Gaze Points")
+    log_lines_ids = fields.One2many("eyetracking.log", "analysis_id", string="Log Lines")
 
     @api.model
     def extract_models_from_log(self, log_content):
@@ -72,7 +68,39 @@ class EyetrackingAnalysis(models.Model):
                 )
 
         return user_actions
+    
+    @api.model
+    def create_log_lines(self):
+        """
+        Procesa el contenido del log y devuelve los datos listos para crearse en eyetracking.log
+        Solo se guardará el texto completo de cada línea del log.
+        """
+        log_path = os.path.join(os.path.dirname(__file__), "../log/odoo.log")
+        log_lines = []
 
+        if os.path.exists(log_path):
+            with open(log_path, "r", encoding="utf-8") as log_file:
+                for line in log_file:
+                    match = re.search(r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})", line)
+                    if match:
+                        log_datetime_str = match.group(1)
+
+                        timestamp = datetime.strptime(
+                            log_datetime_str, "%Y-%m-%d %H:%M:%S"
+                        )
+
+                        first_space_index = line.find(" ")
+                        log_text_part = line[first_space_index:].strip()
+                        log_text_clean = re.sub(r"\[\d{2}/\w{3}/\d{4} \d{2}:\d{2}:\d{2}\]", "", log_text_part).strip()
+                        second_space_index = log_text_clean.find(" ")
+                        log_text = log_text_clean[second_space_index:].strip()
+
+                        log_lines.append({
+                            "timestamp": timestamp,
+                            "text": log_text
+                        })
+
+        return log_lines
     @api.model
     def create(self, vals):
         log_path = os.path.join(os.path.dirname(__file__), "../log/odoo.log")
@@ -95,11 +123,19 @@ class EyetrackingAnalysis(models.Model):
             action["analysis_id"] = record.id
             self.env["eyetracking.user.action"].create(action)
 
-        # Borrar el contenido del log después de guardar
+        # Procesar líneas del log y crearlas correctamente
+        log_lines = self.create_log_lines()  # Obtener los datos
+        for log_entry in log_lines:
+            log_entry["analysis_id"] = record.id  # Asociar al análisis
+            self.env["eyetracking.log"].create(log_entry)  # Crear en el modelo
+
+        # Limpiar el archivo de log después de procesarlo
         if os.path.exists(log_path):
             open(log_path, "w").close()
 
         return record
+
+
 
     @api.model
     def save_gaze_data(self, gaze_points):
@@ -186,3 +222,12 @@ class EyetrackingGazePoint(models.Model):
     x = fields.Float("Coordenada X")
     y = fields.Float("Coordenada Y")
     timestamp = fields.Datetime("Fecha y Hora")
+
+
+class EyetrackingLog(models.Model):
+    _name = "eyetracking.log"
+    _description = "Registro de Logs de EyeTracking"
+    _order = "timestamp desc"
+    text = fields.Text("Mensaje Completo")
+    timestamp = fields.Datetime("Fecha y Hora")
+    analysis_id = fields.Many2one("eyetracking.analysis", string="Análisis", ondelete="cascade")

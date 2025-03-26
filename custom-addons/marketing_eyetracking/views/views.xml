@@ -33,10 +33,13 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Raw Data">
-                                <group>
-                                    <field name="log_content"/>
-                                </group>
+                            <page string="Log Lines">
+                                <field name="log_lines_ids">
+                                    <tree>
+                                        <field name="timestamp"/>
+                                        <field name="text"/> 
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>

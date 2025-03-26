@@ -1,39 +1,10 @@
-2025-03-19 18:14:22,412 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:22] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 304 - 9 0.002 0.004
-2025-03-19 18:14:22,513 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:22] "POST /web/dataset/call_kw/eyetracking.analysis/save_gaze_data HTTP/1.1" 200 - 665 0.062 0.089
-2025-03-19 18:14:22,557 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:22] "GET /web HTTP/1.1" 200 - 9 0.003 0.005
-2025-03-19 18:14:23,370 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:23] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.001 0.003
-2025-03-19 18:14:27,253 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:27] "POST /web/dataset/call_kw/eyetracking.analysis/web_search_read HTTP/1.1" 200 - 3 0.002 0.005
-2025-03-19 18:14:28,249 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:28] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.001 0.002
-2025-03-19 18:14:30,060 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:30] "POST /web/dataset/call_kw/eyetracking.analysis/read HTTP/1.1" 200 - 5 0.001 0.003
-2025-03-19 18:14:30,071 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:30] "POST /web/dataset/call_kw/eyetracking.user.action/read HTTP/1.1" 200 - 2 0.001 0.003
-2025-03-19 18:14:30,071 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:30] "POST /web/dataset/call_kw/eyetracking.gaze.point/read HTTP/1.1" 200 - 2 0.001 0.003
-2025-03-19 18:14:31,139 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:31] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.000 0.001
-2025-03-19 18:14:57,646 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:57] "POST /web/dataset/call_kw/eyetracking.gaze.point/read HTTP/1.1" 200 - 2 0.001 0.003
-2025-03-19 18:14:58,653 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:58] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.002 0.003
-2025-03-19 18:14:58,655 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:58] "POST /web/dataset/call_kw/eyetracking.gaze.point/read HTTP/1.1" 200 - 2 0.001 0.003
-2025-03-19 18:14:59,468 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:59] "POST /web/dataset/call_kw/eyetracking.gaze.point/read HTTP/1.1" 200 - 2 0.001 0.003
-2025-03-19 18:14:59,652 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:14:59] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.000 0.001
-2025-03-19 18:16:50,379 22034 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `Notification: Send scheduled message notifications`. 
-2025-03-19 18:16:50,382 22034 INFO odoo_db odoo.addons.base.models.ir_cron: Job `Notification: Send scheduled message notifications` done. 
-2025-03-19 18:16:50,390 22034 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `Mail: Email Queue Manager`. 
-2025-03-19 18:16:50,399 22034 INFO odoo_db odoo.addons.base.models.ir_cron: Job `Mail: Email Queue Manager` done. 
-2025-03-19 18:16:50,406 22034 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `Partner Autocomplete : Sync with remote DB`. 
-2025-03-19 18:16:50,408 22034 INFO odoo_db odoo.addons.base.models.ir_cron: Job `Partner Autocomplete : Sync with remote DB` done. 
-2025-03-19 18:16:50,413 22034 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `SMS: SMS Queue Manager`. 
-2025-03-19 18:16:50,416 22034 INFO odoo_db odoo.addons.base.models.ir_cron: Job `SMS: SMS Queue Manager` done. 
-2025-03-19 18:16:50,422 22034 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `Snailmail: process letters queue`. 
-2025-03-19 18:16:50,427 22034 INFO odoo_db odoo.addons.base.models.ir_cron: Job `Snailmail: process letters queue` done. 
-2025-03-19 18:22:33,534 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:33] "POST /web/dataset/call_kw/eyetracking.analysis/web_search_read HTTP/1.1" 200 - 3 0.001 0.002
-2025-03-19 18:22:34,559 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:34] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.001 0.002
-2025-03-19 18:22:38,395 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:38] "POST /web/dataset/call_kw/eyetracking.analysis/onchange HTTP/1.1" 200 - 1 0.000 0.002
-2025-03-19 18:22:39,463 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:39] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.002 0.005
-2025-03-19 18:22:43,990 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:43] "POST /web/dataset/call_kw/eyetracking.analysis/web_search_read HTTP/1.1" 200 - 3 0.001 0.003
-2025-03-19 18:22:44,999 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:44] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.001 0.004
-2025-03-19 18:22:45,057 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:45] "POST /web/dataset/call_kw/eyetracking.analysis/read HTTP/1.1" 200 - 5 0.002 0.003
-2025-03-19 18:22:46,062 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:46] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.002 0.004
-2025-03-19 18:22:47,915 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:47] "POST /web/dataset/call_kw/eyetracking.analysis/web_search_read HTTP/1.1" 200 - 3 0.001 0.002
-2025-03-19 18:22:48,929 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:48] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.001 0.002
-2025-03-19 18:22:49,100 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:49] "POST /web/dataset/call_kw/eyetracking.analysis/read HTTP/1.1" 200 - 5 0.002 0.003
-2025-03-19 18:22:49,111 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:49] "POST /web/dataset/call_kw/eyetracking.gaze.point/read HTTP/1.1" 200 - 2 0.001 0.002
-2025-03-19 18:22:49,111 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:49] "POST /web/dataset/call_kw/eyetracking.user.action/read HTTP/1.1" 200 - 2 0.001 0.003
-2025-03-19 18:22:50,104 22034 INFO odoo_db werkzeug: 127.0.0.1 - - [19/Mar/2025 18:22:50] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.001 0.003
+2025-03-26 19:08:51,712 56045 INFO odoo_db werkzeug: 127.0.0.1 - - [26/Mar/2025 19:08:51] "POST /web/dataset/call_kw/eyetracking.analysis/save_gaze_data HTTP/1.1" 200 - 38 0.011 0.014
+2025-03-26 19:08:51,778 56045 INFO odoo_db werkzeug: 127.0.0.1 - - [26/Mar/2025 19:08:51] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 304 - 9 0.004 0.008
+2025-03-26 19:08:51,993 56045 INFO odoo_db werkzeug: 127.0.0.1 - - [26/Mar/2025 19:08:51] "GET /web HTTP/1.1" 200 - 9 0.004 0.009
+2025-03-26 19:08:52,777 56045 INFO odoo_db werkzeug: 127.0.0.1 - - [26/Mar/2025 19:08:52] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.002 0.007
+2025-03-26 19:08:55,492 56045 INFO odoo_db werkzeug: 127.0.0.1 - - [26/Mar/2025 19:08:55] "POST /web/dataset/call_kw/eyetracking.analysis/web_search_read HTTP/1.1" 200 - 3 0.005 0.012
+2025-03-26 19:08:56,479 56045 INFO odoo_db werkzeug: 127.0.0.1 - - [26/Mar/2025 19:08:56] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.001 0.002
+2025-03-26 19:08:56,796 56045 INFO odoo_db werkzeug: 127.0.0.1 - - [26/Mar/2025 19:08:56] "POST /web/dataset/call_kw/eyetracking.analysis/read HTTP/1.1" 200 - 9 0.018 0.014
+2025-03-26 19:08:56,859 56045 INFO odoo_db werkzeug: 127.0.0.1 - - [26/Mar/2025 19:08:56] "POST /web/dataset/call_kw/eyetracking.gaze.point/read HTTP/1.1" 200 - 2 0.006 0.017
+2025-03-26 19:08:56,860 56045 INFO odoo_db werkzeug: 127.0.0.1 - - [26/Mar/2025 19:08:56] "POST /web/dataset/call_kw/eyetracking.log/read HTTP/1.1" 200 - 2 0.004 0.015
+2025-03-26 19:08:57,808 56045 INFO odoo_db werkzeug: 127.0.0.1 - - [26/Mar/2025 19:08:57] "GET /web/service-worker.js HTTP/1.1" 404 - 2 0.003 0.009
