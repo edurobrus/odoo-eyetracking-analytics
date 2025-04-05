@@ -1,9 +1,10 @@
 import os
-import json
 from odoo import models, fields, api
 import re
 import pytz
 from datetime import datetime
+import base64
+
 
 class EyetrackingAnalysis(models.Model):
     _name = "eyetracking.analysis"
@@ -14,21 +15,33 @@ class EyetrackingAnalysis(models.Model):
     date_end = fields.Datetime("End Date")
     image = fields.Binary("Image", attachment=True)
     log_content = fields.Text("Log Content")
-    user_action_ids = fields.One2many("eyetracking.user.action", "analysis_id", string="User Actions")
-    gaze_point_ids = fields.One2many("eyetracking.gaze.point", "analysis_id", string="Gaze Points")
-    log_lines_ids = fields.One2many("eyetracking.log", "analysis_id", string="Log Lines")
+    user_action_ids = fields.One2many(
+        "eyetracking.user.action", "analysis_id", string="User Actions"
+    )
+    gaze_point_ids = fields.One2many(
+        "eyetracking.gaze.point", "analysis_id", string="Gaze Points"
+    )
+    log_lines_ids = fields.One2many(
+        "eyetracking.log", "analysis_id", string="Log Lines"
+    )
+    screen_recording_ids = fields.One2many(
+        'eyetracking.screen.recording', 'analysis_id', string='Grabaciones de Pantalla'
+    )
 
     @api.model
     def extract_models_from_log(self, log_content):
-        """Extrae los modelos desde el contenido del log buscando URLs que incluyen /call_kw."""
-        # Buscamos los modelos que están siendo llamados en las URLs
+        """Extrae los modelos y el tipo de vista desde el contenido del log, excluyendo entradas con '/read'."""
         pattern = re.findall(
-            r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}),\d+\s+[^\"]+\"(?:POST|GET) /web/dataset/call_kw/([a-zA-Z0-9_.]+)",
+            r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}),\d+\s+[^\"]+\"(?:POST|GET) /web/dataset/call_kw/([a-zA-Z0-9_.]+)/([a-z_]+)",
             log_content,
         )
 
-        # El patrón devuelve una lista de tuplas (fecha y hora, modelo)
-        return pattern
+        # Filtramos para excluir aquellos que contienen '/read'
+        return [
+            (fecha, model_name, "list" if method == "web_search_read" else "form")
+            for fecha, model_name, method in pattern if method != "read"
+        ]
+
 
     @api.model
     def create_user_actions(self):
@@ -36,20 +49,15 @@ class EyetrackingAnalysis(models.Model):
         log_path = os.path.join(os.path.dirname(__file__), "../log/odoo.log")
         log_content = ""
 
-        # Leer el contenido del archivo de log
         if os.path.exists(log_path):
             with open(log_path, "r", encoding="utf-8") as log_file:
                 log_content = log_file.read()
-
-        # Extraemos los modelos del log
         models_from_log = self.extract_models_from_log(log_content)
 
         user_actions = []
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
 
-        # Para cada modelo encontrado, creamos un diccionario con la información
-        for fecha, model_name in models_from_log:
-            # Buscamos la acción asociada al modelo en ir.actions.act_window
+        for fecha, model_name, view_type in models_from_log:
             action = self.env["ir.actions.act_window"].search(
                 [("res_model", "=", model_name)], limit=1
             )
@@ -57,7 +65,8 @@ class EyetrackingAnalysis(models.Model):
 
             if action:
                 # Construimos la URL de la acción
-                action_url = f"{base_url}/web?#action={action.id}&model={model_name}"
+                action_url = f"{base_url}/web?#action={action.id}&model={model_name}&view_type={view_type}"
+
                 user_actions.append(
                     {
                         "action_id": action.id,
@@ -68,7 +77,7 @@ class EyetrackingAnalysis(models.Model):
                 )
 
         return user_actions
-    
+
     @api.model
     def create_log_lines(self):
         """
@@ -91,16 +100,18 @@ class EyetrackingAnalysis(models.Model):
 
                         first_space_index = line.find(" ")
                         log_text_part = line[first_space_index:].strip()
-                        log_text_clean = re.sub(r"\[\d{2}/\w{3}/\d{4} \d{2}:\d{2}:\d{2}\]", "", log_text_part).strip()
+                        log_text_clean = re.sub(
+                            r"\[\d{2}/\w{3}/\d{4} \d{2}:\d{2}:\d{2}\]",
+                            "",
+                            log_text_part,
+                        ).strip()
                         second_space_index = log_text_clean.find(" ")
                         log_text = log_text_clean[second_space_index:].strip()
 
-                        log_lines.append({
-                            "timestamp": timestamp,
-                            "text": log_text
-                        })
+                        log_lines.append({"timestamp": timestamp, "text": log_text})
 
         return log_lines
+
     @api.model
     def create(self, vals):
         log_path = os.path.join(os.path.dirname(__file__), "../log/odoo.log")
@@ -113,8 +124,6 @@ class EyetrackingAnalysis(models.Model):
 
         vals["name"] = self.env.user.login
         vals["log_content"] = log_content
-
-        # Crear el registro principal
         record = super(EyetrackingAnalysis, self).create(vals)
 
         # Crear las acciones de usuario relacionadas
@@ -135,15 +144,13 @@ class EyetrackingAnalysis(models.Model):
 
         return record
 
-
-
     @api.model
-    def save_gaze_data(self, gaze_points):
+    def save_gaze_data(self, gaze_points, video_data):
         log_path = os.path.join(os.path.dirname(__file__), "../log/odoo.log")
         date_start = (
             fields.Datetime.now()
-        )  # Valor por defecto si no se encuentra en el log
-        date_end = fields.Datetime.now()  # Valor por defecto para date_end
+        )
+        date_end = fields.Datetime.now()
 
         if os.path.exists(log_path):
             with open(log_path, "r", encoding="utf-8") as log_file:
@@ -174,12 +181,18 @@ class EyetrackingAnalysis(models.Model):
         date_end = date_end.replace(tzinfo=None)
 
         # Crear el registro principal
-        record = self.create(
-            {
-                "date_start": date_start,
-                "date_end": date_end
-            }
-        )
+        record = self.create({"date_start": date_start, "date_end": date_end})
+
+        video_filename = fields.Datetime.now().strftime("%Y%m%d%H%M%S") + ".mp4"
+
+        static_path = os.path.join(os.path.dirname(__file__), "..", "static", "videos")
+        if not os.path.exists(static_path):
+            os.makedirs(static_path)
+
+        # Guardar el archivo en el directorio estático
+        video_file_path = os.path.join(static_path, video_filename)
+        with open(video_file_path, 'wb') as f:
+            f.write(base64.b64decode(video_data))
 
         # Crear los puntos de seguimiento ocular relacionados
         for point in gaze_points:
@@ -195,6 +208,15 @@ class EyetrackingAnalysis(models.Model):
                     ),
                 }
             )
+        self.env["eyetracking.screen.recording"].create(
+            {
+                "analysis_id": record.id,
+                "video": video_data,
+                "str_video": video_data,
+                "filename": fields.Datetime.now().strftime("%Y%m%d%H%M%S")+".mp4",
+                "date": fields.Datetime.now(),
+            }
+        )
 
         return record.id
 
@@ -230,4 +252,39 @@ class EyetrackingLog(models.Model):
     _order = "timestamp desc"
     text = fields.Text("Mensaje Completo")
     timestamp = fields.Datetime("Fecha y Hora")
-    analysis_id = fields.Many2one("eyetracking.analysis", string="Análisis", ondelete="cascade")
+    analysis_id = fields.Many2one(
+        "eyetracking.analysis", string="Análisis", ondelete="cascade"
+    )
+
+
+class EyetrackingScreenRecording(models.Model):
+    _name = 'eyetracking.screen.recording'
+    _description = 'Grabaciones de Pantalla de EyeTracking'
+
+    analysis_id = fields.Many2one(
+        'eyetracking.analysis', string='Análisis', required=True, ondelete='cascade'
+    )
+    video = fields.Binary("Video", required=True)
+    filename = fields.Char("Nombre del Archivo", required=True)
+    date = fields.Datetime("Fecha de Grabación", default=fields.Datetime.now)
+    str_video = fields.Text("String Video")
+    video_html = fields.Html("Video Preview", compute="_compute_video_html", sanitize=False)
+
+    @api.depends('video')
+    def _compute_video_html(self):
+        for rec in self:
+            if rec.str_video:
+                # Limpia la cadena base64 para eliminar cualquier objeto byte
+                video_base64 = rec.str_video.strip()
+
+                # Asegúrate de que la cadena base64 esté bien formateada, sin el prefijo 'b' ni comillas
+                if video_base64.startswith('b\''):
+                    video_base64 = video_base64[2:-1]
+                rec.video_html = f"""
+                    <video width="640" height="360" controls>
+                        <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
+                        Tu navegador no soporta el video.
+                    </video>
+                """
+            else:
+                rec.video_html = "<p>No hay video disponible.</p>"

@@ -33,6 +33,21 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string="Screen Recordings">
+                                <field name="screen_recording_ids">
+                                    <tree>
+                                        <field name="filename"/>
+                                        <field name="date"/>
+                                    </tree>
+                                     <form>
+                                        <group>
+                                            <field name="filename"/>
+                                            <field name="date"/>
+                                            <field name="video_html" widget="html"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
                             <page string="Log Lines">
                                 <field name="log_lines_ids">
                                     <tree>
