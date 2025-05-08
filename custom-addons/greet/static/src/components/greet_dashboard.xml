@@ -56,7 +56,74 @@
     </t>
 </div>
 
-<!-- NUEVA SECCIÓN: Gráfico de puntos de mirada (X,Y coordinates) -->
+<!-- MODIFIED: Point Range Filter (Removed visiblePoints) -->
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Data Point Filters</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Start Point</span>
+                    <input 
+                        type="number" 
+                        class="form-control" 
+                        t-att-value="state.pointFilter.startPoint" 
+                        t-on-change="onPointFilterChange" 
+                        name="startPoint"
+                        min="0"
+                        t-att-max="state.totalPoints - 1"
+                    />
+                    <span class="input-group-text">End Point</span>
+                    <input 
+                        type="number" 
+                        class="form-control" 
+                        t-att-value="state.pointFilter.endPoint" 
+                        t-on-change="onPointFilterChange" 
+                        name="endPoint"
+                        t-att-min="state.pointFilter.startPoint + 1"
+                        t-att-max="state.totalPoints"
+                    />
+                    <span class="input-group-text">
+                        Total Points: <span t-esc="state.totalPoints"/>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- Heatmap Grid Size Slider -->
+        <div class="row">
+            <div class="col-12">
+                <div class="input-group">
+                    <span class="input-group-text">Heatmap Grid Size</span>
+                    <input 
+                        type="range" 
+                        class="form-range form-control" 
+                        t-att-value="state.heatmapGridSize" 
+                        t-on-input="onHeatmapGridSizeChange" 
+                        name="heatmapGridSize"
+                        min="3"
+                        max="30"
+                        step="1"
+                    />
+                    <span class="input-group-text" t-esc="state.heatmapGridSize + ' × ' + state.heatmapGridSize"/>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <button class="btn btn-primary" t-on-click="applyFilters">
+                    Apply Filters
+                </button>
+                <button class="btn btn-secondary ms-2" t-on-click="resetFilters">
+                    Reset Filters
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gaze point scatter plot -->
 <div class="row mt-4">
 <div class="col-12 mb-4">
 <div class="card">
@@ -83,9 +150,9 @@ data="state.gazePointsScatter"
 <p class="text-center">&#60; / &#62; with &#x2665; by <span t-esc="i.author"/></p>
 </li>
 </ul>
-<!-- Sección de gráficos mejorada -->
+<!-- Charts section -->
 <div class="row mt-4">
-<!-- Gráfico de Línea para evolución de coordenadas X -->
+<!-- X coordinates evolution line chart -->
 <div class="col-md-6 mb-4">
 <div class="card h-100">
 <div class="card-header bg-info text-white">
@@ -100,7 +167,7 @@ data="state.gazeXEvolution"
 </div>
 </div>
 </div>
-<!-- Gráfico de Línea para evolución de coordenadas Y -->
+<!-- Y coordinates evolution line chart -->
 <div class="col-md-6 mb-4">
 <div class="card h-100">
 <div class="card-header bg-success text-white">
@@ -116,9 +183,9 @@ data="state.gazeYEvolution"
 </div>
 </div>
 </div>
-<!-- Nueva fila para el heatmap -->
+<!-- Heatmap row -->
 <div class="row mt-4">
-<!-- Gráfico de Heatmap -->
+<!-- Heatmap chart -->
 <div class="col-12 mb-5">
 <div class="card mb-6">
 <div class="card-header bg-danger text-white">
@@ -160,6 +227,10 @@ data="state.gazeHeatmap"
  }
  .analysis-selector {
  width: 300px;
+ }
+ /* Styles for range inputs */
+ .form-range {
+ padding: 0.375rem 0.75rem;
  }
 </style>
 </t>

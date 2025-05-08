@@ -15,16 +15,24 @@ setup() {
         analyses: [],         // All analyses from database
         filteredAnalyses: [], // Analyses filtered by date range
         currentAnalysisId: null,
-        gazeStats: [],
+        gazeStats: [],        // Raw gaze points data
         gazeXEvolution: [],   // Data for X evolution
         gazeYEvolution: [],   // Data for Y evolution data
         gazeHeatmap: [],      // Data for heatmap
-        gazePointsScatter: [], // NEW: Data for scatter plot of gaze points
+        gazePointsScatter: [], // Data for scatter plot of gaze points
+        totalPoints: 0,       // Total number of gaze points in current analysis
         // Date filter states
         dateFilter: {
             startDate: '',    // User selected start date
             endDate: '',      // User selected end date
-        }
+        },
+        // Point filter states - MODIFIED: removed visiblePoints 
+        pointFilter: {
+            startPoint: 0,    // Starting point index
+            endPoint: 1000,   // Ending point index
+        },
+        // Heatmap grid size
+        heatmapGridSize: 10,  // Default to 10x10
     });
 
     this.orm = useService('orm');
@@ -133,16 +141,19 @@ async loadAnalysisData() {
     // Load gaze stats for the selected analysis
     this.state.gazeStats = await this.loadGazeStats(this.state.currentAnalysisId);
     
+    // Store total number of points for filtering UI
+    this.state.totalPoints = this.state.gazeStats.length;
+    
+    // Update point filter end value to match total points if needed
+    if (this.state.pointFilter.endPoint > this.state.totalPoints) {
+        this.state.pointFilter.endPoint = this.state.totalPoints;
+    }
+    
     // Load module counts for the selected analysis
     this.state.countModules = await this.countGroupModules(this.state.currentAnalysisId);
     
-    // Prepare evolution and heatmap data based on the loaded gaze stats
-    this.state.gazeXEvolution = this.prepareGazeEvolution('x');
-    this.state.gazeYEvolution = this.prepareGazeEvolution('y');
-    this.state.gazeHeatmap = this.prepareGazeHeatmap();
-    
-    // NEW: Prepare scatter plot data for gaze points
-    this.state.gazePointsScatter = this.prepareGazePointsScatter();
+    // Apply point filtering and prepare chart data
+    this.applyFilters();
     
     console.log('Loaded data for analysis ID:', this.state.currentAnalysisId);
     console.log('Gaze stats count:', this.state.gazeStats.length);
@@ -180,42 +191,75 @@ async countGroupModules(analysisId) {
     }
 }
 
+// Apply all filters and update chart data
+applyFilters() {
+    // Prepare data for charts with all filters applied
+    this.state.gazeXEvolution = this.prepareGazeEvolution('x');
+    this.state.gazeYEvolution = this.prepareGazeEvolution('y');
+    this.state.gazeHeatmap = this.prepareGazeHeatmap();
+    this.state.gazePointsScatter = this.prepareGazePointsScatter();
+    
+    console.log('Filters applied:', {
+        points: `${this.state.pointFilter.startPoint} to ${this.state.pointFilter.endPoint}`,
+        heatmapGridSize: this.state.heatmapGridSize
+    });
+}
+
+// Reset filters to default values
+resetFilters() {
+    this.state.pointFilter.startPoint = 0;
+    this.state.pointFilter.endPoint = this.state.totalPoints;
+    this.state.heatmapGridSize = 10;
+    
+    // Re-apply filters with defaults
+    this.applyFilters();
+}
+
+// Get filtered gaze points based on point range
+getFilteredGazePoints() {
+    if (!this.state.gazeStats || this.state.gazeStats.length === 0) {
+        return [];
+    }
+    
+    // Sort gaze points by timestamp
+    const sortedPoints = [...this.state.gazeStats].sort((a, b) => a.timestamp - b.timestamp);
+    
+    // Apply point range filter
+    const start = Math.max(0, Math.min(this.state.pointFilter.startPoint, sortedPoints.length - 1));
+    const end = Math.min(this.state.pointFilter.endPoint, sortedPoints.length);
+    
+    return sortedPoints.slice(start, end);
+}
+
 prepareGazeEvolution(coordinate) {
     // This function transforms gaze stats into a format suitable for the line chart
     // Showing the evolution of X or Y values over time
-    if (!this.state.gazeStats || !this.state.gazeStats.length) {
+    const filteredPoints = this.getFilteredGazePoints();
+    
+    if (!filteredPoints || !filteredPoints.length) {
         console.warn(`No gaze stats available for ${coordinate.toUpperCase()} evolution chart`);
         return [];
     }
 
-    // Sort gaze points by timestamp
-    const sortedPoints = [...this.state.gazeStats].sort((a, b) => a.timestamp - b.timestamp);
-    
-    // Transform into the format needed for the chart
-    // Using the first 1000 points or all if less than 1000
-    const pointsToShow = sortedPoints.slice(0, Math.min(sortedPoints.length, 1000));
-    
     // Map to the format expected by the chart renderer
-    return pointsToShow.map((point, index) => ({
-        label: `Point ${index + 1}`,
+    return filteredPoints.map((point, index) => ({
+        label: `Point ${this.state.pointFilter.startPoint + index + 1}`,
         value: point[coordinate], // Either point.x or point.y depending on parameter
         timestamp: point.timestamp
     }));
 }
 
-// NEW: Function to prepare data for the scatter plot
+// Function to prepare data for the scatter plot
 prepareGazePointsScatter() {
-    if (!this.state.gazeStats || !this.state.gazeStats.length) {
+    const filteredPoints = this.getFilteredGazePoints();
+    
+    if (!filteredPoints || !filteredPoints.length) {
         console.warn('No gaze stats available for scatter plot');
         return [];
     }
     
-    // We'll limit to 100 points to prevent overwhelming the chart
-    const maxPoints = 1000;
-    const pointsToUse = this.state.gazeStats.slice(0, Math.min(this.state.gazeStats.length, maxPoints));
-    
     // Check if we have valid data
-    if (pointsToUse.every(p => typeof p.x === 'undefined' || typeof p.y === 'undefined')) {
+    if (filteredPoints.every(p => typeof p.x === 'undefined' || typeof p.y === 'undefined')) {
         console.log("Generating sample data for scatter plot");
         
         // Create sample data with some clustering
@@ -247,7 +291,7 @@ prepareGazePointsScatter() {
     
     // Transform the data for scatter plot format
     // For scatter plot, we need {x, y} format directly
-    return pointsToUse.map(point => ({
+    return filteredPoints.map(point => ({
         x: point.x, 
         y: point.y,
         timestamp: point.timestamp // Keep timestamp in case we want to use it for tooltips
@@ -256,13 +300,15 @@ prepareGazePointsScatter() {
 
 prepareGazeHeatmap() {
     // This function processes gaze points into a format suitable for a heatmap
-    if (!this.state.gazeStats || !this.state.gazeStats.length) {
+    const filteredPoints = this.getFilteredGazePoints();
+    
+    if (!filteredPoints || !filteredPoints.length) {
         console.warn('No gaze stats available for heatmap chart');
         return [];
     }
 
-    // Create bins for the heatmap (dividing screen into grid)
-    const gridSize = 10; // 10x10 grid
+    // Use dynamic grid size from state
+    const gridSize = this.state.heatmapGridSize;
     const heatmapData = [];
     
     // Initialize the grid with zeros
@@ -282,8 +328,8 @@ prepareGazeHeatmap() {
     
     // Generate some sample data if no real data exists
     // This ensures we have some visualization for testing
-    if (this.state.gazeStats.length === 0 || 
-        this.state.gazeStats.every(p => typeof p.x === 'undefined' || typeof p.y === 'undefined')) {
+    if (filteredPoints.length === 0 || 
+        filteredPoints.every(p => typeof p.x === 'undefined' || typeof p.y === 'undefined')) {
         console.log("Generating sample data for heatmap");
         // Create sample data with higher concentration in the center
         for (let i = 0; i < 200; i++) {
@@ -292,13 +338,14 @@ prepareGazeHeatmap() {
             let x, y;
             
             if (centerBias) {
-                // 70% of points closer to center (3-7 range in 10x10 grid)
-                x = Math.floor(3 + Math.random() * 4);
-                y = Math.floor(3 + Math.random() * 4);
+                // 70% of points closer to center
+                const centerOffset = Math.floor(gridSize / 3);
+                x = Math.floor(centerOffset + Math.random() * (gridSize - 2 * centerOffset));
+                y = Math.floor(centerOffset + Math.random() * (gridSize - 2 * centerOffset));
             } else {
                 // 30% of points anywhere
-                x = Math.floor(Math.random() * 10);
-                y = Math.floor(Math.random() * 10);
+                x = Math.floor(Math.random() * gridSize);
+                y = Math.floor(Math.random() * gridSize);
             }
             
             // Find the corresponding cell in our data array
@@ -310,13 +357,12 @@ prepareGazeHeatmap() {
     } else {
         // Process real data
         console.log("Processing real gaze data for heatmap");
-        this.state.gazeStats.forEach(point => {
+        
+        filteredPoints.forEach(point => {
             if (typeof point.x === 'number' && typeof point.y === 'number') {
                 // Calculate which grid cell this point belongs to
                 const gridX = Math.min(Math.floor(point.x / (maxX / gridSize)), gridSize - 1);
                 const gridY = gridSize - 1 - Math.min(Math.floor(point.y / (maxY / gridSize)), gridSize - 1);
-
-                
                 
                 // Find the corresponding cell in our data array
                 const cellIndex = gridY * gridSize + gridX;
@@ -372,11 +418,40 @@ async onDateFilterChange(ev) {
         this.state.currentAnalysisId = null;
         // Clear charts
         this.state.gazeStats = [];
-        this.state.gazeXEvolution = [];
-        this.state.gazeYEvolution = [];
-        this.state.gazeHeatmap = [];
-        this.state.gazePointsScatter = []; // Clear scatter data as well
+        this.state.totalPoints = 0;
+        this.resetFilters();
     }
+}
+
+// Handler for point filter changes
+onPointFilterChange(ev) {
+    const { name, value } = ev.target;
+    const numValue = parseInt(value);
+    
+    // Update the filter state
+    if (name === 'startPoint') {
+        this.state.pointFilter.startPoint = Math.max(0, numValue);
+        
+        // Make sure endPoint is greater than startPoint
+        if (this.state.pointFilter.endPoint <= this.state.pointFilter.startPoint) {
+            this.state.pointFilter.endPoint = this.state.pointFilter.startPoint + 1;
+        }
+    } else if (name === 'endPoint') {
+        // Make sure endPoint is at least startPoint + 1
+        this.state.pointFilter.endPoint = Math.max(
+            this.state.pointFilter.startPoint + 1, 
+            Math.min(numValue, this.state.totalPoints)
+        );
+    }
+    
+    console.log(`Point filter ${name} changed to:`, numValue);
+}
+
+// Handler for heatmap grid size change
+onHeatmapGridSizeChange(ev) {
+    const numValue = parseInt(ev.target.value);
+    this.state.heatmapGridSize = numValue;
+    console.log('Heatmap grid size changed to:', numValue);
 }
 
 // Get the current analysis name for display

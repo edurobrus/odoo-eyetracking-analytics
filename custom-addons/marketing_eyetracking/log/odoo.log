@@ -3514,3 +3514,722 @@ Node: <t t-call-assets="web.assets_backend" t-css="false"/>
 2025-05-08 14:24:52,632 72789 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 14:24:52] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.003
 2025-05-08 14:24:55,773 72789 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 14:24:55] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 3 0.003 0.011
 2025-05-08 14:24:55,785 72789 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 14:24:55] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.008
+2025-05-08 14:26:30,955 72789 INFO ? odoo.service.server: Initiating server reload 
+2025-05-08 19:21:14,290 7055 INFO ? odoo: Odoo version 16.0 
+2025-05-08 19:21:14,290 7055 INFO ? odoo: Using configuration file at /home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/odoo.conf 
+2025-05-08 19:21:14,290 7055 INFO ? odoo: addons paths: ['/home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/odoo/addons', '/home/edurobrus/.local/share/Odoo/addons/16.0', '/home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/addons', '/home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/custom-addons'] 
+2025-05-08 19:21:14,290 7055 INFO ? odoo: database: edurobrus@default:default 
+2025-05-08 19:21:14,345 7055 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/bin/wkhtmltopdf 
+2025-05-08 19:21:14,502 7055 INFO ? odoo.service.server: HTTP service (werkzeug) running on edurobrus-Thin-GF63-12UC:8069 
+2025-05-08 19:21:25,353 7055 INFO ? odoo.modules.loading: loading 1 modules... 
+2025-05-08 19:21:25,360 7055 INFO ? odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2025-05-08 19:21:25,362 7055 WARNING ? odoo.modules.module: Missing `license` key in manifest for 'marketing_eyetracking', defaulting to LGPL-3 
+2025-05-08 19:21:25,371 7055 INFO ? odoo.modules.loading: loading 26 modules... 
+2025-05-08 19:21:25,386 7055 WARNING ? odoo.api.create: The model odoo.addons.marketing_eyetracking.models.eyetracking_analysis is not overriding the create method in batch 
+2025-05-08 19:21:25,445 7055 INFO ? odoo.modules.loading: 26 modules loaded in 0.07s, 0 queries (+0 extra) 
+2025-05-08 19:21:25,476 7055 INFO ? odoo.modules.loading: Modules loaded. 
+2025-05-08 19:21:25,479 7055 INFO ? odoo.modules.registry: Registry loaded in 0.145s 
+2025-05-08 19:21:25,480 7055 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-05-08 19:21:25,572 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:25] "GET / HTTP/1.1" 303 - 23 0.032 0.206
+2025-05-08 19:21:25,623 7055 WARNING odoo_db odoo.modules.module: Missing `license` key in manifest for 'marketing_eyetracking', defaulting to LGPL-3 
+2025-05-08 19:21:25,721 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:25] "GET /web HTTP/1.1" 200 - 82 0.034 0.114
+2025-05-08 19:21:25,970 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:25] "GET /web/webclient/load_menus/5157c5d83284a9a23e07bae18bd76ffdac15d7caf85a69075d36e0cbea4b0339 HTTP/1.1" 200 - 2 0.000 0.229
+2025-05-08 19:21:25,972 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:25] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 3 0.001 0.230
+2025-05-08 19:21:26,166 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:26] "GET /web/webclient/locale/en_US HTTP/1.1" 200 - 1 0.000 0.002
+2025-05-08 19:21:26,218 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:26] "POST /mail/init_messaging HTTP/1.1" 200 - 56 0.022 0.010
+2025-05-08 19:21:26,218 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:26] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 3 0.003 0.002
+2025-05-08 19:21:26,228 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:26] "POST /web/action/load HTTP/1.1" 200 - 8 0.003 0.003
+2025-05-08 19:21:26,231 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:26] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 200 - 16 0.004 0.005
+2025-05-08 19:21:26,286 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:21:26] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:21:26,287 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:21:26] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:21:26,319 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:26] "POST /mail/load_message_failures HTTP/1.1" 200 - 10 0.002 0.003
+2025-05-08 19:21:26,339 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:26] "POST /mail/inbox/messages HTTP/1.1" 200 - 8 0.002 0.002
+2025-05-08 19:21:26,352 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:26] "GET /bus/websocket_worker_bundle?v=1.0.5 HTTP/1.1" 304 - 5 0.001 0.003
+2025-05-08 19:21:26,390 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:26] "GET /websocket HTTP/1.1" 101 - 1 0.000 0.002
+2025-05-08 19:21:26,395 7055 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2025-05-08 19:21:27,111 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:27] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.010 0.016
+2025-05-08 19:21:27,111 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:27] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.012 0.018
+2025-05-08 19:21:30,197 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:30] "POST /web/action/load HTTP/1.1" 200 - 8 0.004 0.006
+2025-05-08 19:21:30,211 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:30] "POST /web/dataset/call_kw/eyetracking.analysis/search_read HTTP/1.1" 200 - 4 0.004 0.002
+2025-05-08 19:21:30,222 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:30] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 4 0.003 0.004
+2025-05-08 19:21:30,228 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:21:30] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.002
+2025-05-08 19:22:14,602 7055 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `Mail: Email Queue Manager`. 
+2025-05-08 19:22:14,608 7055 INFO odoo_db odoo.addons.base.models.ir_cron: Job `Mail: Email Queue Manager` done. 
+2025-05-08 19:22:14,615 7055 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `Partner Autocomplete : Sync with remote DB`. 
+2025-05-08 19:22:14,618 7055 INFO odoo_db odoo.addons.base.models.ir_cron: Job `Partner Autocomplete : Sync with remote DB` done. 
+2025-05-08 19:22:14,622 7055 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `SMS: SMS Queue Manager`. 
+2025-05-08 19:22:14,626 7055 INFO odoo_db odoo.addons.base.models.ir_cron: Job `SMS: SMS Queue Manager` done. 
+2025-05-08 19:22:14,631 7055 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `Notification: Send scheduled message notifications`. 
+2025-05-08 19:22:14,634 7055 INFO odoo_db odoo.addons.base.models.ir_cron: Job `Notification: Send scheduled message notifications` done. 
+2025-05-08 19:22:14,638 7055 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `Snailmail: process letters queue`. 
+2025-05-08 19:22:14,640 7055 INFO odoo_db odoo.addons.base.models.ir_cron: Job `Snailmail: process letters queue` done. 
+2025-05-08 19:28:38,598 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "POST /web/action/load HTTP/1.1" 200 - 11 0.011 0.010
+2025-05-08 19:28:38,646 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "POST /web/dataset/call_kw/ir.module.module/get_views HTTP/1.1" 200 - 44 0.019 0.023
+2025-05-08 19:28:38,664 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 4 0.001 0.002
+2025-05-08 19:28:38,670 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 44 0.007 0.005
+2025-05-08 19:28:38,794 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /base/static/img/icons/knowledge.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:28:38,798 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /point_of_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:28:38,801 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /purchase/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:28:38,802 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /project/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:28:38,803 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /website_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:28:38,803 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /mrp/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:28:38,805 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /base/static/img/icons/timesheet_grid.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:28:38,806 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /mass_mailing/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:28:38,808 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /base/static/img/icons/web_studio.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:28:38,808 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /hr_expense/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:28:38,809 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /hr_holidays/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:28:38,811 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /data_recycle/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:28:38,813 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /greet/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:28:38,814 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /maintenance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:28:38,815 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /auditlog/static/description/icon.png HTTP/1.1" 404 - 2 0.001 0.004
+2025-05-08 19:28:38,816 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /marketing_eyetracking/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:28:38,817 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /base/static/img/icons/helpdesk.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:28:38,820 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /base/static/img/icons/sale_subscription.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:28:38,821 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /legion_webcam_image/static/description/icon.png HTTP/1.1" 404 - 2 0.002 0.005
+2025-05-08 19:28:38,822 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /base/static/img/icons/quality_control.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:28:38,822 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /mi_modulo_grafico/static/description/icon.png HTTP/1.1" 404 - 2 0.002 0.005
+2025-05-08 19:28:38,825 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /website_slides/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:28:38,826 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /base/static/img/icons/planning.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:28:38,828 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /website_event/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
+2025-05-08 19:28:38,828 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /fleet/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:28:38,828 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /mail/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:28:38,829 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:28:38] "GET /hr_skills/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:28:42,215 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_immediate_upgrade on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:28:42,216 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:28:42,216 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:28:42,410 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user admin #2 via 127.0.0.1 
+2025-05-08 19:28:42,419 7055 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2025-05-08 19:28:42,447 7055 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.03s, 0 queries (+0 extra) 
+2025-05-08 19:28:42,456 7055 INFO odoo_db odoo.modules.loading: updating modules list 
+2025-05-08 19:28:42,456 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via 127.0.0.1 
+2025-05-08 19:28:42,612 7055 INFO odoo_db odoo.modules.loading: loading 26 modules... 
+2025-05-08 19:28:42,615 7055 INFO odoo_db odoo.modules.loading: Loading module greet (10/26) 
+2025-05-08 19:28:42,654 7055 INFO odoo_db odoo.modules.loading: loading greet/views/greet_dashboard.xml 
+2025-05-08 19:28:42,661 7055 INFO odoo_db odoo.modules.loading: Module greet: loading demo 
+2025-05-08 19:28:42,666 7055 INFO odoo_db odoo.modules.loading: loading greet/demo/demo.xml 
+2025-05-08 19:28:42,671 7055 INFO odoo_db odoo.modules.loading: Module greet loaded in 0.06s, 40 queries (+40 other) 
+2025-05-08 19:28:42,677 7055 INFO odoo_db odoo.modules.loading: 26 modules loaded in 0.06s, 40 queries (+40 extra) 
+2025-05-08 19:28:42,806 7055 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2025-05-08 19:28:42,808 7055 INFO odoo_db odoo.modules.registry: Registry loaded in 0.392s 
+2025-05-08 19:28:42,809 7055 INFO odoo_db odoo.addons.base.models.ir_module: getting next ir.actions.todo() 
+2025-05-08 19:28:42,811 7055 INFO odoo_db odoo.modules.registry: Registry changed, signaling through the database 
+2025-05-08 19:28:42,811 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:42] "POST /web/dataset/call_button HTTP/1.1" 200 - 2777 0.266 0.334
+2025-05-08 19:28:42,818 7055 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-05-08 19:28:42,996 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Failed to find attachment for assets /web/assets/%-85e45cc/web.assets_backend.min.css 
+2025-05-08 19:28:43,742 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Deleting ir.attachment [1544] (from bundle web.assets_backend) 
+2025-05-08 19:28:43,823 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Failed to find attachment for assets /web/assets/%-85e45cc/web.assets_backend.min.js 
+2025-05-08 19:28:44,810 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Deleting ir.attachment [1545] (from bundle web.assets_backend) 
+2025-05-08 19:28:44,830 7055 INFO odoo_db odoo.modules.registry: At least one model cache has been invalidated, signaling through the database. 
+2025-05-08 19:28:44,831 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:44] "GET /web HTTP/1.1" 200 - 131 0.041 1.973
+2025-05-08 19:28:44,855 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:44] "GET /web/assets/1546-85e45cc/web.assets_backend.min.css HTTP/1.1" 200 - 6 0.002 0.003
+2025-05-08 19:28:44,856 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:44] "GET /web/assets/1547-85e45cc/web.assets_backend.min.js HTTP/1.1" 200 - 6 0.002 0.003
+2025-05-08 19:28:45,303 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:45] "POST /mail/init_messaging HTTP/1.1" 200 - 57 0.008 0.009
+2025-05-08 19:28:45,318 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:45] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 4 0.001 0.002
+2025-05-08 19:28:45,328 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:45] "POST /web/action/load HTTP/1.1" 200 - 8 0.002 0.003
+2025-05-08 19:28:45,331 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:45] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 304 - 16 0.004 0.005
+2025-05-08 19:28:45,342 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:45] "GET /bus/websocket_worker_bundle?v=1.0.5 HTTP/1.1" 304 - 5 0.002 0.003
+2025-05-08 19:28:45,343 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:45] "POST /mail/load_message_failures HTTP/1.1" 200 - 10 0.003 0.003
+2025-05-08 19:28:45,347 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:45] "POST /mail/inbox/messages HTTP/1.1" 200 - 8 0.002 0.002
+2025-05-08 19:28:45,373 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:45] "GET /websocket HTTP/1.1" 101 - 1 0.000 0.002
+2025-05-08 19:28:46,935 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:46] "POST /web/action/load HTTP/1.1" 200 - 8 0.006 0.009
+2025-05-08 19:28:46,951 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:46] "POST /web/dataset/call_kw/eyetracking.analysis/search_read HTTP/1.1" 200 - 4 0.001 0.003
+2025-05-08 19:28:46,961 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:46] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 4 0.002 0.005
+2025-05-08 19:28:46,971 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:28:46] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.002 0.005
+2025-05-08 19:36:35,697 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:36:35] "GET /web HTTP/1.1" 303 - 2 0.009 0.008
+2025-05-08 19:36:35,699 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:36:35] "GET /web/webclient/locale/en_US HTTP/1.1" 200 - 2 0.003 0.014
+2025-05-08 19:36:35,842 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:36:35] "GET /web/login HTTP/1.1" 200 - 53 0.011 0.090
+2025-05-08 19:41:33,569 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:33] "POST /web/action/load HTTP/1.1" 200 - 11 0.004 0.005
+2025-05-08 19:41:33,601 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:33] "POST /web/dataset/call_kw/ir.module.module/get_views HTTP/1.1" 200 - 47 0.009 0.018
+2025-05-08 19:41:33,626 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:33] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.001 0.003
+2025-05-08 19:41:33,632 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:33] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 45 0.008 0.006
+2025-05-08 19:41:33,793 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:33] "GET /auditlog/static/description/icon.png HTTP/1.1" 404 - 2 0.000 0.001
+2025-05-08 19:41:33,798 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:33] "GET /legion_webcam_image/static/description/icon.png HTTP/1.1" 404 - 2 0.000 0.002
+2025-05-08 19:41:33,799 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:33] "GET /mi_modulo_grafico/static/description/icon.png HTTP/1.1" 404 - 2 0.000 0.001
+2025-05-08 19:41:37,058 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_immediate_upgrade on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:41:37,058 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:41:37,059 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:41:37,241 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user admin #2 via 127.0.0.1 
+2025-05-08 19:41:37,249 7055 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2025-05-08 19:41:37,253 7055 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2025-05-08 19:41:37,261 7055 INFO odoo_db odoo.modules.loading: updating modules list 
+2025-05-08 19:41:37,262 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via 127.0.0.1 
+2025-05-08 19:41:37,424 7055 INFO odoo_db odoo.modules.loading: loading 26 modules... 
+2025-05-08 19:41:37,427 7055 INFO odoo_db odoo.modules.loading: Loading module greet (10/26) 
+2025-05-08 19:41:37,452 7055 INFO odoo_db odoo.modules.loading: loading greet/views/greet_dashboard.xml 
+2025-05-08 19:41:37,457 7055 INFO odoo_db odoo.modules.loading: Module greet: loading demo 
+2025-05-08 19:41:37,458 7055 INFO odoo_db odoo.modules.loading: loading greet/demo/demo.xml 
+2025-05-08 19:41:37,463 7055 INFO odoo_db odoo.modules.loading: Module greet loaded in 0.04s, 40 queries (+40 other) 
+2025-05-08 19:41:37,471 7055 INFO odoo_db odoo.modules.loading: 26 modules loaded in 0.05s, 40 queries (+40 extra) 
+2025-05-08 19:41:37,660 7055 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2025-05-08 19:41:37,665 7055 INFO odoo_db odoo.modules.registry: Registry loaded in 0.419s 
+2025-05-08 19:41:37,665 7055 INFO odoo_db odoo.addons.base.models.ir_module: getting next ir.actions.todo() 
+2025-05-08 19:41:37,666 7055 INFO odoo_db odoo.modules.registry: Registry changed, signaling through the database 
+2025-05-08 19:41:37,667 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:37] "POST /web/dataset/call_button HTTP/1.1" 200 - 2777 0.259 0.354
+2025-05-08 19:41:37,688 7055 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-05-08 19:41:37,874 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Failed to find attachment for assets /web/assets/%-4efd95f/web.assets_backend.min.css 
+2025-05-08 19:41:38,561 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Deleting ir.attachment [1546] (from bundle web.assets_backend) 
+2025-05-08 19:41:38,641 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Failed to find attachment for assets /web/assets/%-4efd95f/web.assets_backend.min.js 
+2025-05-08 19:41:39,526 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Deleting ir.attachment [1547] (from bundle web.assets_backend) 
+2025-05-08 19:41:39,548 7055 INFO odoo_db odoo.modules.registry: At least one model cache has been invalidated, signaling through the database. 
+2025-05-08 19:41:39,549 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:39] "GET /web HTTP/1.1" 200 - 131 0.042 1.820
+2025-05-08 19:41:39,582 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:39] "GET /web/assets/332-42e6670/web.assets_common.min.css HTTP/1.1" 200 - 6 0.001 0.004
+2025-05-08 19:41:39,592 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:39] "GET /web/assets/1549-4efd95f/web.assets_backend.min.js HTTP/1.1" 200 - 4 0.001 0.010
+2025-05-08 19:41:39,593 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:39] "GET /web/assets/334-42e6670/web.assets_common.min.js HTTP/1.1" 200 - 4 0.002 0.010
+2025-05-08 19:41:39,593 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:39] "GET /web/assets/1548-4efd95f/web.assets_backend.min.css HTTP/1.1" 200 - 4 0.004 0.010
+2025-05-08 19:41:39,594 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:39] "GET /web/assets/336-e94fe5d/web.assets_backend_prod_only.min.js HTTP/1.1" 200 - 4 0.002 0.011
+2025-05-08 19:41:39,650 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:39] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.001 0.002
+2025-05-08 19:41:39,661 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:39] "GET /web/webclient/load_menus/5157c5d83284a9a23e07bae18bd76ffdac15d7caf85a69075d36e0cbea4b0339 HTTP/1.1" 200 - 20 0.004 0.010
+2025-05-08 19:41:40,036 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.001 0.002
+2025-05-08 19:41:40,049 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.000 0.002
+2025-05-08 19:41:40,081 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "GET /web/webclient/locale/en_US HTTP/1.1" 200 - 1 0.000 0.002
+2025-05-08 19:41:40,113 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "POST /mail/init_messaging HTTP/1.1" 200 - 57 0.009 0.009
+2025-05-08 19:41:40,138 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 3 0.001 0.002
+2025-05-08 19:41:40,152 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "POST /web/action/load HTTP/1.1" 200 - 8 0.004 0.003
+2025-05-08 19:41:40,152 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.005
+2025-05-08 19:41:40,154 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:41:40,156 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 200 - 16 0.007 0.005
+2025-05-08 19:41:40,163 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "GET /mail/static/src/audio/ting.ogg HTTP/1.1" 206 - 0 0.000 0.001
+2025-05-08 19:41:40,176 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "POST /mail/load_message_failures HTTP/1.1" 200 - 10 0.003 0.004
+2025-05-08 19:41:40,179 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "GET /bus/websocket_worker_bundle?v=1.0.5 HTTP/1.1" 304 - 5 0.002 0.005
+2025-05-08 19:41:40,181 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "POST /mail/inbox/messages HTTP/1.1" 200 - 8 0.002 0.002
+2025-05-08 19:41:40,192 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "GET /web/image/mail.channel/1/avatar_128?unique=73158f273cc1f3e4c75dbcd6083b05e23880a1c9c44cac25cc388c724c287d137dd0aa55641194d0003abad7f5a64c225eda8b9024c11b8a84325ce1daf2048a HTTP/1.1" 200 - 9 0.004 0.003
+2025-05-08 19:41:40,269 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "GET /websocket HTTP/1.1" 101 - 1 0.000 0.002
+2025-05-08 19:41:40,879 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.006 0.009
+2025-05-08 19:41:40,880 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:40] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.008 0.007
+2025-05-08 19:41:42,502 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:42] "POST /web/action/load HTTP/1.1" 200 - 8 0.004 0.006
+2025-05-08 19:41:42,514 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:42] "POST /web/dataset/call_kw/eyetracking.analysis/search_read HTTP/1.1" 200 - 4 0.001 0.001
+2025-05-08 19:41:42,524 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:42] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 4 0.002 0.005
+2025-05-08 19:41:42,535 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:41:42] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.002 0.005
+2025-05-08 19:43:33,685 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:43:33] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 3 0.002 0.008
+2025-05-08 19:43:33,695 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:43:33] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.004
+2025-05-08 19:44:23,421 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:44:23] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 3 0.001 0.003
+2025-05-08 19:44:23,430 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:44:23] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.003
+2025-05-08 19:44:30,483 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:44:30] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 3 0.001 0.004
+2025-05-08 19:44:30,493 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:44:30] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.003
+2025-05-08 19:44:40,173 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:44:40] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 3 0.001 0.004
+2025-05-08 19:44:40,180 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:44:40] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.003
+2025-05-08 19:44:42,115 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:44:42] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 3 0.001 0.004
+2025-05-08 19:44:42,123 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:44:42] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.003
+2025-05-08 19:44:44,630 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:44:44] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 3 0.001 0.006
+2025-05-08 19:44:44,639 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:44:44] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.004
+2025-05-08 19:46:22,270 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Failed to find attachment for assets /web/assets/%-3effba3/web.assets_backend.min.css 
+2025-05-08 19:46:23,003 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Deleting ir.attachment [1548] (from bundle web.assets_backend) 
+2025-05-08 19:46:23,083 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Failed to find attachment for assets /web/assets/%-3effba3/web.assets_backend.min.js 
+2025-05-08 19:46:23,980 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Deleting ir.attachment [1549] (from bundle web.assets_backend) 
+2025-05-08 19:46:24,006 7055 INFO odoo_db odoo.modules.registry: At least one model cache has been invalidated, signaling through the database. 
+2025-05-08 19:46:24,007 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web HTTP/1.1" 200 - 107 0.037 1.800
+2025-05-08 19:46:24,057 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/assets/1550-3effba3/web.assets_backend.min.css HTTP/1.1" 200 - 6 0.003 0.009
+2025-05-08 19:46:24,057 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/assets/1551-3effba3/web.assets_backend.min.js HTTP/1.1" 200 - 4 0.003 0.009
+2025-05-08 19:46:24,057 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/assets/332-42e6670/web.assets_common.min.css HTTP/1.1" 200 - 6 0.004 0.009
+2025-05-08 19:46:24,058 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/assets/336-e94fe5d/web.assets_backend_prod_only.min.js HTTP/1.1" 200 - 6 0.003 0.009
+2025-05-08 19:46:24,060 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/assets/334-42e6670/web.assets_common.min.js HTTP/1.1" 200 - 4 0.002 0.013
+2025-05-08 19:46:24,122 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.000 0.002
+2025-05-08 19:46:24,138 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/webclient/load_menus/5157c5d83284a9a23e07bae18bd76ffdac15d7caf85a69075d36e0cbea4b0339 HTTP/1.1" 200 - 20 0.006 0.013
+2025-05-08 19:46:24,525 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.000 0.002
+2025-05-08 19:46:24,539 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.000 0.002
+2025-05-08 19:46:24,567 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/webclient/locale/en_US HTTP/1.1" 200 - 1 0.000 0.002
+2025-05-08 19:46:24,602 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "POST /mail/init_messaging HTTP/1.1" 200 - 57 0.010 0.012
+2025-05-08 19:46:24,621 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 3 0.001 0.002
+2025-05-08 19:46:24,632 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:24,638 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:46:24,638 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "POST /web/action/load HTTP/1.1" 200 - 8 0.006 0.004
+2025-05-08 19:46:24,640 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 200 - 16 0.007 0.006
+2025-05-08 19:46:24,664 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "POST /mail/load_message_failures HTTP/1.1" 200 - 10 0.006 0.004
+2025-05-08 19:46:24,665 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "POST /mail/inbox/messages HTTP/1.1" 200 - 8 0.003 0.002
+2025-05-08 19:46:24,677 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:24] "GET /web/image/mail.channel/1/avatar_128?unique=73158f273cc1f3e4c75dbcd6083b05e23880a1c9c44cac25cc388c724c287d137dd0aa55641194d0003abad7f5a64c225eda8b9024c11b8a84325ce1daf2048a HTTP/1.1" 200 - 9 0.002 0.004
+2025-05-08 19:46:25,226 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:25] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.002 0.004
+2025-05-08 19:46:25,226 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:25] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.002 0.004
+2025-05-08 19:46:26,715 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "POST /web/action/load HTTP/1.1" 200 - 11 0.009 0.012
+2025-05-08 19:46:26,746 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "POST /web/dataset/call_kw/ir.module.module/get_views HTTP/1.1" 200 - 48 0.011 0.016
+2025-05-08 19:46:26,764 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 4 0.002 0.002
+2025-05-08 19:46:26,773 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 45 0.009 0.007
+2025-05-08 19:46:26,864 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /account/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,864 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/mrp_workorder.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:26,865 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /sale_management/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:46:26,865 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /crm/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,865 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /website/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:26,870 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /stock/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,870 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/account_accountant.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,872 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /point_of_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:26,872 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /purchase/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,874 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /project/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,875 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/knowledge.png HTTP/1.1" 200 - 0 0.000 0.005
+2025-05-08 19:46:26,875 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /website_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,876 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /mass_mailing/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,879 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /mrp/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,880 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /hr_expense/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,880 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/timesheet_grid.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,882 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/web_studio.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,883 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /hr_holidays/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,895 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /hr_recruitment/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:26,896 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/industry_fsm.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,897 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /hr/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,901 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /data_recycle/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:46:26,901 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /greet/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,901 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /auditlog/static/description/icon.png HTTP/1.1" 404 - 2 0.001 0.003
+2025-05-08 19:46:26,904 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /maintenance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:46:26,905 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /legion_webcam_image/static/description/icon.png HTTP/1.1" 404 - 2 0.001 0.005
+2025-05-08 19:46:26,905 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /marketing_eyetracking/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,908 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/helpdesk.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,909 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/sign.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,910 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/sale_subscription.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,910 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /mi_modulo_grafico/static/description/icon.png HTTP/1.1" 404 - 2 0.002 0.003
+2025-05-08 19:46:26,911 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /website_slides/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:26,912 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /contacts/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:26,914 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/planning.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,915 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/quality_control.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,916 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/mrp_plm.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,917 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /website_event/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,920 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /fleet/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,920 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /mail/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,923 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /repair/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,923 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /im_livechat/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,923 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /calendar/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:46:26,923 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/appointment.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:46:26,924 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/social.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:26,928 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/marketing_automation.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,930 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /hr_attendance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,930 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/hr_appraisal.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,930 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/stock_barcode.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:46:26,931 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /hr_skills/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
+2025-05-08 19:46:26,931 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /note/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,934 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /survey/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:26,935 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/voip.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,935 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /mass_mailing_sms/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:26,936 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/web_mobile.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,937 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /base/static/img/icons/sale_ebay.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:26,940 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /hr_contract/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:26,940 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /website_hr_recruitment/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:26,941 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:26] "GET /lunch/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:29,875 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_immediate_upgrade on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:46:29,875 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:46:29,875 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:46:30,075 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user admin #2 via 127.0.0.1 
+2025-05-08 19:46:30,089 7055 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2025-05-08 19:46:30,093 7055 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2025-05-08 19:46:30,103 7055 INFO odoo_db odoo.modules.loading: updating modules list 
+2025-05-08 19:46:30,104 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via 127.0.0.1 
+2025-05-08 19:46:30,275 7055 INFO odoo_db odoo.modules.loading: loading 26 modules... 
+2025-05-08 19:46:30,278 7055 INFO odoo_db odoo.modules.loading: Loading module greet (10/26) 
+2025-05-08 19:46:30,304 7055 INFO odoo_db odoo.modules.loading: loading greet/views/greet_dashboard.xml 
+2025-05-08 19:46:30,309 7055 INFO odoo_db odoo.modules.loading: Module greet: loading demo 
+2025-05-08 19:46:30,309 7055 INFO odoo_db odoo.modules.loading: loading greet/demo/demo.xml 
+2025-05-08 19:46:30,316 7055 INFO odoo_db odoo.modules.loading: Module greet loaded in 0.04s, 40 queries (+40 other) 
+2025-05-08 19:46:30,322 7055 INFO odoo_db odoo.modules.loading: 26 modules loaded in 0.05s, 40 queries (+40 extra) 
+2025-05-08 19:46:30,463 7055 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2025-05-08 19:46:30,468 7055 INFO odoo_db odoo.modules.registry: Registry loaded in 0.383s 
+2025-05-08 19:46:30,468 7055 INFO odoo_db odoo.addons.base.models.ir_module: getting next ir.actions.todo() 
+2025-05-08 19:46:30,469 7055 INFO odoo_db odoo.modules.registry: Registry changed, signaling through the database 
+2025-05-08 19:46:30,470 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:30] "POST /web/dataset/call_button HTTP/1.1" 200 - 2777 0.278 0.321
+2025-05-08 19:46:30,492 7055 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-05-08 19:46:30,692 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:30] "GET /web HTTP/1.1" 200 - 85 0.016 0.185
+2025-05-08 19:46:30,729 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:30] "GET /web/assets/332-42e6670/web.assets_common.min.css HTTP/1.1" 200 - 4 0.003 0.006
+2025-05-08 19:46:30,729 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:30] "GET /web/assets/334-42e6670/web.assets_common.min.js HTTP/1.1" 200 - 4 0.002 0.006
+2025-05-08 19:46:30,730 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:30] "GET /web/assets/1551-3effba3/web.assets_backend.min.js HTTP/1.1" 200 - 4 0.001 0.006
+2025-05-08 19:46:30,730 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:30] "GET /web/assets/1550-3effba3/web.assets_backend.min.css HTTP/1.1" 200 - 4 0.003 0.006
+2025-05-08 19:46:30,731 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:30] "GET /web/assets/336-e94fe5d/web.assets_backend_prod_only.min.js HTTP/1.1" 200 - 4 0.003 0.005
+2025-05-08 19:46:30,792 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:30] "GET /web/webclient/load_menus/5157c5d83284a9a23e07bae18bd76ffdac15d7caf85a69075d36e0cbea4b0339 HTTP/1.1" 200 - 2 0.001 0.002
+2025-05-08 19:46:30,794 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:30] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 3 0.001 0.002
+2025-05-08 19:46:31,176 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.000 0.002
+2025-05-08 19:46:31,190 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.000 0.002
+2025-05-08 19:46:31,243 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "GET /web/webclient/locale/en_US HTTP/1.1" 200 - 1 0.000 0.001
+2025-05-08 19:46:31,253 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "GET /bus/websocket_worker_bundle?v=1.0.5 HTTP/1.1" 304 - 5 0.001 0.004
+2025-05-08 19:46:31,266 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "POST /mail/init_messaging HTTP/1.1" 200 - 56 0.011 0.009
+2025-05-08 19:46:31,288 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 3 0.001 0.002
+2025-05-08 19:46:31,309 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:31,311 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:31,315 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "POST /web/action/load HTTP/1.1" 200 - 8 0.003 0.006
+2025-05-08 19:46:31,320 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 200 - 16 0.008 0.007
+2025-05-08 19:46:31,322 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "POST /mail/load_message_failures HTTP/1.1" 200 - 10 0.003 0.005
+2025-05-08 19:46:31,323 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "GET /websocket HTTP/1.1" 101 - 1 0.000 0.002
+2025-05-08 19:46:31,388 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "POST /mail/inbox/messages HTTP/1.1" 200 - 8 0.003 0.003
+2025-05-08 19:46:31,391 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "GET /web/image/mail.channel/1/avatar_128?unique=73158f273cc1f3e4c75dbcd6083b05e23880a1c9c44cac25cc388c724c287d137dd0aa55641194d0003abad7f5a64c225eda8b9024c11b8a84325ce1daf2048a HTTP/1.1" 200 - 9 0.003 0.005
+2025-05-08 19:46:31,814 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.003 0.003
+2025-05-08 19:46:31,814 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:31] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.003 0.003
+2025-05-08 19:46:33,113 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:33] "POST /web/action/load HTTP/1.1" 200 - 8 0.004 0.008
+2025-05-08 19:46:33,136 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:33] "POST /web/dataset/call_kw/eyetracking.analysis/search_read HTTP/1.1" 200 - 4 0.001 0.002
+2025-05-08 19:46:33,146 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:33] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 4 0.002 0.004
+2025-05-08 19:46:33,154 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:33] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.003
+2025-05-08 19:46:49,605 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:49] "GET /web HTTP/1.1" 200 - 9 0.002 0.004
+2025-05-08 19:46:49,666 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:49] "GET /web/assets/332-42e6670/web.assets_common.min.css HTTP/1.1" 200 - 4 0.001 0.004
+2025-05-08 19:46:49,669 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:49] "GET /web/assets/1550-3effba3/web.assets_backend.min.css HTTP/1.1" 200 - 4 0.001 0.006
+2025-05-08 19:46:49,671 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:49] "GET /web/assets/1551-3effba3/web.assets_backend.min.js HTTP/1.1" 200 - 4 0.003 0.005
+2025-05-08 19:46:49,671 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:49] "GET /web/assets/334-42e6670/web.assets_common.min.js HTTP/1.1" 200 - 4 0.002 0.007
+2025-05-08 19:46:49,671 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:49] "GET /web/assets/336-e94fe5d/web.assets_backend_prod_only.min.js HTTP/1.1" 200 - 4 0.002 0.005
+2025-05-08 19:46:49,703 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:49] "GET /web/webclient/load_menus/5157c5d83284a9a23e07bae18bd76ffdac15d7caf85a69075d36e0cbea4b0339 HTTP/1.1" 200 - 1 0.000 0.003
+2025-05-08 19:46:49,703 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:49] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.002 0.002
+2025-05-08 19:46:50,096 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.000 0.001
+2025-05-08 19:46:50,112 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.000 0.002
+2025-05-08 19:46:50,159 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "GET /web/webclient/locale/en_US HTTP/1.1" 200 - 1 0.000 0.001
+2025-05-08 19:46:50,166 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "GET /mail/static/src/audio/ting.ogg HTTP/1.1" 206 - 0 0.000 0.001
+2025-05-08 19:46:50,179 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "POST /mail/init_messaging HTTP/1.1" 200 - 32 0.006 0.008
+2025-05-08 19:46:50,199 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 2 0.000 0.001
+2025-05-08 19:46:50,215 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:50,216 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 200 - 9 0.003 0.006
+2025-05-08 19:46:50,216 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.005
+2025-05-08 19:46:50,217 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "POST /web/action/load HTTP/1.1" 200 - 8 0.004 0.005
+2025-05-08 19:46:50,237 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "POST /mail/load_message_failures HTTP/1.1" 200 - 9 0.002 0.003
+2025-05-08 19:46:50,287 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "POST /mail/inbox/messages HTTP/1.1" 200 - 4 0.001 0.002
+2025-05-08 19:46:50,298 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "GET /web/image/mail.channel/1/avatar_128?unique=73158f273cc1f3e4c75dbcd6083b05e23880a1c9c44cac25cc388c724c287d137dd0aa55641194d0003abad7f5a64c225eda8b9024c11b8a84325ce1daf2048a HTTP/1.1" 200 - 4 0.001 0.002
+2025-05-08 19:46:50,727 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 5 0.002 0.004
+2025-05-08 19:46:50,728 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:50] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 5 0.002 0.006
+2025-05-08 19:46:52,186 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "POST /web/action/load HTTP/1.1" 200 - 11 0.005 0.006
+2025-05-08 19:46:52,215 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "POST /web/dataset/call_kw/ir.module.module/get_views HTTP/1.1" 200 - 44 0.009 0.015
+2025-05-08 19:46:52,236 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 4 0.001 0.002
+2025-05-08 19:46:52,244 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 44 0.007 0.006
+2025-05-08 19:46:52,324 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /sale_management/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,325 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /account/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,326 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /crm/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,327 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/mrp_workorder.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,330 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /website/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,330 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /stock/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,331 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/knowledge.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,332 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/account_accountant.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,336 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /purchase/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,337 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /point_of_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,338 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /project/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,340 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /website_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,341 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /mrp/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,343 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /mass_mailing/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,344 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/timesheet_grid.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,345 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /hr_expense/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,346 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/web_studio.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,350 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /hr_holidays/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,351 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/industry_fsm.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,351 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /hr_recruitment/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,353 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /hr/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,353 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /data_recycle/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,355 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /auditlog/static/description/icon.png HTTP/1.1" 404 - 2 0.002 0.002
+2025-05-08 19:46:52,356 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /maintenance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,357 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /marketing_eyetracking/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,357 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/helpdesk.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,362 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /mi_modulo_grafico/static/description/icon.png HTTP/1.1" 404 - 2 0.001 0.003
+2025-05-08 19:46:52,363 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /legion_webcam_image/static/description/icon.png HTTP/1.1" 404 - 2 0.001 0.003
+2025-05-08 19:46:52,363 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /website_slides/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:52,363 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/sign.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,364 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /greet/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,367 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/hr_appraisal.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,368 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/mrp_plm.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:52,369 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /calendar/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:52,370 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /mail/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,373 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/planning.png HTTP/1.1" 200 - 0 0.000 0.005
+2025-05-08 19:46:52,374 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/sale_subscription.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,376 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/social.png HTTP/1.1" 200 - 0 0.000 0.005
+2025-05-08 19:46:52,378 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /fleet/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:46:52,379 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/quality_control.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,380 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /contacts/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
+2025-05-08 19:46:52,381 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /website_event/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:52,382 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/marketing_automation.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,387 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /im_livechat/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,388 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/appointment.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:46:52,392 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /survey/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,393 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/web_mobile.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,396 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /repair/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:46:52,397 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /hr_attendance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
+2025-05-08 19:46:52,399 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /mass_mailing_sms/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:46:52,400 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/stock_barcode.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:46:52,401 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /note/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:52,401 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/voip.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,403 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /hr_skills/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:46:52,405 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /website_hr_recruitment/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:52,406 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /lunch/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:46:52,406 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /base/static/img/icons/sale_ebay.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:46:52,407 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:46:52] "GET /hr_contract/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:47:04,675 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_immediate_upgrade on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:47:04,675 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:47:04,676 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:47:04,864 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user admin #2 via 127.0.0.1 
+2025-05-08 19:47:04,874 7055 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2025-05-08 19:47:04,878 7055 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2025-05-08 19:47:04,887 7055 INFO odoo_db odoo.modules.loading: updating modules list 
+2025-05-08 19:47:04,887 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via 127.0.0.1 
+2025-05-08 19:47:05,080 7055 INFO odoo_db odoo.modules.loading: loading 26 modules... 
+2025-05-08 19:47:05,082 7055 INFO odoo_db odoo.modules.loading: Loading module greet (10/26) 
+2025-05-08 19:47:05,149 7055 INFO odoo_db odoo.modules.loading: loading greet/views/greet_dashboard.xml 
+2025-05-08 19:47:05,154 7055 INFO odoo_db odoo.modules.loading: Module greet: loading demo 
+2025-05-08 19:47:05,154 7055 INFO odoo_db odoo.modules.loading: loading greet/demo/demo.xml 
+2025-05-08 19:47:05,158 7055 INFO odoo_db odoo.modules.loading: Module greet loaded in 0.08s, 40 queries (+40 other) 
+2025-05-08 19:47:05,163 7055 INFO odoo_db odoo.modules.loading: 26 modules loaded in 0.08s, 40 queries (+40 extra) 
+2025-05-08 19:47:05,298 7055 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2025-05-08 19:47:05,303 7055 INFO odoo_db odoo.modules.registry: Registry loaded in 0.433s 
+2025-05-08 19:47:05,303 7055 INFO odoo_db odoo.addons.base.models.ir_module: getting next ir.actions.todo() 
+2025-05-08 19:47:05,306 7055 INFO odoo_db odoo.modules.registry: Registry changed, signaling through the database 
+2025-05-08 19:47:05,307 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:05] "POST /web/dataset/call_button HTTP/1.1" 200 - 2777 0.276 0.358
+2025-05-08 19:47:05,333 7055 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-05-08 19:47:05,519 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Failed to find attachment for assets /web/assets/%-50e91e8/web.assets_backend.min.css 
+2025-05-08 19:47:06,217 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Deleting ir.attachment [1550] (from bundle web.assets_backend) 
+2025-05-08 19:47:06,297 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Failed to find attachment for assets /web/assets/%-50e91e8/web.assets_backend.min.js 
+2025-05-08 19:47:07,175 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Deleting ir.attachment [1551] (from bundle web.assets_backend) 
+2025-05-08 19:47:07,198 7055 INFO odoo_db odoo.modules.registry: At least one model cache has been invalidated, signaling through the database. 
+2025-05-08 19:47:07,199 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web HTTP/1.1" 200 - 131 0.039 1.828
+2025-05-08 19:47:07,235 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/assets/332-42e6670/web.assets_common.min.css HTTP/1.1" 200 - 6 0.003 0.004
+2025-05-08 19:47:07,235 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/assets/334-42e6670/web.assets_common.min.js HTTP/1.1" 200 - 4 0.001 0.005
+2025-05-08 19:47:07,236 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/assets/1552-50e91e8/web.assets_backend.min.css HTTP/1.1" 200 - 4 0.001 0.006
+2025-05-08 19:47:07,237 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/assets/1553-50e91e8/web.assets_backend.min.js HTTP/1.1" 200 - 4 0.002 0.006
+2025-05-08 19:47:07,238 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/assets/336-e94fe5d/web.assets_backend_prod_only.min.js HTTP/1.1" 200 - 4 0.002 0.006
+2025-05-08 19:47:07,300 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.001 0.002
+2025-05-08 19:47:07,312 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/webclient/load_menus/5157c5d83284a9a23e07bae18bd76ffdac15d7caf85a69075d36e0cbea4b0339 HTTP/1.1" 200 - 20 0.005 0.011
+2025-05-08 19:47:07,684 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.001 0.002
+2025-05-08 19:47:07,698 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.000 0.002
+2025-05-08 19:47:07,742 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/webclient/locale/en_US HTTP/1.1" 200 - 1 0.000 0.002
+2025-05-08 19:47:07,767 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "POST /mail/init_messaging HTTP/1.1" 200 - 57 0.008 0.009
+2025-05-08 19:47:07,784 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 3 0.001 0.001
+2025-05-08 19:47:07,808 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.006
+2025-05-08 19:47:07,809 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.007
+2025-05-08 19:47:07,810 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "POST /web/action/load HTTP/1.1" 200 - 8 0.003 0.006
+2025-05-08 19:47:07,818 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "POST /mail/load_message_failures HTTP/1.1" 200 - 10 0.006 0.009
+2025-05-08 19:47:07,818 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 200 - 16 0.012 0.006
+2025-05-08 19:47:07,820 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /bus/websocket_worker_bundle?v=1.0.5 HTTP/1.1" 304 - 5 0.001 0.007
+2025-05-08 19:47:07,876 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "POST /mail/inbox/messages HTTP/1.1" 200 - 8 0.002 0.002
+2025-05-08 19:47:07,881 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /web/image/mail.channel/1/avatar_128?unique=73158f273cc1f3e4c75dbcd6083b05e23880a1c9c44cac25cc388c724c287d137dd0aa55641194d0003abad7f5a64c225eda8b9024c11b8a84325ce1daf2048a HTTP/1.1" 200 - 9 0.001 0.003
+2025-05-08 19:47:07,909 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:07] "GET /websocket HTTP/1.1" 101 - 1 0.000 0.002
+2025-05-08 19:47:08,341 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:08] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.004 0.004
+2025-05-08 19:47:08,344 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:08] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.003 0.004
+2025-05-08 19:47:09,127 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:09] "POST /web/action/load HTTP/1.1" 200 - 8 0.001 0.003
+2025-05-08 19:47:09,146 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:09] "POST /web/dataset/call_kw/eyetracking.analysis/search_read HTTP/1.1" 200 - 4 0.001 0.002
+2025-05-08 19:47:09,155 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:09] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 4 0.001 0.004
+2025-05-08 19:47:09,161 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:09] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.000 0.002
+2025-05-08 19:47:16,056 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:16] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 3 0.001 0.003
+2025-05-08 19:47:16,062 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:16] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.002
+2025-05-08 19:47:18,329 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:18] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 3 0.001 0.004
+2025-05-08 19:47:18,342 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:18] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.006
+2025-05-08 19:47:34,866 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:34] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 3 0.001 0.003
+2025-05-08 19:47:34,873 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:47:34] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.003
+2025-05-08 19:48:35,382 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "POST /web/action/load HTTP/1.1" 200 - 11 0.005 0.008
+2025-05-08 19:48:35,428 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "POST /web/dataset/call_kw/ir.module.module/get_views HTTP/1.1" 200 - 47 0.016 0.022
+2025-05-08 19:48:35,452 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 4 0.001 0.003
+2025-05-08 19:48:35,458 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 45 0.007 0.005
+2025-05-08 19:48:35,557 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /sale_management/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,559 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /account/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.000
+2025-05-08 19:48:35,560 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /crm/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,561 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/mrp_workorder.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,566 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /website/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,567 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /stock/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,567 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/account_accountant.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,569 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/knowledge.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,571 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /point_of_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,572 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /purchase/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:48:35,573 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /project/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,575 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /website_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,576 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /mrp/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,578 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /mass_mailing/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,580 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/timesheet_grid.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,580 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /hr_expense/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,583 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/web_studio.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,584 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /hr_holidays/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,587 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /hr_recruitment/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:48:35,587 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/industry_fsm.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:48:35,588 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /hr/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:48:35,591 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /data_recycle/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:48:35,591 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /greet/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:48:35,592 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /auditlog/static/description/icon.png HTTP/1.1" 404 - 2 0.001 0.004
+2025-05-08 19:48:35,602 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /maintenance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,602 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /legion_webcam_image/static/description/icon.png HTTP/1.1" 404 - 2 0.000 0.002
+2025-05-08 19:48:35,609 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /marketing_eyetracking/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,613 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /mi_modulo_grafico/static/description/icon.png HTTP/1.1" 404 - 2 0.000 0.002
+2025-05-08 19:48:35,615 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/sign.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,615 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/helpdesk.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,619 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/sale_subscription.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,620 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/quality_control.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,621 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /website_slides/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,623 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/planning.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,623 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /website_event/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,625 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /mail/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,626 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /contacts/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,627 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/mrp_plm.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,629 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /calendar/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,630 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/social.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,633 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/hr_appraisal.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,633 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/marketing_automation.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,634 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /fleet/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:48:35,635 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /im_livechat/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,636 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/appointment.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,638 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /survey/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,639 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/web_mobile.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,639 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /repair/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,641 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/stock_barcode.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,643 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /hr_attendance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
+2025-05-08 19:48:35,644 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /note/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,644 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /hr_skills/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,644 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /mass_mailing_sms/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
+2025-05-08 19:48:35,646 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /hr_contract/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,648 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/voip.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:48:35,649 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /base/static/img/icons/sale_ebay.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:35,650 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /website_hr_recruitment/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:48:35,651 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:35] "GET /lunch/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:48:38,545 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_immediate_upgrade on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:48:38,545 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:48:38,545 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:48:38,730 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user admin #2 via 127.0.0.1 
+2025-05-08 19:48:38,740 7055 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2025-05-08 19:48:38,744 7055 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2025-05-08 19:48:38,753 7055 INFO odoo_db odoo.modules.loading: updating modules list 
+2025-05-08 19:48:38,753 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via 127.0.0.1 
+2025-05-08 19:48:38,934 7055 INFO odoo_db odoo.modules.loading: loading 26 modules... 
+2025-05-08 19:48:38,937 7055 INFO odoo_db odoo.modules.loading: Loading module greet (10/26) 
+2025-05-08 19:48:38,963 7055 INFO odoo_db odoo.modules.loading: loading greet/views/greet_dashboard.xml 
+2025-05-08 19:48:38,968 7055 INFO odoo_db odoo.modules.loading: Module greet: loading demo 
+2025-05-08 19:48:38,968 7055 INFO odoo_db odoo.modules.loading: loading greet/demo/demo.xml 
+2025-05-08 19:48:38,976 7055 INFO odoo_db odoo.modules.loading: Module greet loaded in 0.04s, 40 queries (+40 other) 
+2025-05-08 19:48:38,982 7055 INFO odoo_db odoo.modules.loading: 26 modules loaded in 0.05s, 40 queries (+40 extra) 
+2025-05-08 19:48:39,126 7055 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2025-05-08 19:48:39,131 7055 INFO odoo_db odoo.modules.registry: Registry loaded in 0.393s 
+2025-05-08 19:48:39,131 7055 INFO odoo_db odoo.addons.base.models.ir_module: getting next ir.actions.todo() 
+2025-05-08 19:48:39,133 7055 INFO odoo_db odoo.modules.registry: Registry changed, signaling through the database 
+2025-05-08 19:48:39,133 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:39] "POST /web/dataset/call_button HTTP/1.1" 200 - 2777 0.273 0.319
+2025-05-08 19:48:39,158 7055 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-05-08 19:48:39,344 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Failed to find attachment for assets /web/assets/%-37279cb/web.assets_backend.min.css 
+2025-05-08 19:48:40,040 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Deleting ir.attachment [1552] (from bundle web.assets_backend) 
+2025-05-08 19:48:40,175 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Failed to find attachment for assets /web/assets/%-37279cb/web.assets_backend.min.js 
+2025-05-08 19:48:41,103 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Deleting ir.attachment [1553] (from bundle web.assets_backend) 
+2025-05-08 19:48:41,127 7055 INFO odoo_db odoo.modules.registry: At least one model cache has been invalidated, signaling through the database. 
+2025-05-08 19:48:41,128 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web HTTP/1.1" 200 - 131 0.042 1.930
+2025-05-08 19:48:41,166 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/assets/332-42e6670/web.assets_common.min.css HTTP/1.1" 200 - 6 0.002 0.004
+2025-05-08 19:48:41,168 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/assets/1554-37279cb/web.assets_backend.min.css HTTP/1.1" 200 - 4 0.001 0.006
+2025-05-08 19:48:41,170 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/assets/334-42e6670/web.assets_common.min.js HTTP/1.1" 200 - 4 0.002 0.006
+2025-05-08 19:48:41,171 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/assets/1555-37279cb/web.assets_backend.min.js HTTP/1.1" 200 - 4 0.001 0.006
+2025-05-08 19:48:41,172 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/assets/336-e94fe5d/web.assets_backend_prod_only.min.js HTTP/1.1" 200 - 4 0.002 0.005
+2025-05-08 19:48:41,239 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.001 0.003
+2025-05-08 19:48:41,256 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/webclient/load_menus/5157c5d83284a9a23e07bae18bd76ffdac15d7caf85a69075d36e0cbea4b0339 HTTP/1.1" 200 - 20 0.006 0.014
+2025-05-08 19:48:41,630 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.001 0.002
+2025-05-08 19:48:41,644 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.001 0.001
+2025-05-08 19:48:41,677 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/webclient/locale/en_US HTTP/1.1" 200 - 1 0.000 0.001
+2025-05-08 19:48:41,721 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "POST /mail/init_messaging HTTP/1.1" 200 - 57 0.009 0.010
+2025-05-08 19:48:41,744 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 3 0.001 0.002
+2025-05-08 19:48:41,769 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /mail/static/src/audio/ting.ogg HTTP/1.1" 206 - 0 0.000 0.002
+2025-05-08 19:48:41,770 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:48:41,770 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:48:41,775 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "POST /web/action/load HTTP/1.1" 200 - 8 0.002 0.007
+2025-05-08 19:48:41,782 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 200 - 16 0.010 0.006
+2025-05-08 19:48:41,783 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /bus/websocket_worker_bundle?v=1.0.5 HTTP/1.1" 304 - 5 0.002 0.006
+2025-05-08 19:48:41,786 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "POST /mail/load_message_failures HTTP/1.1" 200 - 10 0.004 0.004
+2025-05-08 19:48:41,853 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "POST /mail/inbox/messages HTTP/1.1" 200 - 8 0.003 0.003
+2025-05-08 19:48:41,855 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /web/image/mail.channel/1/avatar_128?unique=73158f273cc1f3e4c75dbcd6083b05e23880a1c9c44cac25cc388c724c287d137dd0aa55641194d0003abad7f5a64c225eda8b9024c11b8a84325ce1daf2048a HTTP/1.1" 200 - 9 0.002 0.004
+2025-05-08 19:48:41,973 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:41] "GET /websocket HTTP/1.1" 101 - 1 0.000 0.002
+2025-05-08 19:48:42,298 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:42] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.003 0.005
+2025-05-08 19:48:42,298 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:42] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.004 0.004
+2025-05-08 19:48:44,018 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:44] "POST /web/action/load HTTP/1.1" 200 - 8 0.004 0.007
+2025-05-08 19:48:44,030 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:44] "POST /web/dataset/call_kw/eyetracking.analysis/search_read HTTP/1.1" 200 - 4 0.001 0.002
+2025-05-08 19:48:44,039 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:44] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 4 0.001 0.004
+2025-05-08 19:48:44,046 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:48:44] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.003
+2025-05-08 19:49:11,383 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "POST /web/action/load HTTP/1.1" 200 - 11 0.005 0.009
+2025-05-08 19:49:11,424 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "POST /web/dataset/call_kw/ir.module.module/get_views HTTP/1.1" 200 - 47 0.012 0.018
+2025-05-08 19:49:11,442 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 4 0.001 0.003
+2025-05-08 19:49:11,449 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 45 0.007 0.006
+2025-05-08 19:49:11,542 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /sale_management/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,542 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /account/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,544 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /crm/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,545 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/mrp_workorder.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,547 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /stock/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,548 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /website/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:49:11,548 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/account_accountant.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,549 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/knowledge.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,550 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /purchase/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,552 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /point_of_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,553 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /project/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,554 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /website_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,555 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /mrp/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,559 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /mass_mailing/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,559 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/timesheet_grid.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,569 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /hr_expense/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,572 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/web_studio.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,572 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /hr_holidays/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,577 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /hr_recruitment/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,581 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/industry_fsm.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,585 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /hr/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,586 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /auditlog/static/description/icon.png HTTP/1.1" 404 - 2 0.000 0.001
+2025-05-08 19:49:11,588 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /data_recycle/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,589 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /greet/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,596 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /maintenance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,597 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /legion_webcam_image/static/description/icon.png HTTP/1.1" 404 - 2 0.001 0.002
+2025-05-08 19:49:11,598 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /marketing_eyetracking/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,600 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /mi_modulo_grafico/static/description/icon.png HTTP/1.1" 404 - 2 0.000 0.002
+2025-05-08 19:49:11,604 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/sign.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,605 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/helpdesk.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,606 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/sale_subscription.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,607 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/quality_control.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,612 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /website_slides/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,613 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/planning.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,615 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /website_event/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,616 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /mail/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,617 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /contacts/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,618 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/mrp_plm.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,620 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /calendar/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,622 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/hr_appraisal.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,622 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/social.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,624 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /fleet/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,627 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/marketing_automation.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:49:11,628 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /im_livechat/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:49:11,628 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /mass_mailing_sms/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:49:11,630 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/stock_barcode.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:49:11,630 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/appointment.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:49:11,631 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /survey/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,633 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /hr_attendance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,634 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /website_hr_recruitment/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-08 19:49:11,636 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /hr_skills/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:49:11,636 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/sale_ebay.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:49:11,638 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/web_mobile.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:49:11,639 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /note/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,639 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /repair/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:49:11,641 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /hr_contract/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
+2025-05-08 19:49:11,642 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /base/static/img/icons/voip.png HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-08 19:49:11,643 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:11] "GET /lunch/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:49:14,360 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_immediate_upgrade on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:49:14,361 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:49:14,361 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['Greetings'] to user admin #2 via 127.0.0.1 
+2025-05-08 19:49:14,535 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user admin #2 via 127.0.0.1 
+2025-05-08 19:49:14,543 7055 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2025-05-08 19:49:14,546 7055 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2025-05-08 19:49:14,554 7055 INFO odoo_db odoo.modules.loading: updating modules list 
+2025-05-08 19:49:14,555 7055 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via 127.0.0.1 
+2025-05-08 19:49:14,714 7055 INFO odoo_db odoo.modules.loading: loading 26 modules... 
+2025-05-08 19:49:14,717 7055 INFO odoo_db odoo.modules.loading: Loading module greet (10/26) 
+2025-05-08 19:49:14,742 7055 INFO odoo_db odoo.modules.loading: loading greet/views/greet_dashboard.xml 
+2025-05-08 19:49:14,748 7055 INFO odoo_db odoo.modules.loading: Module greet: loading demo 
+2025-05-08 19:49:14,748 7055 INFO odoo_db odoo.modules.loading: loading greet/demo/demo.xml 
+2025-05-08 19:49:14,753 7055 INFO odoo_db odoo.modules.loading: Module greet loaded in 0.04s, 40 queries (+40 other) 
+2025-05-08 19:49:14,759 7055 INFO odoo_db odoo.modules.loading: 26 modules loaded in 0.04s, 40 queries (+40 extra) 
+2025-05-08 19:49:14,891 7055 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2025-05-08 19:49:14,894 7055 INFO odoo_db odoo.modules.registry: Registry loaded in 0.352s 
+2025-05-08 19:49:14,894 7055 INFO odoo_db odoo.addons.base.models.ir_module: getting next ir.actions.todo() 
+2025-05-08 19:49:14,895 7055 INFO odoo_db odoo.modules.registry: Registry changed, signaling through the database 
+2025-05-08 19:49:14,895 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:14] "POST /web/dataset/call_button HTTP/1.1" 200 - 2777 0.247 0.291
+2025-05-08 19:49:14,923 7055 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-05-08 19:49:15,119 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Failed to find attachment for assets /web/assets/%-b6cf66a/web.assets_backend.min.css 
+2025-05-08 19:49:15,810 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Deleting ir.attachment [1554] (from bundle web.assets_backend) 
+2025-05-08 19:49:15,892 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Failed to find attachment for assets /web/assets/%-b6cf66a/web.assets_backend.min.js 
+2025-05-08 19:49:16,791 7055 INFO odoo_db odoo.addons.base.models.assetsbundle: Deleting ir.attachment [1555] (from bundle web.assets_backend) 
+2025-05-08 19:49:16,814 7055 INFO odoo_db odoo.modules.registry: At least one model cache has been invalidated, signaling through the database. 
+2025-05-08 19:49:16,815 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:16] "GET /web HTTP/1.1" 200 - 131 0.043 1.851
+2025-05-08 19:49:16,852 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:16] "GET /web/assets/332-42e6670/web.assets_common.min.css HTTP/1.1" 200 - 6 0.001 0.005
+2025-05-08 19:49:16,853 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:16] "GET /web/assets/1556-b6cf66a/web.assets_backend.min.css HTTP/1.1" 200 - 4 0.002 0.005
+2025-05-08 19:49:16,854 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:16] "GET /web/assets/336-e94fe5d/web.assets_backend_prod_only.min.js HTTP/1.1" 200 - 4 0.002 0.005
+2025-05-08 19:49:16,855 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:16] "GET /web/assets/334-42e6670/web.assets_common.min.js HTTP/1.1" 200 - 4 0.001 0.007
+2025-05-08 19:49:16,855 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:16] "GET /web/assets/1557-b6cf66a/web.assets_backend.min.js HTTP/1.1" 200 - 4 0.002 0.006
+2025-05-08 19:49:16,913 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:16] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.000 0.002
+2025-05-08 19:49:16,925 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:16] "GET /web/webclient/load_menus/5157c5d83284a9a23e07bae18bd76ffdac15d7caf85a69075d36e0cbea4b0339 HTTP/1.1" 200 - 20 0.005 0.011
+2025-05-08 19:49:17,284 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.001 0.002
+2025-05-08 19:49:17,299 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "GET /web/webclient/translations/523d9675cb261a290af773ebe79754848efc8bec?lang=en_US HTTP/1.1" 200 - 2 0.000 0.002
+2025-05-08 19:49:17,342 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "GET /web/webclient/locale/en_US HTTP/1.1" 200 - 1 0.000 0.001
+2025-05-08 19:49:17,368 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "POST /mail/init_messaging HTTP/1.1" 200 - 57 0.007 0.009
+2025-05-08 19:49:17,390 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 3 0.001 0.002
+2025-05-08 19:49:17,408 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.003
+2025-05-08 19:49:17,410 7055 INFO ? werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.005
+2025-05-08 19:49:17,412 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "POST /web/action/load HTTP/1.1" 200 - 8 0.004 0.004
+2025-05-08 19:49:17,416 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 200 - 16 0.006 0.006
+2025-05-08 19:49:17,419 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "GET /bus/websocket_worker_bundle?v=1.0.5 HTTP/1.1" 304 - 5 0.001 0.003
+2025-05-08 19:49:17,427 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "POST /mail/load_message_failures HTTP/1.1" 200 - 10 0.002 0.003
+2025-05-08 19:49:17,485 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "POST /mail/inbox/messages HTTP/1.1" 200 - 8 0.002 0.003
+2025-05-08 19:49:17,491 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "GET /web/image/mail.channel/1/avatar_128?unique=73158f273cc1f3e4c75dbcd6083b05e23880a1c9c44cac25cc388c724c287d137dd0aa55641194d0003abad7f5a64c225eda8b9024c11b8a84325ce1daf2048a HTTP/1.1" 200 - 9 0.002 0.004
+2025-05-08 19:49:17,612 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "GET /websocket HTTP/1.1" 101 - 1 0.000 0.002
+2025-05-08 19:49:17,922 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.003 0.005
+2025-05-08 19:49:17,922 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:17] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.004 0.003
+2025-05-08 19:49:18,969 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:18] "POST /web/action/load HTTP/1.1" 200 - 8 0.001 0.003
+2025-05-08 19:49:18,981 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:18] "POST /web/dataset/call_kw/eyetracking.analysis/search_read HTTP/1.1" 200 - 4 0.001 0.002
+2025-05-08 19:49:18,988 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:18] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 4 0.001 0.003
+2025-05-08 19:49:18,994 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:18] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.002
+2025-05-08 19:49:46,167 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:46] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 3 0.001 0.006
+2025-05-08 19:49:46,177 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:49:46] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.005
+2025-05-08 19:51:01,366 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:51:01] "POST /web/dataset/call_kw/eyetracking.analysis/search_read HTTP/1.1" 200 - 3 0.001 0.003
+2025-05-08 19:51:01,378 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:51:01] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 3 0.001 0.005
+2025-05-08 19:51:01,389 7055 INFO odoo_db werkzeug: 127.0.0.1 - - [08/May/2025 19:51:01] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 2 0.001 0.005
