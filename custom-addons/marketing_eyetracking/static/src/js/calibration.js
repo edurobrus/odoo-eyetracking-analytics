@@ -12,7 +12,9 @@ function ClearCanvas(){
     i.style.setProperty('display', 'none');
   });
   var canvas = document.getElementById("plotting_canvas");
-  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+  if (canvas && canvas.getContext) {
+    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+  }
 }
 
 /**
@@ -36,11 +38,22 @@ function PopUpInstruction(){
   * Show the help instructions right at the start.
   */
 function helpModalShow() {
-    if(!helpModal) {
-        helpModal = new bootstrap.Modal(document.getElementById('helpModal'))
+  const modalEl = document.getElementById('helpModal');
+  if (!modalEl) return;
+
+  // Verifica si bootstrap está disponible
+  if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
+    if (!helpModal) {
+      helpModal = new bootstrap.Modal(modalEl);
     }
     helpModal.show();
+  } else {
+    // Si no hay Bootstrap, simplemente lo mostramos como fallback
+    modalEl.style.display = 'block';
+    modalEl.classList.add('show');
+  }
 }
+
 
 function calcAccuracy() {
     // show modal
@@ -52,13 +65,11 @@ function calcAccuracy() {
         allowOutsideClick: false,
         closeModal: true
     }).then( () => {
-        // makes the variables true for 5 seconds & plots the points
-    
-        store_points_variable(); // start storing the prediction points
+        store_points_variable();
     
         sleep(5000).then(() => {
-                stop_storing_points_variable(); // stop storing the prediction points
-                var past50 = webgazer.getStoredPoints(); // retrieve the stored points
+                stop_storing_points_variable();
+                var past50 = webgazer.getStoredPoints();
                 var precision_measurement = calculatePrecision(past50);
                 var accuracyLabel = "<a>Accuracy | "+precision_measurement+"%</a>";
                 document.getElementById("Accuracy").innerHTML = accuracyLabel; // Show the accuracy in the nav bar.
@@ -118,7 +129,9 @@ function calPointClick(node) {
 
         // clears the canvas
         var canvas = document.getElementById("plotting_canvas");
-        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+        if (canvas && canvas.getContext) {
+          canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+        }
 
         // Calculate the accuracy
         calcAccuracy();

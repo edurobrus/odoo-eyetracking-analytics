@@ -190,6 +190,9 @@ class WebcamDialog extends Component {
         if (this.stream) {
             this.stream.getTracks().forEach((track) => track.stop());
         }
+
+        webgazer.clearData();
+        localforage.clear();
     }
 
     async _saveRecording() {
@@ -236,35 +239,44 @@ class WebcamDialog extends Component {
     async _onStartEyeTracking() {
         if (!window.webgazer) {
             console.error("WebGazer is not loaded.");
-            return;
+            return; // Solo retornamos si webgazer no está disponible
         }
-
-        // Reset gaze data and start eye tracking
+        
         window.gazeData = [];
         window.recordData = [];
         let record = true;
         this.eyeTrackingStartTime = new Date();
-        this.stream = await navigator.mediaDevices.getDisplayMedia({
-            video: { mediaSource: "screen" },
-            audio: true
-        });
-        this.mediaRecorder = new MediaRecorder(this.stream);
-        // Start WebGazer gaze tracking
+        
+        // Intentar obtener el stream de pantalla, pero continuar incluso si falla
+        try {
+            this.stream = await navigator.mediaDevices.getDisplayMedia({
+                video: { mediaSource: "screen" },
+                audio: true
+            });
+            this.mediaRecorder = new MediaRecorder(this.stream);
+        } catch (err) {
+            console.error("No se pudo capturar la pantalla:", err);
+            console.log("Continuando con eye tracking sin grabación de pantalla");
+        }
         webgazer.setGazeListener((data, elapsedTime) => {
             if (data !== null) {
                 const now = new Date();
-                if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
-                    throw new Error("Screen capture is not supported by your browser.");
-                }
-                this.mediaRecorder.ondataavailable = (event) => {
-                    window.recordData.push(event.data);
-                };
-                this.mediaRecorder.onstop = () => {
-                    this._saveRecording();
-                };
-                if(record){
-                    this.mediaRecorder.start();
-                    record = false;
+                if (this.mediaRecorder) {
+                    try {
+                        if (record) {
+                            this.mediaRecorder.ondataavailable = (event) => {
+                                window.recordData.push(event.data);
+                            };
+                            this.mediaRecorder.onstop = () => {
+                                this._saveRecording();
+                            };
+                            this.mediaRecorder.start();
+                            record = false;
+                        }
+                    } catch (err) {
+                        console.error("Error al configurar la grabación:", err);
+                        this.mediaRecorder = null;
+                    }
                 }
                 window.gazeData.push({
                     x: data.x,
@@ -273,7 +285,7 @@ class WebcamDialog extends Component {
                 });
             }
         }).begin();
-
+        
         this._clearOdooLog();
         console.log("Eye tracking started.");
     }
@@ -287,7 +299,6 @@ class WebcamDialog extends Component {
         // Stop WebGazer gaze tracking
         webgazer.end();
         console.log("Eye tracking stopped.");
-
         this._saveRecording();
 
         // Stop screen recording and save the video

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vista Gráfica - Distribución de puntos -->
+        <record id="view_gaze_point_bubble" model="ir.ui.view">
+            <field name="name">eyetracking.gaze.point.bubble</field>
+            <field name="model">eyetracking.gaze.point</field>
+            <field name="arch" type="xml">
+                <graph type="bar" string="Distribución de puntos de mirada" stacked="False">
+                    <field name="x" type="measure"/>
+                    <field name="y" type="measure"/>
+                    <field name="analysis_id" type="row"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Vista Gráfica - Mapa de calor usando barras apiladas -->
+        <record id="view_gaze_point_density" model="ir.ui.view">
+            <field name="name">eyetracking.gaze.point.density</field>
+            <field name="model">eyetracking.gaze.point</field>
+            <field name="arch" type="xml">
+                <graph type="bar" string="Densidad de puntos de mirada" stacked="True">
+                    <field name="x" interval="100" type="row"/>
+                    <field name="y" interval="100" type="col"/>
+                    <field name="x" type="measure" string="Cantidad"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Vista Gráfica - Evolución temporal -->
+        <record id="view_gaze_point_evolution" model="ir.ui.view">
+            <field name="name">eyetracking.gaze.point.evolution</field>
+            <field name="model">eyetracking.gaze.point</field>
+            <field name="arch" type="xml">
+                <graph type="line" string="Evolución temporal de la mirada">
+                    <field name="timestamp" interval="minute" type="row"/>
+                    <field name="x" type="measure"/>
+                    <field name="y" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Vista de búsqueda para filtrar datos -->
+        <record id="view_gaze_point_search" model="ir.ui.view">
+            <field name="name">eyetracking.gaze.point.search</field>
+            <field name="model">eyetracking.gaze.point</field>
+            <field name="arch" type="xml">
+                <search string="Búsqueda de puntos de mirada">
+                    <field name="analysis_id"/>
+                    <field name="timestamp"/>
+                    <filter string="Último día" name="last_day" domain="[('timestamp','&gt;=',(context_today()-datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Última semana" name="last_week" domain="[('timestamp','&gt;=',(context_today()-datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+                    <group expand="0" string="Agrupar por">
+                        <filter string="Análisis" name="groupby_analysis" context="{'group_by': 'analysis_id'}"/>
+                        <filter string="Fecha" name="groupby_date" context="{'group_by': 'timestamp:day'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Vista de formulario para detalles individuales -->
+        <record id="view_gaze_point_form" model="ir.ui.view">
+            <field name="name">eyetracking.gaze.point.form</field>
+            <field name="model">eyetracking.gaze.point</field>
+            <field name="arch" type="xml">
+                <form string="Punto de mirada">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="analysis_id"/>
+                                <field name="timestamp"/>
+                            </group>
+                            <group>
+                                <field name="x"/>
+                                <field name="y"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vista de árbol para lista de puntos -->
+        <record id="view_gaze_point_tree" model="ir.ui.view">
+            <field name="name">eyetracking.gaze.point.tree</field>
+            <field name="model">eyetracking.gaze.point</field>
+            <field name="arch" type="xml">
+                <tree string="Puntos de mirada" decoration-info="timestamp &gt; (context_today()-datetime.timedelta(days=1)).strftime('%Y-%m-%d')">
+                    <field name="analysis_id"/>
+                    <field name="timestamp"/>
+                    <field name="x"/>
+                    <field name="y"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vista de pivot para análisis estadístico -->
+        <record id="view_gaze_point_pivot" model="ir.ui.view">
+            <field name="name">eyetracking.gaze.point.pivot</field>
+            <field name="model">eyetracking.gaze.point</field>
+            <field name="arch" type="xml">
+                <pivot string="Análisis estadístico de puntos de mirada">
+                    <field name="analysis_id" type="row"/>
+                    <field name="timestamp" interval="day" type="col"/>
+                    <field name="x" type="measure"/>
+                    <field name="y" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Action para mostrar todas las vistas -->
+        <record id="action_gaze_point_analysis" model="ir.actions.act_window">
+            <field name="name">Análisis de Puntos de Mirada</field>
+            <field name="res_model">eyetracking.gaze.point</field>
+            <field name="view_mode">pivot,graph,tree,form</field>
+            <field name="context">{'search_default_groupby_analysis': 1}</field>
+            <field name="search_view_id" ref="view_gaze_point_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No hay datos de eye tracking disponibles
+                </p>
+                <p>
+                    Cree un nuevo análisis para capturar datos de seguimiento ocular.
+                </p>
+            </field>
+        </record>
+
+        <!-- Acciones específicas para cada tipo de visualización -->
+        <record id="action_gaze_point_bubble" model="ir.actions.act_window">
+            <field name="name">Distribución de Puntos</field>
+            <field name="res_model">eyetracking.gaze.point</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_gaze_point_bubble"/>
+            <field name="search_view_id" ref="view_gaze_point_search"/>
+        </record>
+
+        <record id="action_gaze_point_density" model="ir.actions.act_window">
+            <field name="name">Mapa de Calor</field>
+            <field name="res_model">eyetracking.gaze.point</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_gaze_point_density"/>
+            <field name="search_view_id" ref="view_gaze_point_search"/>
+        </record>
+
+        <record id="action_gaze_point_evolution" model="ir.actions.act_window">
+            <field name="name">Evolución Temporal</field>
+            <field name="res_model">eyetracking.gaze.point</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_gaze_point_evolution"/>
+            <field name="search_view_id" ref="view_gaze_point_search"/>
+        </record>
+
+        <record id="action_gaze_point_stats" model="ir.actions.act_window">
+            <field name="name">Estadísticas</field>
+            <field name="res_model">eyetracking.gaze.point</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="view_gaze_point_pivot"/>
+            <field name="search_view_id" ref="view_gaze_point_search"/>
+        </record>
+
+        <!-- Menú principal de eyetracking (asumiendo que ya existe) -->
+        <menuitem id="menu_eyetracking_root" name="Eye Tracking" sequence="90" web_icon="module_name,static/description/icon.png"/>
+
+        <!-- Submenú para análisis -->
+        <menuitem id="menu_eyetracking_analysis" name="Análisis de Eyetracking" parent="menu_eyetracking_root" sequence="10"/>
+
+        <!-- Elementos de menú para cada tipo de visualización -->
+        <menuitem id="menu_gaze_point_analysis" name="Análisis Completo" parent="menu_eyetracking_analysis" action="action_gaze_point_analysis" sequence="10"/>
+        <menuitem id="menu_gaze_point_bubble" name="Distribución de Puntos" parent="menu_eyetracking_analysis" action="action_gaze_point_bubble" sequence="20"/>
+        <menuitem id="menu_gaze_point_density" name="Mapa de Calor" parent="menu_eyetracking_analysis" action="action_gaze_point_density" sequence="30"/>
+        <menuitem id="menu_gaze_point_evolution" name="Evolución Temporal" parent="menu_eyetracking_analysis" action="action_gaze_point_evolution" sequence="40"/>
+        <menuitem id="menu_gaze_point_stats" name="Estadísticas" parent="menu_eyetracking_analysis" action="action_gaze_point_stats" sequence="50"/>
+    </data>
+</odoo>

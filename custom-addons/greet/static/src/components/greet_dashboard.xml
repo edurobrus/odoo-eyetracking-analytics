@@ -1,0 +1,166 @@
+<templates xml:space="preserve">
+ <t t-name="owl.OwlGreetDashboard" owl="1">
+<div class="container-fluid p-3">
+<div class="card mt-3">
+<div class="card-header d-flex justify-content-between align-items-center">
+    <h2 t-esc="state.title"/>
+    <!-- Date filter controls -->
+    <div class="date-filter d-flex align-items-center me-3">
+    <div class="input-group">
+        <span class="input-group-text">From</span>
+        <input 
+        type="date" 
+        name="startDate" 
+        class="form-control" 
+        t-att-value="state.dateFilter.startDate" 
+        t-on-change="onDateFilterChange"
+        />
+        <span class="input-group-text">To</span>
+        <input 
+        type="date" 
+        name="endDate" 
+        class="form-control" 
+        t-att-value="state.dateFilter.endDate" 
+        t-on-change="onDateFilterChange"
+        />
+    </div>
+    </div>
+    <div class="analysis-selector" t-if="state.filteredAnalyses.length > 0">
+        <div class="input-group">
+            <span class="input-group-text">Select Analysis</span>
+            <select class="form-select" t-on-change="onAnalysisChange">
+            <option value="" disabled="disabled">Select an analysis</option>
+            <t t-foreach="state.filteredAnalyses" t-as="analysis" t-key="analysis.id">
+                <option t-att-value="analysis.id" t-att-selected="analysis.id === state.currentAnalysisId">
+                <t t-esc="analysis.name"/>
+                </option>
+            </t>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+<!-- Display current analysis info -->
+<div class="alert alert-info mb-4" role="alert">
+    <h5 class="mb-2">Current Analysis: <span t-esc="getCurrentAnalysisName()"></span></h5>
+    <t t-if="state.currentAnalysisId">
+        <t t-foreach="state.analyses" t-as="analysis" t-key="analysis.id">
+            <div t-if="analysis.id === state.currentAnalysisId">
+                <strong>Start Date:</strong> <span t-esc="analysis.date_start"/><br/>
+                <strong>End Date:</strong> <span t-esc="analysis.date_end"/>
+            </div>
+        </t>
+    </t>
+    <t t-else="">
+        <p>Please select an analysis to view data.</p>
+    </t>
+</div>
+
+<!-- NUEVA SECCIÓN: Gráfico de puntos de mirada (X,Y coordinates) -->
+<div class="row mt-4">
+<div class="col-12 mb-4">
+<div class="card">
+<div class="card-header bg-primary text-white">
+<h5 class="mb-0">Puntos de Mirada (X,Y)</h5>
+</div>
+<div class="card-body chart-container">
+<OwlChartRenderer
+title="'Coordenadas de Puntos de Mirada'"
+type="'scatter'"
+data="state.gazePointsScatter"
+/>
+</div>
+</div>
+</div>
+</div>
+
+<ul class="list-group list-group-flush" t-foreach="state.information" t-as="i" t-key="i.id">
+<li class="list-group-item" t-esc="i.description"/>
+<li class="list-group-item">
+<a t-attf-href="#{i.website}" class="link-primary" t-esc="i.website" target="_blank"/>
+</li>
+<li class="list-group-item">
+<p class="text-center">&#60; / &#62; with &#x2665; by <span t-esc="i.author"/></p>
+</li>
+</ul>
+<!-- Sección de gráficos mejorada -->
+<div class="row mt-4">
+<!-- Gráfico de Línea para evolución de coordenadas X -->
+<div class="col-md-6 mb-4">
+<div class="card h-100">
+<div class="card-header bg-info text-white">
+<h5 class="mb-0">Evolución de Coordenadas X</h5>
+</div>
+<div class="card-body chart-container">
+<OwlChartRenderer
+title="'Evolución de X'"
+type="'line'"
+data="state.gazeXEvolution"
+/>
+</div>
+</div>
+</div>
+<!-- Gráfico de Línea para evolución de coordenadas Y -->
+<div class="col-md-6 mb-4">
+<div class="card h-100">
+<div class="card-header bg-success text-white">
+<h5 class="mb-0">Evolución de Coordenadas Y</h5>
+</div>
+<div class="card-body chart-container">
+<OwlChartRenderer
+title="'Evolución de Y'"
+type="'line'"
+data="state.gazeYEvolution"
+/>
+</div>
+</div>
+</div>
+</div>
+<!-- Nueva fila para el heatmap -->
+<div class="row mt-4">
+<!-- Gráfico de Heatmap -->
+<div class="col-12 mb-5">
+<div class="card mb-6">
+<div class="card-header bg-danger text-white">
+<h5 class="mb-0">Distribución de Puntos de Mirada (Heatmap)</h5>
+</div>
+<div class="card-body heatmap-container mb-6">
+<OwlChartRenderer
+title="'Heatmap de Puntos de Mirada'"
+type="'heatmap'"
+data="state.gazeHeatmap"
+/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<style>
+.container-fluid {
+  overflow-y: auto;
+  max-height: 100vh;
+}
+ .chart-container {
+ height: 400px;
+ padding: 15px;
+ }
+ .chart-container canvas {
+ width: 100% !important;
+ height: 100% !important;
+ }
+ .heatmap-container {
+ height: 500px;
+ padding: 15px;
+ }
+ .heatmap-container canvas {
+ width: 100% !important;
+ height: 100% !important;
+ }
+ .analysis-selector {
+ width: 300px;
+ }
+</style>
+</t>
+</templates>

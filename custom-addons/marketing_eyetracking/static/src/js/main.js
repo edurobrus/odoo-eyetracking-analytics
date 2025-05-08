@@ -8,7 +8,7 @@ window.onload = async function() {
           //   console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
         })
         .saveDataAcrossSessions(true)
-        .begin();
+
         webgazer.showVideoPreview(true) /* shows all video previews */
             .showPredictionPoints(true) /* shows a square every 100 milliseconds where current prediction is */
             .applyKalmanFilter(true); /* Kalman Filter defaults to on. Can be toggled by user. */
@@ -18,9 +18,11 @@ window.onload = async function() {
 
         //Set up the main canvas. The main canvas is used to calibrate the webgazer.
         var canvas = document.getElementById("plotting_canvas");
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        canvas.style.position = 'fixed';
+        if (canvas && canvas.getContext) {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            canvas.style.position = 'fixed';
+        }
     };
     setup();
 

@@ -11,247 +11,11 @@
     
     <t t-name="marketing_eyetracking.WebcamDialog" owl="1">
         <Dialog contentClass="'AttachmentWebcamDialog'" title="getTitle()" size="'fullscreen'">
-
-        <style>
-            /* Main dialog styling */
-            .AttachmentWebcamDialog {
-                background-color: #ffffff;
-                padding: 0;
-                margin: 0;
-                width: 100vw;
-                height: 100vh;
-                overflow: hidden;
-                max-width: 100% !important;
-                max-height: 100% !important;
-            }
-            
-            /* Container styling */
-            .dialog-content-container {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                height: calc(100vh - 60px);
-                padding: 0;
-                margin: 0;
-                overflow: hidden;
-                position: relative;
-                border: none;
-                border-radius: 0;
-                background-color: #ffffff;
-            }
-            
-            /* Modal styling */
-            .modal-dialog {
-                max-width: 100% !important;
-                width: 100% !important;
-                height: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
-            }
-            
-            .modal-content {
-                height: 100vh !important;
-                border-radius: 0 !important;
-                border: none !important;
-                box-shadow: none !important;
-            }
-            
-            .modal-body {
-                padding: 0 !important;
-                height: calc(100vh - 120px) !important;
-                overflow: hidden;
-            }
-            
-            .modal-header {
-                border-radius: 0 !important;
-                padding: 0.5rem 1rem !important;
-                border-bottom: none !important;
-            }
-            
-            .modal-footer {
-                padding: 0rem 0rem !important;
-                border-radius: 0 !important;
-            }
-            
-            /* Video container styling - smaller and in upper right */
-            .video-container {
-                width: 120px;
-                height: 100px;
-                margin: 100px;
-            }
-            
-            /* Header styling */
-            .webcam-header {
-                position: fixed;
-                top: 0px;
-                left: 33%;
-                width: 33%;
-                z-index: 1000;
-                background-color: rgba(255, 255, 255, 0.95);
-                padding: 10px 15px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between; /* This spaces items to left and right */
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-            
-            /* Left side container */
-            .header-left {
-                flex: 0 0 auto;
-            }
-            
-            /* Right side container */
-            .header-right {
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-            }
-            
-            /* Webgazer video feed styling - positioned in upper right corner */
-            #webgazerVideoContainer {
-                display: block !important;
-                position: fixed !important;
-                top: 60px !important;
-                right: 10px !important; /* Changed from left to right */
-                z-index: 1;
-                width: 120px !important; /* Reduced size to approximately 100px */
-                height: 100px !important; /* Maintained aspect ratio */
-            }
-            
-            #overlay {
-                /* Override any default styles */
-            }
-            
-            /* Hide navbar */
-            #webgazerNavbar {
-                display: none;
-            }
-            
-            /* Accuracy indicator */
-            #Accuracy a {
-                background-color: #222;
-                color: #eee;
-                padding: 5px;
-                border-radius: 3px;
-            }
-            
-            #Accuracy {
-                background-color: #222;
-                padding: 5px 10px;
-                border-radius: 3px;
-                margin-left: 15px;
-            }
-            
-            /* List items */
-            li {
-                padding-left: 50px;
-                list-style: none;
-            }
-            
-            .navbar-right li {
-                padding-right: 20px;
-            }
-            
-            /* Help button */
-            .helpBtn {
-                display: inline-block;
-                padding: 15px;
-                border: none;
-                background: none;
-                color: #777;
-            }
-            
-            .helpBtn:hover {
-                color: black !important;
-                text-decoration: none;
-            }
-            
-            /* Button styling */
-            button {
-                border-radius: 4px;
-            }
-            
-            /* Calibration button styling */
-            .Calibration {
-                width: 20px;
-                height: 20px;
-                -webkit-border-radius: 25px;
-                -moz-border-radius: 25px;
-                border-radius: 25px;
-                background-color: rgb(255, 255, 255);
-                border-color: black;
-                border-style: solid;
-                position: fixed;
-                opacity: 0; /* Make calibration points invisible */
-            }
-            
-            /* Calibration point positions without overlap with video */
-            #Pt1 {
-                top: 70px;
-                left: 2vw;
-            }
-            
-            #Pt2 {
-                top: 70px;
-                left: 50vw;
-            }
-            
-            #Pt3 {
-                top: 70px;
-                right: 2vw;
-            }
-            
-            #Pt4 {
-                top: 50vh;
-                left: 2vw;
-            }
-            
-            #Pt5 {
-                display: block !important;
-                top: 50vh;
-                left: 50vw;
-            }
-            
-            #Pt6 {
-                top: 50vh;
-                right: 2vw;
-            }
-            
-            #Pt7 {
-                bottom: 2vw;
-                left: 2vw;
-            }
-            
-            #Pt8 {
-                bottom: 2vw;
-                left: 50vw;
-            }
-            
-            #Pt9 {
-                bottom: 2vw;
-                right: 2vw;
-            }
-            
-            /* General body styling */
-            body {
-                overflow-x: hidden;
-            }
-            
-            /* Camera select styling */
-            .camera-select {
-                padding: 5px;
-                border-radius: 4px;
-                border: 1px solid #ccc;
-            }
-            
-            /* Button group styling */
-            .btn-group {
-                margin-left: 15px;
-            }
-        </style>
+        <link rel="stylesheet" href="/marketing_eyetracking/static/src/css/webcam-dialog-styles.css"/>
             <div class="dialog-content-container">
                 <div class="webcam-container">
                     <div class="webcam-header">
+
                         <!-- Left side: Select dropdown -->
                         <div class="header-left">
                             <select t-ref="selectCamera" t-on-change="(ev) => this.onChangeDevice(ev)" class="camera-select">
@@ -285,8 +49,6 @@
                     </div>
                 </div>
                 
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
-                
                 <!-- Snapshot preview container -->
                 <div class="snapshot-preview">
                     <img t-attf-src="{{state.snapshot}}"/>
@@ -308,7 +70,6 @@
                         
             <t t-set-slot="footer">
                 <div class="d-flex justify-content-between w-100">
-                    <!-- Grupo izquierdo: botones de seguimiento ocular completamente a la izquierda -->
                     <div class="d-flex">
                         <button class="btn btn-success" t-on-click="_onStartEyeTracking">
                             <i class="fa fa-eye mr-2"/>
@@ -339,7 +100,6 @@
 
                 <!-- Vista móvil -->
                 <div class="d-md-none d-flex justify-content-between w-100 mt-3">
-                    <!-- Botones de seguimiento ocular en móvil a la izquierda -->
                     <div>
                         <button class="btn btn-sm btn-success" t-on-click="_onStartEyeTracking">
                             <i class="fa fa-eye"/>
@@ -348,8 +108,6 @@
                             <i class="fa fa-eye-slash"/>
                         </button>
                     </div>
-                    
-                    <!-- Botones de acción en móvil a la derecha -->
                     <div>
                         <button class="btn btn-sm btn-primary" t-on-click="_onWebcamSnapshot">
                             <i class="fa fa-camera"/>

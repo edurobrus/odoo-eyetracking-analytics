@@ -10,19 +10,20 @@
     'depends': ['base', 'web'],
     'data': [
         'security/ir.model.access.csv',
-        'views/views.xml'
+        'views/analysis_views.xml',
+        'views/gaze_point_views.xml'
     ],
     'assets': {
         'web.assets_backend': [
-            'marketing_eyetracking/static/src/lib/ridgeWorker.js',
+            'marketing_eyetracking/static/src/lib/bootstrap.bundle.min.js',
+            'marketing_eyetracking/static/src/lib/d3.v3.min.js',
+            'marketing_eyetracking/static/src/lib/localforage.js',
             'marketing_eyetracking/static/src/lib/webgazer.js',
             'marketing_eyetracking/static/src/lib/sweetalert.min.js',
             'marketing_eyetracking/static/src/lib/html2canvas.min.js',
             'marketing_eyetracking/static/src/js/webcam_dialog.js',
             'marketing_eyetracking/static/src/js/calibration.js',
             'marketing_eyetracking/static/src/js/main.js',
-            'marketing_eyetracking/static/src/js/collision.js',
-            'marketing_eyetracking/static/src/js/heatmap-demo.js',
             'marketing_eyetracking/static/src/js/precision_store_points.js',
             'marketing_eyetracking/static/src/js/precision_calculation.js',
             'marketing_eyetracking/static/src/js/resize_canvas.js',
