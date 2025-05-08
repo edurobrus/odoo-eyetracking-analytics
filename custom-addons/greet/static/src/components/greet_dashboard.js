@@ -43,13 +43,17 @@ setup() {
         // Load all analyses
         this.state.analyses = await this.loadAnalyses();
         
-        // Initialize date filters with sensible defaults (last month)
+        // Initialize date filters with sensible defaults (last month to tomorrow)
         const today = new Date();
         const lastMonth = new Date();
         lastMonth.setMonth(today.getMonth() - 1);
-        
+
+        const tomorrow = new Date();
+        tomorrow.setDate(today.getDate() + 1);
+
         this.state.dateFilter.startDate = this.formatDateForInput(lastMonth);
-        this.state.dateFilter.endDate = this.formatDateForInput(today);
+        this.state.dateFilter.endDate = this.formatDateForInput(tomorrow);
+
         
         // Apply initial filtering
         this.filterAnalysesByDateRange();

@@ -109,8 +109,11 @@ class EyetrackingAnalysis(models.Model):
         if os.path.exists(log_path):
             with open(log_path, "r", encoding="utf-8") as log_file:
                 log_content = log_file.read()
-
-        vals["name"] = self.env.user.login
+        user_login = self.env.user.login
+        date_start = vals.get("date_start") or fields.Datetime.now()
+        formatted_date = date_start.strftime("%Y-%m-%d_%H-%M-%S")
+        unique_name = f"{user_login}_{formatted_date}"
+        vals["name"] = unique_name
         vals["log_content"] = log_content
         record = super(EyetrackingAnalysis, self).create(vals)
         user_actions = self.create_user_actions()
