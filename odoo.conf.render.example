@@ -1,0 +1,71 @@
+[options]
+; Opciones generales de Odoo
+
+; --- Configuración de Base de Datos ---
+; Estas variables deben ser configuradas como variables de entorno en Render
+; Render inyecta variables como PGHOST, PGPORT, PGUSER, PGPASSWORD, PGDATABASE
+; Mapeamos Odoo para leerlas.
+
+db_user = admin
+db_password = 09oagDQhe1vccDRDDx5wos8B3LfUfTDz
+db_host = dpg-d0iq5didbo4c738p2r1g-a
+db_port = 5432
+db_name = odoo_u442 ; Nombre de la base de datos (debe existir en el servicio PostgreSQL de Render)
+
+; Número máximo de conexiones de base de datos por worker
+db_maxconn = 64
+
+; --- Rutas ---
+; Directorios donde Odoo buscará módulos.
+; La imagen base de Odoo ya incluye los módulos estándar en /usr/lib/...
+; Tu Dockerfile copia tus módulos personalizados a /mnt/extra-addons
+addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
+
+; --- Seguridad ---
+; La contraseña maestra para crear/gestionar bases de datos.
+; ¡Esto DEBE ser una variable de entorno y ser secreta!
+; Configúrala en Render como una variable de entorno (ej. ADMIN_PASSWORD)
+admin_passwd = $pbkdf2-sha512$600000$kjIGoPR.D8H4nxNiTMm5Nw$cT8d.bRPW526F.YkZ6DokYUmerlPK3NiMqTTBvVgCwkPzHIjuZMXQPQEPpUEz0Sz8LVMXGxZR0.h93Zm39r.qA
+
+; --- Logging ---
+; Configura Odoo para loguear a la salida estándar (stdout),
+; que es la forma recomendada para plataformas en la nube como Render.
+; Render recolectará estos logs automáticamente.
+; Evita loguear a archivos dentro del contenedor, ya que el filesystem es efímero.
+
+; Configura handlers de log para enviar a stdout (:)
+log_handler = :INFO
+; Nivel general de logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+log_level = info
+; No especifiques un logfile, Odoo logueará a stderr por defecto si no se usan handlers,
+; pero los handlers a stdout (:) son preferibles.
+; logfile = /dev/stdout ; (Alternativa si log_handler no fuera suficiente, pero generalmente no necesaria con handlers)
+
+; --- Configuración de Servidor ---
+; Puerto HTTP/HTTPS donde Odoo escucha. Render proxyeará el tráfico a este puerto.
+http_port = 8069
+; Puerto para la longpolling (usado para notificaciones en tiempo real, chats, etc.)
+longpolling_port = 8071
+logfile = custom-addons/marketing_eyetracking/log/odoo.log
+; --- Workers (Recomendado para Producción) ---
+; Configurar workers permite a Odoo manejar múltiples solicitudes simultáneamente.
+; El número óptimo depende de los recursos (CPU/RAM) asignados a tu instancia en Render.
+; Una regla común es `(CPU_CORES * 2) + 1`. O puedes usar una variable de entorno
+; si Render la proporciona (ej. WEB_CONCURRENCY) o definir un número fijo.
+; workers = %WEB_CONCURRENCY% # Si Render proporciona esta variable
+; NOTA: Si usas workers > 0, el módulo 'web_longpolling' debe estar instalado.
+
+; Límites de recursos por worker (ajusta según tu RAM)
+; Estos límites ayudan a prevenir que un solo request consuma demasiados recursos y afecte a otros.
+
+; --- SMTP (Para emails salientes) ---
+; Configura esto si Odoo necesita enviar correos.
+; Deberías usar un servicio de envío de email externo y configurar estas variables de entorno en Render.
+; smtp_server = %SMTP_SERVER%
+; smtp_port = %SMTP_PORT%
+; smtp_user = %SMTP_USER%
+; smtp_password = %SMTP_PASSWORD%
+; smtp_ssl = %SMTP_SSL% ; True/False
+
+; --- Misc ---
+; enable_db_manager = False ; Se recomienda deshabilitar el manager de DB en producción por seguridad, una vez que la DB inicial esté configurada.

@@ -31,10 +31,6 @@ window.onload = async function() {
 // Set to true if you want to save the data even if you reload the page.
 window.saveDataAcrossSessions = true;
 
-window.onbeforeunload = function() {
-    webgazer.end();
-}
-
 /**
  * Restart the calibration process by clearing the local storage and reseting the calibration point
  */
