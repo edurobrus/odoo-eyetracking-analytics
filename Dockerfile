@@ -28,4 +28,4 @@ USER odoo
 EXPOSE 8069
 
 # El comando por defecto de la imagen base de Odoo ('odoo')
-CMD ["/opt/odoo/odoo-bin", "-c", "/etc/odoo/odoo.conf", "-i", "base"]
+CMD ["odoo", "-c", "/etc/odoo/odoo.conf", "-i", "base"]
