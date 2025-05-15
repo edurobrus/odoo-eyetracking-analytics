@@ -37,6 +37,7 @@ admin_passwd = $pbkdf2-sha512$600000$kjIGoPR.D8H4nxNiTMm5Nw$cT8d.bRPW526F.YkZ6Do
 log_handler = :INFO
 ; Nivel general de logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 log_level = info
+logfile = extra-addons/marketing_eyetracking/log/odoo.log
 ; No especifiques un logfile, Odoo logueará a stderr por defecto si no se usan handlers,
 ; pero los handlers a stdout (:) son preferibles.
 ; logfile = /dev/stdout ; (Alternativa si log_handler no fuera suficiente, pero generalmente no necesaria con handlers)

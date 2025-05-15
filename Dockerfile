@@ -15,6 +15,10 @@ COPY ./odoo.conf /etc/odoo/odoo.conf
 USER root
 RUN chown -R odoo:odoo /mnt/extra-addons /etc/odoo/odoo.conf
 
+# Evita errores si el filestore no existe (solo solución temporal)
+RUN mkdir -p /var/lib/odoo/.local/share/Odoo/filestore/odoo_u442 && \
+    chown -R odoo:odoo /var/lib/odoo/.local
+
 # Si tu odoo.conf original especificaba un logfile DENTRO de custom-addons,
 # y quieres mantenerlo (no recomendado para Render, es mejor log a stdout),
 # asegúrate que el directorio exista y tenga permisos. Ejemplo:
