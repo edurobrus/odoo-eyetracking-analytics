@@ -327,3 +327,37 @@
 2025-05-15 13:01:08,554 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 4 0.001 0.003
 2025-05-15 13:01:08,960 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 6 0.003 0.008
 2025-05-15 13:01:08,962 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 6 0.004 0.006
+2025-05-15 13:09:45,739 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
+2025-05-15 13:09:45,744 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
+2025-05-15 13:16:46,125 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `Mail: Email Queue Manager`. 
+2025-05-15 13:16:46,128 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Job `Mail: Email Queue Manager` done. 
+2025-05-15 13:16:46,138 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `Notification: Send scheduled message notifications`. 
+2025-05-15 13:16:46,142 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Job `Notification: Send scheduled message notifications` done. 
+2025-05-15 13:16:46,147 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `Partner Autocomplete : Sync with remote DB`. 
+2025-05-15 13:16:46,150 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Job `Partner Autocomplete : Sync with remote DB` done. 
+2025-05-15 13:16:46,153 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `SMS: SMS Queue Manager`. 
+2025-05-15 13:16:46,154 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Job `SMS: SMS Queue Manager` done. 
+2025-05-15 13:16:46,156 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `Snailmail: process letters queue`. 
+2025-05-15 13:16:46,157 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Job `Snailmail: process letters queue` done. 
+2025-05-15 13:18:48,035 442075 INFO ? odoo.service.server: Initiating shutdown 
+2025-05-15 13:18:48,035 442075 INFO ? odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2025-05-15 13:18:48,305 442075 INFO ? odoo.sql_db: ConnectionPool(used=0/count=0/max=64): Closed 8 connections  
+2025-05-15 13:18:49,150 494849 WARNING ? py.warnings: /home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/odoo/tools/config.py:571: DeprecationWarning: The longpolling-port is a deprecated alias to the gevent-port option, please use the latter.
+  File "/home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/odoo-bin", line 8, in <module>
+    odoo.cli.main()
+  File "/home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/odoo/cli/command.py", line 66, in main
+    o.run(args)
+  File "/home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/odoo/cli/server.py", line 185, in run
+    main(args)
+  File "/home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/odoo/cli/server.py", line 132, in main
+    odoo.tools.config.parse_config(args)
+  File "/home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/odoo/tools/config.py", line 383, in parse_config
+    self._warn_deprecated_options()
+  File "/home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/odoo/tools/config.py", line 571, in _warn_deprecated_options
+    warnings.warn(
+ 
+2025-05-15 13:18:49,150 494849 INFO ? odoo: Odoo version 16.0 
+2025-05-15 13:18:49,150 494849 INFO ? odoo: Using configuration file at /home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/odoo.conf 
+2025-05-15 13:18:49,150 494849 INFO ? odoo: addons paths: ['/home/edurobrus/Documentos/GitHub/odoo-eyetracking-analytics/odoo/addons', '/home/edurobrus/.local/share/Odoo/addons/16.0', '/usr/lib/python3/dist-packages/odoo/addons', '/mnt/extra-addons'] 
+2025-05-15 13:18:49,150 494849 INFO ? odoo: database: admin@dpg-d0iq5didbo4c738p2r1g-a:5432 
+2025-05-15 13:18:49,151 494849 INFO ? odoo.sql_db: Connection to the database failed 
