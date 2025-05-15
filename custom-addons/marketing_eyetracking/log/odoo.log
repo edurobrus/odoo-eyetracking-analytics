@@ -302,3 +302,28 @@
 2025-05-15 12:49:48,746 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 12:49:48] "POST /web/dataset/call_kw/eyetracking.analysis/search_read HTTP/1.1" 200 - 6 0.001 0.002
 2025-05-15 12:49:48,754 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 12:49:48] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 6 0.001 0.003
 2025-05-15 12:49:48,763 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 12:49:48] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 4 0.001 0.003
+2025-05-15 12:59:45,207 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
+2025-05-15 12:59:45,220 442075 INFO odoo_db odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
+2025-05-15 13:01:07,740 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:07] "GET /web HTTP/1.1" 200 - 16 0.002 0.006
+2025-05-15 13:01:07,817 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:07] "GET /web/assets/2141-deef97e/1/web.assets_common.min.css HTTP/1.1" 200 - 5 0.003 0.005
+2025-05-15 13:01:07,818 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:07] "GET /web/assets/2143-deef97e/1/web.assets_common.min.js HTTP/1.1" 200 - 5 0.002 0.006
+2025-05-15 13:01:07,818 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:07] "GET /web/assets/2171-bc147df/1/web.assets_backend.min.css HTTP/1.1" 200 - 5 0.002 0.007
+2025-05-15 13:01:07,819 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:07] "GET /web/assets/2172-bc147df/1/web.assets_backend.min.js HTTP/1.1" 200 - 5 0.003 0.006
+2025-05-15 13:01:07,820 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:07] "GET /web/assets/2145-e94fe5d/1/web.assets_backend_prod_only.min.js HTTP/1.1" 200 - 5 0.003 0.006
+2025-05-15 13:01:07,889 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:07] "GET /web/webclient/load_menus/2faab6633f9746281b0b5a786faac4cef89e1f6079fe81f2c750b7b93ce1c92e HTTP/1.1" 200 - 3 0.001 0.004
+2025-05-15 13:01:07,889 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:07] "GET /web/webclient/translations/88a4f292a979aaa212ec98bfb8e454175052a249?lang=en_US HTTP/1.1" 200 - 3 0.002 0.002
+2025-05-15 13:01:08,348 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "GET /web/webclient/translations/88a4f292a979aaa212ec98bfb8e454175052a249?lang=en_US HTTP/1.1" 200 - 3 0.001 0.003
+2025-05-15 13:01:08,370 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "GET /web/webclient/translations/88a4f292a979aaa212ec98bfb8e454175052a249?lang=en_US HTTP/1.1" 200 - 3 0.001 0.002
+2025-05-15 13:01:08,426 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "GET /web/webclient/locale/en_US HTTP/1.1" 200 - 2 0.001 0.006
+2025-05-15 13:01:08,429 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "POST /web/action/load HTTP/1.1" 200 - 10 0.005 0.003
+2025-05-15 13:01:08,441 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "POST /mail/init_messaging HTTP/1.1" 200 - 33 0.009 0.010
+2025-05-15 13:01:08,489 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 15 0.004 0.007
+2025-05-15 13:01:08,505 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 200 - 10 0.003 0.005
+2025-05-15 13:01:08,511 442075 INFO ? werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.002
+2025-05-15 13:01:08,511 442075 INFO ? werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.001
+2025-05-15 13:01:08,525 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "POST /web/dataset/call_kw/eyetracking.analysis/search_read HTTP/1.1" 200 - 5 0.001 0.002
+2025-05-15 13:01:08,529 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "POST /mail/load_message_failures HTTP/1.1" 200 - 11 0.003 0.004
+2025-05-15 13:01:08,538 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "POST /web/dataset/call_kw/eyetracking.gaze.point/search_read HTTP/1.1" 200 - 5 0.001 0.004
+2025-05-15 13:01:08,554 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "POST /web/dataset/call_kw/eyetracking.gaze.point/read_group HTTP/1.1" 200 - 4 0.001 0.003
+2025-05-15 13:01:08,960 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 6 0.003 0.008
+2025-05-15 13:01:08,962 442075 INFO odoo_db werkzeug: 127.0.0.1 - - [15/May/2025 13:01:08] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 6 0.004 0.006
