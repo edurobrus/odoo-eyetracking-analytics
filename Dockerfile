@@ -29,4 +29,12 @@ EXPOSE 8069
 
 # El comando por defecto de la imagen base de Odoo ('odoo')
 # automáticamente buscará y usará /etc/odoo/odoo.conf
-# CMD ["odoo"] # No necesitas especificarlo si el base ya lo hace.
+CMD ["odoo", \
+    "--database", "$PGDATABASE", \
+    "--db_host", "$PGHOST", \
+    "--db_port", "$PGPORT", \
+    "--db_user", "$PGUSER", \
+    "--db_password", "$PGPASSWORD", \
+    "--admin-passwd", "$ADMIN_PASSWORD", \
+    "--conf", "/etc/odoo/odoo.conf" \
+]
