@@ -1,2 +1,69 @@
 /venv/
+# Odoo specific files and directories
+/odoo/addons/*/static/src/xml/*.xml.ksid  # Odoo session files
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Distribution and build files
+.Python
+build/
+develop-eggs/
+dist/
+*.egg-info
+.installed.cfg
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+
+# IDE specific files
+.idea/  # PyCharm
+.vscode/ # VS Code
+*.swp   # Vim swap files
+*~      # Emacs backup files
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Environment variables file
+.env
+
+# Odoo filestore (where attachments are stored)
+# This is typically outside the main Odoo or custom modules directory,
+# but if it's inside, you should ignore it.
+# For example, if your filestore is at /opt/odoo/.local/share/Odoo/filestore
+# you might need to adjust the path based on your setup.
+/filestore/
+
+# Log files
+*.log
+
+# Customizations outside of modules that you might not want to track
+# (Use with caution, only for truly local/temporary files)
 odoo.conf
