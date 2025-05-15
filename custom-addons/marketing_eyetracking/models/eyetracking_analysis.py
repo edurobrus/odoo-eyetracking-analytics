@@ -153,14 +153,6 @@ class EyetrackingAnalysis(models.Model):
         date_end = date_end.replace(tzinfo=None)
         record = self.create({"date_start": date_start, "date_end": date_end})
 
-        video_filename = fields.Datetime.now().strftime("%Y%m%d%H%M%S") + ".mp4"
-
-        static_path = os.path.join(os.path.dirname(__file__), "..", "static", "videos")
-        if not os.path.exists(static_path):
-            os.makedirs(static_path)
-        video_file_path = os.path.join(static_path, video_filename)
-        with open(video_file_path, "wb") as f:
-            f.write(base64.b64decode(video_data))
         for point in gaze_points:
             self.env["eyetracking.gaze.point"].create(
                 {
