@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="marketing_eyetracking.WebDialogClientAction" owl="1">
+        <div class="web-dialog-client-action d-flex flex-column p-3 h-100">
+            <!-- Eye tracking component directly embedded -->
+            <div class="flex-grow-1 d-flex flex-column">
+                <EyeTrackingComponent
+                    onWebcamCallback="(base64) => this.onWebcamCallback(base64)"
+                    onDataSaved="(data) => this.onEyeTrackingSaved(data)"/>
+            </div>
+            
+            <!-- Display eye tracking data if available -->
+            <div t-if="state.eyeTrackingData" class="mt-3 p-3 border rounded">
+                <h4>Datos de la última sesión de seguimiento ocular</h4>
+                <div class="session-info">
+                    <p><strong>ID de registro:</strong> <t t-esc="state.eyeTrackingData.recordId"/></p>
+                    <p><strong>Cantidad de muestras de miradas:</strong> <t t-esc="state.eyeTrackingData.gazeSampleCount"/></p>
+                    <p><strong>Video grabado:</strong> <t t-esc="state.eyeTrackingData.hasVideo ? 'Sí' : 'No'"/></p>
+                </div>
+            </div>
+            
+            <!-- Display webcam snapshot if available -->
+            <div t-if="state.webcamSnapshot" class="mt-3 p-3 border rounded">
+                <h4>Última captura</h4>
+                <img t-att-src="'data:image/jpeg;base64,' + state.webcamSnapshot"
+                    class="img-fluid" style="max-height: 200px;"/>
+            </div>
+        </div>
+    </t>
+</templates>

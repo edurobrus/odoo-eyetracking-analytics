@@ -1,13 +1,12 @@
 /* Main dialog styling */
 .AttachmentWebcamDialog {
-    background-color: #ffffff;
-    padding: 0;
+    padding: 20px;
     margin: 0;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    max-width: 100% !important;
-    max-height: 100% !important;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Container styling */
@@ -15,221 +14,222 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: calc(100vh - 60px);
-    padding: 0;
-    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+/* Video container styling */
+.video-container {
+    width: 100%;
+    max-width: 1200px; /* Aumentado a 1200px */
+    height: 675px; /* Relación 16:9 para 1200px (1200/16*9) */
+    margin: 15px auto 5px; /* Menor margen */
+    background: #1a1a1a;
+    border-radius: 8px;
     overflow: hidden;
     position: relative;
-    border: none;
-    border-radius: 0;
-    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Modal styling */
-.modal-dialog {
-    max-width: 100% !important;
-    width: 100% !important;
-    height: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
+
+video {
+    width: 100%;
+    height: 100%;
+    max-width: 100%; /* Cambiado de 1280px */
+    max-height: 100%; /* Cambiado de 720px */
+    object-fit: contain;
 }
 
-.modal-content {
-    height: 100vh !important;
-    border-radius: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-.modal-body {
-    padding: 0 !important;
-    height: calc(100vh - 120px) !important;
-    overflow: hidden;
-}
-
-.modal-header {
-    border-radius: 0 !important;
-    padding: 0.5rem 1rem !important;
-    border-bottom: none !important;
-}
-
-.modal-footer {
-    padding: 0rem 0rem !important;
-    border-radius: 0 !important;
-}
-
-/* Video container styling - smaller and in upper right */
-.video-container {
-    width: 120px;
-    height: 100px;
-    margin: 100px;
-}
-
-/* Header styling */
+/* Header styling ajustado */
 .webcam-header {
-    position: fixed;
-    top: 0px;
-    left: 33%;
-    width: 33%;
-    z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 10px 15px;
+    padding: 12px 24px; /* Reducido padding vertical */
+    background: #ffffff;
+    border-bottom: none; /* Eliminado borde inferior */
     display: flex;
     align-items: center;
-    justify-content: space-between; /* This spaces items to left and right */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    justify-content: space-between;
+    gap: 20px;
 }
 
-/* Left side container */
+/* Ajustes responsive */
+@media (max-width: 1200px) {
+    .video-container {
+        max-width: 90%;
+        height: calc(90vw * 0.5625); /* Mantiene relación de aspecto */
+    }
+}
+
+@media (max-width: 768px) {
+    .video-container {
+        max-width: 95%;
+        height: calc(95vw * 0.5625);
+        margin: 15px auto 5px;
+    }
+    
+    #webgazerVideoContainer {
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .video-container {
+        height: calc(100vw * 0.5625);
+        border-radius: 4px;
+        margin: 10px auto 5px;
+    }
+    
+    .webcam-header {
+        padding: 10px 15px;
+    }
+}
+
 .header-left {
-    flex: 0 0 auto;
+    flex: 1;
+    max-width: 300px;
 }
 
-/* Right side container */
+.camera-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    background: white;
+    font-size: 14px;
+}
+
 .header-right {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-}
-
-/* Webgazer video feed styling - positioned in upper right corner */
-#webgazerVideoContainer {
-    display: block !important;
-    position: fixed !important;
-    top: 60px !important;
-    right: 10px !important; /* Changed from left to right */
-    z-index: 1;
-    width: 120px !important; /* Reduced size to approximately 100px */
-    height: 100px !important; /* Maintained aspect ratio */
-}
-
-#overlay {
-    /* Override any default styles */
-}
-
-/* Hide navbar */
-#webgazerNavbar {
-    display: none;
-}
-
-/* Accuracy indicator */
-#Accuracy a {
-    background-color: #222;
-    color: #eee;
-    padding: 5px;
-    border-radius: 3px;
-}
-
-#Accuracy {
-    background-color: #222;
-    padding: 5px 10px;
-    border-radius: 3px;
-    margin-left: 15px;
-}
-
-/* List items */
-li {
-    padding-left: 50px;
-    list-style: none;
-}
-
-.navbar-right li {
-    padding-right: 20px;
-}
-
-/* Help button */
-.helpBtn {
-    display: inline-block;
-    padding: 15px;
-    border: none;
-    background: none;
-    color: #777;
-}
-
-.helpBtn:hover {
-    color: black !important;
-    text-decoration: none;
+    gap: 15px;
 }
 
 /* Button styling */
-button {
-    border-radius: 4px;
-}
-
-/* Calibration button styling */
-.Calibration {
-    width: 20px;
-    height: 20px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    border-radius: 25px;
-    background-color: rgb(255, 255, 255);
-    border-color: black;
-    border-style: solid;
-    position: fixed;
-    opacity: 0; /* Make calibration points invisible */
-}
-
-/* Calibration point positions without overlap with video */
-#Pt1 {
-    top: 70px;
-    left: 2vw;
-}
-
-#Pt2 {
-    top: 70px;
-    left: 50vw;
-}
-
-#Pt3 {
-    top: 70px;
-    right: 2vw;
-}
-
-#Pt4 {
-    top: 50vh;
-    left: 2vw;
-}
-
-#Pt5 {
-    display: block !important;
-    top: 50vh;
-    left: 50vw;
-}
-
-#Pt6 {
-    top: 50vh;
-    right: 2vw;
-}
-
-#Pt7 {
-    bottom: 2vw;
-    left: 2vw;
-}
-
-#Pt8 {
-    bottom: 2vw;
-    left: 50vw;
-}
-
-#Pt9 {
-    bottom: 2vw;
-    right: 2vw;
-}
-
-/* General body styling */
-body {
-    overflow-x: hidden;
-}
-
-/* Camera select styling */
-.camera-select {
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-/* Button group styling */
 .btn-group {
-    margin-left: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+/* Accuracy indicator */
+#Accuracy {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #495057;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#Accuracy a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Calibration points styling */
+.Calibration {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #007bff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    position: fixed;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    opacity: 1;
+}
+
+.Calibration:hover {
+    transform: scale(1.1);
+    background: #007bff;
+}
+
+/* Calibration grid positioning */
+#Pt1 { top: 10%; left: 10% }
+#Pt2 { top: 10%; left: 50% }
+#Pt3 { top: 10%; left: 90% }
+#Pt4 { top: 50%; left: 10% }
+#Pt5 { top: 50%; left: 50% }
+#Pt6 { top: 50%; left: 90% }
+#Pt7 { top: 90%; left: 10% }
+#Pt8 { top: 90%; left: 50% }
+#Pt9 { top: 90%; left: 90% }
+
+/* Webgazer video preview */
+#webgazerVideoContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 180px;
+    height: 135px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: 2px solid white;
+    z-index: 1000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .webcam-header {
+        flex-direction: column;
+        padding: 12px;
+    }
+    
+    .header-left {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .btn {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    #webgazerVideoContainer {
+        width: 120px;
+        height: 90px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .Calibration {
+        width: 18px;
+        height: 18px;
+    }
 }

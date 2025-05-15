@@ -13,7 +13,6 @@ class EyetrackingAnalysis(models.Model):
     name = fields.Char("User", readonly=True)
     date_start = fields.Datetime("Start Date")
     date_end = fields.Datetime("End Date")
-    image = fields.Binary("Image", attachment=True)
     log_content = fields.Text("Log Content")
     user_action_ids = fields.One2many(
         "eyetracking.user.action", "analysis_id", string="User Actions"

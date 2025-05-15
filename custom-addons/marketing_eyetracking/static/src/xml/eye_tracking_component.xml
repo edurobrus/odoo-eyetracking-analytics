@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="marketing_eyetracking.EyeTrackingComponent" owl="1">
+    <link rel="stylesheet" href="/marketing_eyetracking/static/src/css/webcam-dialog-styles.css"/>
+        <div class="eye-tracking-component">
+            
+            <div class="dialog-content-container">
+                <div class="webcam-container">
+                    <div class="webcam-header">
+                        <!-- Left side: Select dropdown -->
+                        <div class="header-left">
+                            <select t-ref="selectCamera" t-on-change="(ev) => this.onChangeDevice(ev)" class="camera-select">
+                                <option value="">Select Camera</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Right side: Accuracy indicator and buttons -->
+                        <div class="header-right">
+                            <ul style="margin: 0; padding: 0; list-style: none; display: inline-flex; align-items: center;">
+                                <li id="Accuracy"><a>Not yet calibrated</a></li>
+                            </ul>
+                            
+                            <div class="btn-group ms-3">
+                                <button class="btn btn-success" t-on-click="_onStartEyeTracking">
+                                    <i class="fa fa-eye me-2"></i>
+                                    <t>Start Eye Tracking</t>
+                                </button>
+                                <button class="btn btn-danger ms-2" t-on-click="_onStopEyeTracking">
+                                    <i class="fa fa-eye-slash me-2"></i>
+                                    <t>Stop Eye Tracking</t>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video -->
+                    <div class="video-container">
+                        <video t-ref="video" autoplay="" playsinline="" width="640" height="360"/>
+                        <canvas id="plotting_canvas" style="cursor:crosshair; display: none !important;"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Snapshot preview container -->
+                <div class="snapshot-preview" t-if="state.snapshot">
+                    <img t-attf-src="{{state.snapshot}}"/>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
