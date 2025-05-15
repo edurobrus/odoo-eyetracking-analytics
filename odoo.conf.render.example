@@ -46,7 +46,6 @@ log_level = info
 http_port = 8069
 ; Puerto para la longpolling (usado para notificaciones en tiempo real, chats, etc.)
 longpolling_port = 8071
-logfile = custom-addons/marketing_eyetracking/log/odoo.log
 ; --- Workers (Recomendado para Producción) ---
 ; Configurar workers permite a Odoo manejar múltiples solicitudes simultáneamente.
 ; El número óptimo depende de los recursos (CPU/RAM) asignados a tu instancia en Render.
