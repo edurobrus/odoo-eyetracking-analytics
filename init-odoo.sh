@@ -25,7 +25,7 @@ DB_PORT=$(grep -E "^db_port\s*=" /etc/odoo/odoo.conf | cut -d'=' -f2 | tr -d ' '
 
 # Valores por defecto si no se encuentran en la configuración (ajusta si tus defaults son otros)
 DB_NAME=${DB_NAME:-odoo}
-DB_USER=${DB_USER:-odoo}
+DB_USER=${DB_USER:-admin}
 DB_HOST=${DB_HOST:-db}
 DB_PORT=${DB_PORT:-5432}
 
