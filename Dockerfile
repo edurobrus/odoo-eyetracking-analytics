@@ -2,34 +2,29 @@
 FROM odoo:16.0
 
 # Copia tus módulos personalizados desde tu repositorio al directorio correcto en la imagen
-# La ruta './custom-addons' es relativa a la ubicación del Dockerfile
 COPY ./custom-addons /mnt/extra-addons
 
 # Copia tu archivo de configuración de Odoo
-# La ruta './odoo.conf' es relativa a la ubicación del Dockerfile
 COPY ./odoo.conf /etc/odoo/odoo.conf
 
-# Opcional: Asegurar permisos para el usuario odoo (si es necesario)
-# La imagen base de Odoo ya corre como usuario 'odoo'.
-# Es buena práctica asegurarse de que los archivos copiados tengan los permisos correctos.
+# Copia el script de inicialización
+COPY ./init-odoo.sh /usr/local/bin/init-odoo.sh
+
+# Asegurar permisos
 USER root
-RUN chown -R odoo:odoo /mnt/extra-addons /etc/odoo/odoo.conf
+RUN chown -R odoo:odoo /mnt/extra-addons /etc/odoo/odoo.conf && \
+    chmod +x /usr/local/bin/init-odoo.sh && \
+    chown odoo:odoo /usr/local/bin/init-odoo.sh
 
-# Evita errores si el filestore no existe (solo solución temporal)
-RUN mkdir -p /var/lib/odoo/.local/share/Odoo/filestore/odoo_u442 && \
+# Crear directorios necesarios
+RUN mkdir -p /var/lib/odoo/.local/share/Odoo/filestore && \
+    mkdir -p /var/lib/odoo/.local/share/Odoo/sessions && \
     chown -R odoo:odoo /var/lib/odoo/.local
-
-# Si tu odoo.conf original especificaba un logfile DENTRO de custom-addons,
-# y quieres mantenerlo (no recomendado para Render, es mejor log a stdout),
-# asegúrate que el directorio exista y tenga permisos. Ejemplo:
-# RUN mkdir -p /mnt/extra-addons/marketing_eyetracking/log && \
-#     chown -R odoo:odoo /mnt/extra-addons/marketing_eyetracking/log
-# Sin embargo, para Render es mejor configurar Odoo para que loguee a la consola (ver odoo.conf abajo)
 
 USER odoo
 
 # Odoo escucha en el puerto 8069 por defecto
 EXPOSE 8069
 
-# El comando por defecto de la imagen base de Odoo ('odoo')
-CMD ["odoo", "-c", "/etc/odoo/odoo.conf", "-i", "base"]
+# Usar el script de inicialización como comando por defecto
+CMD ["/usr/local/bin/init-odoo.sh"]
