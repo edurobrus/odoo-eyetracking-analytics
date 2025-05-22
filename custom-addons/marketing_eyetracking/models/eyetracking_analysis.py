@@ -3,7 +3,6 @@ from odoo import models, fields, api
 import re
 import pytz
 from datetime import datetime
-import base64
 
 
 class EyetrackingAnalysis(models.Model):
