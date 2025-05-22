@@ -46,24 +46,6 @@ dropdb -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" "$DB_NAME" 2>/dev/null || echo 
 echo "🆕 Creando nueva base de datos..."
 createdb -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" "$DB_NAME"
 
-echo "⚙️ Configurando PostgreSQL para evitar crashes..."
-psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME" -c "
-    -- Configuraciones para evitar timeouts y crashes
-    ALTER DATABASE $DB_NAME SET lock_timeout = 0;
-    ALTER DATABASE $DB_NAME SET statement_timeout = 0;
-    ALTER DATABASE $DB_NAME SET idle_in_transaction_session_timeout = 0;
-    ALTER DATABASE $DB_NAME SET deadlock_timeout = '1s';
-    ALTER DATABASE $DB_NAME SET log_lock_waits = off;
-    ALTER DATABASE $DB_NAME SET log_statement = 'none';
-    ALTER DATABASE $DB_NAME SET log_min_duration_statement = -1;
-    -- Configuraciones de memoria
-    ALTER DATABASE $DB_NAME SET work_mem = '2MB';
-    ALTER DATABASE $DB_NAME SET maintenance_work_mem = '32MB';
-    ALTER DATABASE $DB_NAME SET temp_buffers = '8MB';
-    -- Deshabilitar autovacuum temporalmente durante la inicialización
-    ALTER DATABASE $DB_NAME SET autovacuum = off;
-" 2>/dev/null || echo "   ⚠️ Algunas configuraciones de PostgreSQL no se pudieron aplicar"
-
 echo "🧹 Limpiando caché y filestore..."
 # Limpiar filestore (archivos adjuntos, imágenes, etc.)
 rm -rf /var/lib/odoo/.local/share/Odoo/filestore/* 2>/dev/null || true
@@ -104,37 +86,15 @@ if [ -n "$CUSTOM_MODULES" ]; then
 fi
 
 # Ejecutar inicialización
-echo "🚀 Ejecutando inicialización de Odoo..."
-echo "   - Instalando solo módulos esenciales primero..."
-
-# Primero instalar solo base
-odoo -c /etc/odoo/odoo.conf --init=base --stop-after-init --log-level=warn --without-demo=all
+$INIT_COMMAND --stop-after-init --log-level=info
 
 if [ $? -eq 0 ]; then
-    echo "✅ Base instalada correctamente"
-    
-    # Luego instalar módulos personalizados si existen
-    if [ -n "$CUSTOM_MODULES" ]; then
-        echo "   - Instalando módulos personalizados: $CUSTOM_MODULES"
-        odoo -c /etc/odoo/odoo.conf --init="$CUSTOM_MODULES" --stop-after-init --log-level=warn --without-demo=all
-        
-        if [ $? -ne 0 ]; then
-            echo "⚠️ Algunos módulos personalizados fallaron, continuando..."
-        fi
-    fi
-    
-    echo "✅ Inicialización completada"
-    echo "⏳ Esperando estabilización..."
-    sleep 10
-    
-    echo "🧹 Habilitando autovacuum nuevamente..."
-    psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME" -c "
-        ALTER DATABASE $DB_NAME SET autovacuum = on;
-    " 2>/dev/null || true
-    
+    echo "✅ Inicialización completada exitosamente"
     echo "🌐 Iniciando servidor Odoo..."
-    exec odoo -c /etc/odoo/odoo.conf --log-level=warn
+    
+    # Iniciar Odoo en modo normal
+    exec odoo -c /etc/odoo/odoo.conf
 else
-    echo "❌ Error durante la inicialización de base"
+    echo "❌ Error durante la inicialización"
     exit 1
 fi
