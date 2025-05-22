@@ -55,27 +55,6 @@ psql -d "postgres" -c "
       AND pid <> pg_backend_pid();
 " > /dev/null 2>&1 # Redirige salida y errores a /dev/null para no saturar el log
 
-# Intentar eliminar la base de datos
-if dropdb "$DB_NAME" 2>/dev/null; then
-    echo "✅ Base de datos '$DB_NAME' eliminada correctamente."
-else
-    # Comprobar si la base de datos realmente existía o si hubo un error de permisos/conexión
-    if psql -lqt | cut -d \| -f 1 | grep -wq "$DB_NAME"; then
-        echo "❌ ERROR: No se pudo eliminar la base de datos '$DB_NAME'. Podría haber conexiones persistentes o problemas de permisos."
-        exit 1 # Salir si la eliminación falla y la DB aún existe
-    else
-        echo "   ℹ️ Base de datos '$DB_NAME' no existía o ya se eliminó previamente."
-    fi
-fi
-
-echo "🆕 Creando nueva base de datos '$DB_NAME'..."
-if createdb "$DB_NAME"; then
-    echo "✅ Base de datos '$DB_NAME' creada correctamente."
-else
-    echo "❌ ERROR: Falló la creación de la base de datos '$DB_NAME'."
-    exit 1 # Salir si la creación falla
-fi
-
 echo "⚙️ Configurando PostgreSQL para evitar crashes..."
 # Ejecutar comandos SQL directamente en la base de datos recién creada
 psql -d "$DB_NAME" -c "
