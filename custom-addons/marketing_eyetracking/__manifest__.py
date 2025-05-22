@@ -13,6 +13,10 @@
         "views/analysis_views.xml",
     ],
     "assets": {
+        "web.assets_frontend": [
+            "https://www.googletagmanager.com/gtag/js?id=G-0FG0LDC7C0",
+            "marketing_eyetracking/static/src/js/google_analytics_config.js",
+        ],
         "web.assets_backend": [
             "marketing_eyetracking/static/src/lib/bootstrap.bundle.min.js",
             "marketing_eyetracking/static/src/lib/d3.v3.min.js",
@@ -27,6 +31,8 @@
             "marketing_eyetracking/static/src/js/resize_canvas.js",
             "marketing_eyetracking/static/src/js/eye_tracking_component.js",
             "marketing_eyetracking/static/src/js/web_dialog_client_action.js",
+            "marketing_eyetracking/static/src/js/google_analitics.js",
+            "https://www.googletagmanager.com/gtag/js?id=G-0FG0LDC7C0",
             "marketing_eyetracking/static/src/xml/eye_tracking_component.xml",
             "marketing_eyetracking/static/src/xml/web_dialog_client_action.xml",
             "marketing_eyetracking/static/src/xml/chart-graphics/chart/chart_renderer.js",
