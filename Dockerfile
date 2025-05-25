@@ -25,6 +25,3 @@ USER odoo
 
 # Odoo escucha en el puerto 8069 por defecto
 EXPOSE 8069
-
-# Usar el script de inicialización como comando por defecto
-CMD ["/usr/local/bin/init-odoo.sh"]
