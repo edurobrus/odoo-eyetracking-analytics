@@ -7,9 +7,6 @@ COPY ./custom-addons /mnt/extra-addons
 # Copia tu archivo de configuración de Odoo
 COPY ./odoo.conf /etc/odoo/odoo.conf
 
-# Copia el script de inicialización
-COPY ./init-odoo.sh /usr/local/bin/init-odoo.sh
-
 # Asegurar permisos
 USER root
 RUN chown -R odoo:odoo /mnt/extra-addons /etc/odoo/odoo.conf && \
