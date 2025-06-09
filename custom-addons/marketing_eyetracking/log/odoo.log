@@ -14801,3 +14801,8 @@ View error context:
 2025-06-09 23:20:15,660 53323 INFO odoo-db odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
 2025-06-09 23:30:26,310 53323 INFO odoo-db odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
 2025-06-09 23:30:26,312 53323 INFO odoo-db odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
+2025-06-09 23:40:36,952 53323 INFO odoo-db odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
+2025-06-09 23:40:36,959 53323 INFO odoo-db odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
+2025-06-09 23:47:16,009 53323 INFO ? odoo.service.server: Initiating shutdown 
+2025-06-09 23:47:16,010 53323 INFO ? odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2025-06-09 23:47:16,264 53323 INFO ? odoo.sql_db: ConnectionPool(used=0/count=0/max=64): Closed 8 connections  
