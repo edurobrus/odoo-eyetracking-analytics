@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard Form View -->
+    <record id="excel_converter_wizard_form_view" model="ir.ui.view">
+        <field name="name">excel.converter.wizard.form</field>
+        <field name="model">excel.converter.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Excel to PDF Batch Converter">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Excel to PDF Batch Converter</h1>
+                        <p class="oe_grey">
+                            Upload multiple Excel files at once. Each file will be converted
+                            into a separate PDF and saved.
+                        </p>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="attachment_ids" widget="many2many_binary" string="Upload Excel Files"/>
+                        </group>
+                        <group>
+                            <field name="search_word" placeholder="Enter word to search..." string="Search Word (Optional)" nolabel="0"/>
+                            <div class="oe_grey" style="margin-top: 8px;">
+                                <i class="fa fa-info-circle" style="margin-right: 5px;"/>
+                                <small>Leave empty to process all files, or enter a word to filter files that contain it.</small>
+                            </div>
+                        </group>
+                    </group>
+                    
+                    <!-- Status indicators -->
+                    <div class="oe_grey" attrs="{'invisible': [('search_word', '=', False)]}">
+                        <div class="alert alert-info" role="alert">
+                            <strong>🔍 Search Filter Active:</strong> Only files containing the word "<field name="search_word"/>" will be included in the ZIP download.
+                        </div>
+                    </div>
+                    
+                    <div class="oe_grey" attrs="{'invisible': [('search_word', '!=', False)]}">
+                        <div class="alert alert-warning" role="alert">
+                            <strong>📁 No Filter:</strong> All uploaded files will be converted and included in the ZIP.
+                        </div>
+                    </div>
+                </sheet>
+                <footer>
+                    <button name="action_convert_files"
+                            string="Convert All Files"
+                            type="object"
+                            class="btn-primary"
+                            data-hotkey="q"
+                            help="Convert all files and save them individually"/>
+                    <button name="action_download_converted_pdfs_zip"
+                            string="Download as ZIP"
+                            type="object"
+                            class="btn-secondary"
+                            attrs="{'invisible': [('attachment_ids', '=', False)]}"
+                            help="Download all PDFs in a ZIP file. If search word is provided, only matching files will be included."/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"
+                            data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard Action -->
+    <record id="excel_converter_wizard_action" model="ir.actions.act_window">
+        <field name="name">Batch Excel to PDF Converter</field>
+        <field name="res_model">excel.converter.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="excel_converter_wizard_form_view"/>
+    </record>
+</odoo>

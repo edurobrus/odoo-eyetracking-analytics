@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo> 
+
+    <record id="res_partner_purchase_menu" model="ir.ui.view">
+        <field name="name">partner.purchase.report</field>
+        <field name="model">res.partner.purchase.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                    </group>
+                    <group>
+                        <field name="end_date"/> 
+                    </group>
+                </group>
+                <footer>
+                    <button string="Excel Report" type="object" name="generate_excel_report" class="btn-primary"/>
+                    <button string="PDF Report" type="object" name="action_generate_pdf_report" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="res_partner_purchase_action" model="ir.actions.act_window">
+        <field name="name">Purchase Report</field>
+        <field name="res_model">res.partner.purchase.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="res_partner_purchase_menu"/> 
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">form</field>
+    </record>
+    
+
+</odoo> 

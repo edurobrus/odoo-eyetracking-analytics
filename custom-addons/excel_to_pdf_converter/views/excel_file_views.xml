@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="excel_file_tree_view" model="ir.ui.view">
+        <field name="name">excel.file.tree</field>
+        <field name="model">excel.file</field>
+        <field name="arch" type="xml">
+            <tree string="Excel Files" decoration-success="state=='converted'" decoration-danger="state=='error'">
+                <field name="name"/>
+                <field name="state"/>
+                <field name="create_date"/>
+                <field name="pdf_filename"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="excel_file_form_view" model="ir.ui.view">
+        <field name="name">excel.file.form</field>
+        <field name="model">excel.file</field>
+        <field name="arch" type="xml">
+            <form string="Excel File">
+                <header>
+                    <button name="action_convert_to_pdf" type="object" string="Convert to PDF" 
+                            class="btn-primary" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="excel_file" filename="name"/>
+                        </group>
+                        <group>
+                            <field name="pdf_filename" attrs="{'invisible': [('state', '!=', 'converted')]}"/>
+                            <field name="pdf_file" filename="pdf_filename" 
+                                   attrs="{'invisible': [('state', '!=', 'converted')]}"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('state', '!=', 'error')]}">
+                        <field name="error_message" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="excel_file_action" model="ir.actions.act_window">
+        <field name="name">Excel Files</field>
+        <field name="res_model">excel.file</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Upload Excel files to convert them to PDF
+            </p>
+            <p>
+                Click "Create" to upload a new Excel file and convert it to PDF format.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="excel_converter_main_menu" name="Excel Converter" sequence="100"/>
+    
+    <!-- Sub Menus -->
+    <menuitem id="excel_files_menu" name="Excel Files" parent="excel_converter_main_menu" 
+              action="excel_file_action" sequence="10"/>
+    
+    <menuitem id="batch_converter_menu" name="Batch Converter" parent="excel_converter_main_menu" 
+              action="excel_converter_wizard_action" sequence="20"/>
+</odoo>

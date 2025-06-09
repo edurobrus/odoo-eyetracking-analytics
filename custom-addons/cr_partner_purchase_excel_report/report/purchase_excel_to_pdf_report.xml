@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo> 
+
+    <record id="action_report_partner_purchase" model="ir.actions.report">
+        <field name="name">Partner Purchase</field>
+        <field name="model">res.partner.purchase.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cr_partner_purchase_excel_report.report_template_partner_purchase</field>
+        <field name="report_file">cr_partner_purchase_excel_report.report_template_partner_purchase</field>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo> 
