@@ -9,10 +9,8 @@ RUN apt-get update && apt-get install -y \
     python3-psycopg2 \
     && rm -rf /var/lib/apt/lists/*
 
-# Crear directorios necesarios
-# Crear directorios necesarios
-RUN mkdir -p /var/lib/odoo/.local/share/Odoo/filestore && \
-    mkdir -p /var/lib/odoo/.local/share/Odoo/sessions && \
+# Crear directorios necesarios (sin filestore)
+RUN mkdir -p /var/lib/odoo/.local/share/Odoo/sessions && \
     mkdir -p /mnt/extra-addons && \
     chown -R odoo:odoo /var/lib/odoo/.local /mnt/extra-addons
 
@@ -31,5 +29,5 @@ USER odoo
 # Exponer puerto
 EXPOSE 8069
 
-# Comando por defecto (Render usará esto)
+# Comando por defecto
 CMD ["odoo", "--config=/etc/odoo/odoo.conf"]
