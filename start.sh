@@ -7,9 +7,9 @@ DB_NAME=${DB_NAME}
 echo "Starting Odoo initialization..."
 
 # Configurar variables de PostgreSQL usando los valores específicos
-export PGPASSWORD=${PGPASSWORD}
-export PGUSER=${PGUSER}
-export PGHOST=${PGHOST}
+export PGPASSWORD=$PGPASSWORD
+export PGUSER=$PGUSER
+export PGHOST=$PGHOST
 export PGPORT="5432"
 
 echo "Database configuration:"
