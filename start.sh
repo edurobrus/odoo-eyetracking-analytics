@@ -6,8 +6,17 @@ DB_NAME="odoo_7epq"
 
 echo "Starting Odoo initialization..."
 
-export PGPASSWORD="$PGPASSWORD"
-PGPORT=${PGPORT:-5432}
+# Configurar variables de PostgreSQL usando los valores específicos
+export PGPASSWORD="SKn4D5WmQGtEyfnshoI8nwCmnm7jyJnX"
+export PGUSER="odoo_7epq_user"
+export PGHOST="dpg-d166ulemcj7s7381cq5g-a.oregon-postgres.render.com"
+export PGPORT="5432"
+
+echo "Database configuration:"
+echo "Host: $PGHOST"
+echo "Port: $PGPORT"
+echo "User: $PGUSER"
+echo "Database: $DB_NAME"
 
 # Crear estructura completa del filestore para evitar errores
 FILESTORE_DIR="/tmp/odoo/filestore/$DB_NAME"
@@ -72,6 +81,7 @@ clean_orphaned_attachments() {
 echo "Checking PostgreSQL connection..."
 if ! check_postgres_connection; then
     echo "ERROR: Cannot connect to PostgreSQL"
+    echo "Please verify database credentials and network connectivity"
     exit 1
 fi
 
