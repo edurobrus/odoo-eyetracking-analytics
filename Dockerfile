@@ -4,30 +4,34 @@ FROM odoo:16.0
 # Cambiar a root para hacer cambios
 USER root
 
-# Instalar dependencias adicionales si las necesitas
+# Instalar dependencias adicionales
 RUN apt-get update && apt-get install -y \
     python3-psycopg2 \
+    postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-# Crear directorios necesarios (sin filestore)
+# Crear directorios necesarios
 RUN mkdir -p /var/lib/odoo/.local/share/Odoo/sessions && \
     mkdir -p /mnt/extra-addons && \
-    chown -R odoo:odoo /var/lib/odoo/.local /mnt/extra-addons
+    mkdir -p /var/log/odoo && \
+    chown -R odoo:odoo /var/lib/odoo/.local /mnt/extra-addons /var/log/odoo
 
 # Copiar módulos personalizados
 COPY ./custom-addons /mnt/extra-addons
 
-# Copiar configuración
+# Copiar configuración y script de inicio
 COPY ./odoo.conf /etc/odoo/odoo.conf
+COPY ./start.sh /usr/local/bin/start.sh
 
 # Arreglar permisos
-RUN chown -R odoo:odoo /mnt/extra-addons /etc/odoo/odoo.conf /var/lib/odoo
+RUN chown -R odoo:odoo /mnt/extra-addons /etc/odoo/odoo.conf && \
+    chmod +x /usr/local/bin/start.sh
 
 # Volver al usuario odoo
 USER odoo
 
-# Exponer puerto
-EXPOSE 8069
+# Exponer puertos
+EXPOSE 8069 8071
 
 # Comando por defecto
-CMD ["odoo", "--config=/etc/odoo/odoo.conf"]
+CMD ["/usr/local/bin/start.sh"]
