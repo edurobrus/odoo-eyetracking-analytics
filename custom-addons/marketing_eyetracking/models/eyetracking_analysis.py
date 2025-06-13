@@ -40,7 +40,7 @@ class EyetrackingAnalysis(models.Model):
 
     @api.model
     def create_user_actions(self):
-        log_path = os.path.join(os.path.dirname(__file__), "../log/odoo.log")
+        log_path = os.path.join(os.path.dirname(__file__), "/mnt/extra-addons/marketing_eyetracking/log/odoo.log")
         log_content = ""
 
         if os.path.exists(log_path):
@@ -72,7 +72,7 @@ class EyetrackingAnalysis(models.Model):
 
     @api.model
     def create_log_lines(self):
-        log_path = os.path.join(os.path.dirname(__file__), "../log/odoo.log")
+        log_path = "/tmp/odoo/log/odoo.log"
         log_lines = []
 
         if os.path.exists(log_path):
