@@ -66,4 +66,3 @@ Thumbs.db
 
 # Customizations outside of modules that you might not want to track
 # (Use with caution, only for truly local/temporary files)
-odoo.conf
