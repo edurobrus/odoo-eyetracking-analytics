@@ -18,7 +18,7 @@ echo "Port: $PGPORT"
 echo "User: $PGUSER"
 echo "Database: $DB_NAME"
 
-# Crear estructura completa del filestore para evitar errores
+# Crear estructura completa del filestore para evitar errores en sintaxis
 FILESTORE_DIR="/tmp/odoo/filestore/$DB_NAME"
 echo "Creating filestore directory structure..."
 mkdir -p "$FILESTORE_DIR"
