@@ -1,24 +1,62 @@
-name: Deploy to Render
+name: Generate Configs and Deploy to Render
 
 on:
-    push:
-      branches:
-        - main
-    pull_request:
-      branches:
-        - main
+  push:
+    branches:
+      - main
 
 jobs:
-
-  deploy:
-    name: Deploy to Render
+  generate_configs:
+    name: Generate Configs from Secrets
     runs-on: ubuntu-latest
+    
+    # Permisos necesarios para que la Action pueda hacer push al repositorio
+    permissions:
+      contents: write
+
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
 
-      - name: Deploy to Render
-        env:
-          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+      - name: Generate odoo.conf from template
         run: |
-          curl "$deploy_url"
+          # Copia la plantilla al archivo final
+          cp odoo.conf.template odoo.conf
+          # Reemplaza cada marcador de posición con el secreto correspondiente
+          sed -i 's|__DB_USER__|${{ secrets.DB_USER }}|g' odoo.conf
+          sed -i 's|__DB_PASSWORD__|${{ secrets.DB_PASSWORD }}|g' odoo.conf
+          sed -i 's|__DB_HOST__|${{ secrets.DB_HOST }}|g' odoo.conf
+          sed -i 's|__DB_PORT__|${{ secrets.DB_PORT }}|g' odoo.conf
+          sed -i 's|__DB_NAME__|${{ secrets.DB_NAME }}|g' odoo.conf
+
+      - name: Generate start.sh from template
+        run: |
+          cp start.sh.template start.sh
+          # Haz que el script sea ejecutable
+          chmod +x start.sh
+          # Nota: No hay secretos que reemplazar aquí en este ejemplo, 
+          # pero si los hubiera, usarías 'sed' como en el paso anterior.
+
+      - name: Commit and push generated files
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'github-actions@github.com'
+          # Añade los nuevos archivos generados
+          git add odoo.conf start.sh
+          # Comprueba si hay cambios para evitar commits vacíos
+          if ! git diff --staged --quiet; then
+            # El [skip ci] es VITAL para evitar un bucle infinito de workflows
+            git commit -m "ci: Generate production configuration files [skip ci]"
+            git push
+          else
+            echo "No configuration changes to commit."
+          fi
+
+  trigger_render_deploy:
+    name: Trigger Render Deployment
+    # Este job se ejecuta solo después de que el anterior termine con éxito
+    needs: generate_configs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Deploy Hook
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
