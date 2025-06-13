@@ -1,160 +1,21 @@
 name: Deploy to Render
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
 
 jobs:
+
   deploy:
     name: Deploy to Render
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
-
-      - name: Crear archivo odoo.conf con secrets
-        run: |
-          cat <<EOF > ./odoo.conf
-          [options]
-          db_user = ${{ secrets.DB_USER }}
-          db_password = ${{ secrets.DB_PASSWORD }}
-          db_host = ${{ secrets.DB_HOST }}
-          db_port = ${{ secrets.DB_PORT }}
-          db_name = ${{ secrets.DB_NAME }}
-          proxy_mode = True
-
-          addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
-          data_dir = /tmp/odoo
-
-          log_handler = :INFO
-          log_level = info
-          logfile = /mnt/extra-addons/marketing_eyetracking/log
-
-          http_port = 8069
-          longpolling_port = 8071
-
-          workers = 0
-          max_cron_threads = 0
-
-          limit_memory_hard = 1073741824
-          limit_memory_soft = 805306368
-          limit_request = 8192
-          limit_time_cpu = 300
-          limit_time_real = 600
-          limit_time_real_cron = 900
-
-          unaccent = True
-          db_maxconn = 16
-          db_template = template0
-
-          xmlrpc_port = 8069
-          xmlrpc_interface = 0.0.0.0
-
-          server_wide_modules = base,web
-          without_demo = all
-          db_sslmode = prefer
-          EOF
-
-      - name: Crear start.sh con secrets
-        run: |
-          cat <<'EOF' > ./start.sh
-          #!/bin/bash
-          set -e
-
-          export DB_USER="${{ secrets.DB_USER }}"
-          export DB_PASSWORD="${{ secrets.DB_PASSWORD }}"
-          export DB_HOST="${{ secrets.DB_HOST }}"
-          export DB_PORT="${{ secrets.DB_PORT }}"
-          export DB_NAME="${{ secrets.DB_NAME }}"
-
-          CONFIG_FILE="./odoo.conf"
-          TEMP_CONFIG="/tmp/odoo.conf"
-
-          echo "Sustituyendo variables de entorno en el archivo de configuración..."
-          envsubst < "$CONFIG_FILE" > "$TEMP_CONFIG"
-
-          export PGPASSWORD="$DB_PASSWORD"
-          export PGUSER="$DB_USER"
-          export PGHOST="$DB_HOST"
-          export PGPORT="$DB_PORT"
-
-          FILESTORE_DIR="/tmp/odoo/filestore/$DB_NAME"
-          mkdir -p "$FILESTORE_DIR"
-          for i in {0..15}; do
-              for j in {0..15}; do
-                  hex_dir=$(printf "%x%x" $i $j)
-                  mkdir -p "$FILESTORE_DIR/$hex_dir"
-              done
-          done
-
-          LOG_DIR="/mnt/extra-addons/marketing_eyetracking/log"
-          mkdir -p "$LOG_DIR" || true
-
-          check_postgres_connection() {
-              psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d postgres -c "SELECT 1;" &>/dev/null
-          }
-
-          check_database_exists() {
-              psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d postgres -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"
-          }
-
-          check_db_initialized() {
-              psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME" -c "SELECT 1;" &>/dev/null || return 1
-              psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME" -c "SELECT 1 FROM ir_module_module WHERE name='web' AND state='installed' LIMIT 1;" 2>/dev/null | grep -q "1"
-          }
-
-          clean_orphaned_attachments() {
-              echo "Cleaning orphaned file references..."
-              local sql_query="
-                  DELETE FROM ir_attachment 
-                  WHERE store_fname IS NOT NULL 
-                  AND store_fname != '' 
-                  AND type = 'binary' 
-                  AND res_model != 'ir.ui.view';
-
-                  DELETE FROM ir_attachment 
-                  WHERE res_model = 'ir.ui.view' 
-                  AND name LIKE '%.assets_%';
-              "
-              psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME" -c "$sql_query" 2>/dev/null || true
-              echo "Orphaned attachments cleaned"
-          }
-
-          echo "Verificando conexión con PostgreSQL..."
-          if ! check_postgres_connection; then
-              echo "ERROR: No se puede conectar a PostgreSQL"
-              exit 1
-          fi
-          echo "Conexión con PostgreSQL exitosa"
-
-          if check_database_exists; then
-              echo "La base de datos '$DB_NAME' existe"
-              if check_db_initialized; then
-                  echo "Base de datos inicializada. Limpiando archivos huérfanos..."
-                  clean_orphaned_attachments
-                  echo "Iniciando Odoo..."
-                  exec odoo --config="$TEMP_CONFIG" --log-level=info
-              else
-                  echo "Base de datos existe pero no está inicializada. Inicializando..."
-                  clean_orphaned_attachments
-                  odoo --config="$TEMP_CONFIG" -d "$DB_NAME" -i base,web --stop-after-init --log-level=info --without-demo=all
-                  echo "Iniciando Odoo..."
-                  exec odoo --config="$TEMP_CONFIG" --log-level=info
-              fi
-          else
-              echo "La base de datos '$DB_NAME' no existe. Creando..."
-              createdb -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" "$DB_NAME"
-              echo "Inicializando base de datos..."
-              odoo --config="$TEMP_CONFIG" -d "$DB_NAME" -i base,web --stop-after-init --log-level=info --without-demo=all
-              echo "Iniciando Odoo con nueva base de datos..."
-              exec odoo --config="$TEMP_CONFIG" --log-level=info
-          fi
-          EOF
-          chmod +x ./start.sh
 
       - name: Deploy to Render
         env:
