@@ -1,59 +1,32 @@
 [options]
-; Opciones generales de Odoo
-
-; --- Configuración de Base de Datos ---
-; Estas variables deben ser configuradas como variables de entorno en Render
-; Render inyecta variables como PGHOST, PGPORT, PGUSER, PGPASSWORD, PGDATABASE
-; Mapeamos Odoo para leerlas.
-
-db_user = admin
-db_password = 09oagDQhe1vccDRDDx5wos8B3LfUfTDz
-db_host = dpg-d0iq5didbo4c738p2r1g-a
+# --- Configuración de Base de Datos ---
+db_user = odoo_7epq_user
+db_password = SKn4D5WmQGtEyfnshoI8nwCmnm7jyJnX
+db_host = dpg-d166ulemcj7s7381cq5g-a
 db_port = 5432
-db_name = odoo_u442
+db_name = odoo_7epq
 proxy_mode = True
 
-; --- Rutas ---
-; Directorios donde Odoo buscará módulos.
-; La imagen base de Odoo ya incluye los módulos estándar en /usr/lib/...
-; Tu Dockerfile copia tus módulos personalizados a /mnt/extra-addons
+# --- Rutas ---
 addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
 
-; --- Seguridad ---
-; La contraseña maestra para crear/gestionar bases de datos.
-; ¡Esto DEBE ser una variable de entorno y ser secreta!
-; Configúrala en Render como una variable de entorno (ej. ADMIN_PASSWORD)
-admin_passwd = $pbkdf2-sha512$600000$kjIGoPR.D8H4nxNiTMm5Nw$cT8d.bRPW526F.YkZ6DokYUmerlPK3NiMqTTBvVgCwkPzHIjuZMXQPQEPpUEz0Sz8LVMXGxZR0.h93Zm39r.qA
+# --- FILESTORE TEMPORAL (NO PERSISTENTE) ---
+data_dir = /tmp/odoo
 
-; --- Logging ---
-; Configura Odoo para loguear a la salida estándar (stdout),
-; que es la forma recomendada para plataformas en la nube como Render.
-; Render recolectará estos logs automáticamente.
-; Evita loguear a archivos dentro del contenedor, ya que el filesystem es efímero.
-
-; Configura handlers de log para enviar a stdout (:)
+# --- Logging ---
 log_handler = :INFO
-; Nivel general de logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 log_level = info
-logfile = extra-addons/marketing_eyetracking/log/odoo.log
-; No especifiques un logfile, Odoo logueará a stderr por defecto si no se usan handlers,
-; pero los handlers a stdout (:) son preferibles.
-; logfile = /dev/stdout ; (Alternativa si log_handler no fuera suficiente, pero generalmente no necesaria con handlers)
+logfile = /mnt/extra-addons/marketing_eyetracking/log
 
-; --- Configuración de Servidor ---
-; Puerto HTTP/HTTPS donde Odoo escucha. Render proxyeará el tráfico a este puerto.
+# --- Configuración de Servidor ---
 http_port = 8069
-; Puerto para la longpolling (usado para notificaciones en tiempo real, chats, etc.)
 longpolling_port = 8071
-# Configuraciones para evitar problemas de locks y timeouts
-db_maxconn = 16
-db_template = template0
 
-# Configuraciones de workers (IMPORTANTE: 0 para contenedores)
+# Configuraciones de workers (0 para contenedores)
 workers = 0
-max_cron_threads = 1
+max_cron_threads = 0
 
-# Configuraciones de memoria y performance (MUY IMPORTANTE)
+# Configuraciones de memoria y performance
 limit_memory_hard = 1073741824
 limit_memory_soft = 805306368
 limit_request = 8192
@@ -63,10 +36,8 @@ limit_time_real_cron = 900
 
 # Configuraciones específicas para evitar problemas
 unaccent = True
-
-# Configuraciones para evitar problemas de memoria
-osv_memory_count_limit = 0
-osv_memory_age_limit = 1.0
+db_maxconn = 16
+db_template = template0
 
 # Configuraciones de red
 xmlrpc_port = 8069
@@ -75,9 +46,4 @@ xmlrpc_interface = 0.0.0.0
 # Configuraciones adicionales para estabilidad
 server_wide_modules = base,web
 without_demo = all
-
-# Configuraciones específicas para evitar crashes
 db_sslmode = prefer
-
-# Configuraciones de caché para reducir carga
-enable_redis = False
