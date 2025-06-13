@@ -2,124 +2,85 @@
 set -e
 
 CONFIG_FILE="/etc/odoo/odoo.conf"
-DB_NAME=${DB_NAME}
+echo "--- Odoo Startup Script Initialized ---"
+echo "Reading configuration from: $CONFIG_FILE"
 
-echo "Starting Odoo initialization..."
+# --- Lógica de Parseo para Leer desde odoo.conf (Como se solicitó) ---
+get_config_value() {
+    # Extrae el valor para una clave dada del archivo de configuración
+    # Elimina comentarios, espacios en blanco y toma el valor después del '='
+    local value=$(grep -E "^\s*$1\s*=" "$CONFIG_FILE" | cut -d '=' -f 2- | sed 's/^\s*//;s/\s*$//')
+    echo "$value"
+}
 
-# Configurar variables de PostgreSQL usando los valores específicos
-export PGPASSWORD=$PGPASSWORD
-export PGUSER=$PGUSER
-export PGHOST=$PGHOST
-export PGPORT="5432"
+# Leer las variables de la base de datos desde el archivo .conf
+DB_HOST=$(get_config_value "db_host")
+DB_PORT=$(get_config_value "db_port")
+DB_USER=$(get_config_value "db_user")
+DB_PASSWORD=$(get_config_value "db_password")
+DB_NAME=$(get_config_value "db_name")
 
-echo "Database configuration:"
+# Verificación: si falta alguna credencial clave, el script no puede continuar.
+if [ -z "$DB_HOST" ] || [ -z "$DB_USER" ] || [ -z "$DB_PASSWORD" ] || [ -z "$DB_NAME" ]; then
+    echo "ERROR: Could not read one or more required database settings (db_host, db_user, db_password, db_name) from $CONFIG_FILE."
+    exit 1
+fi
+
+# Exportar las variables leídas para que herramientas como psql las puedan usar
+export PGHOST=$DB_HOST
+export PGPORT=${DB_PORT:-5432} # Usar 5432 como puerto por defecto si no está definido
+export PGUSER=$DB_USER
+export PGPASSWORD=$DB_PASSWORD
+
+echo "Database configuration loaded from file:"
 echo "Host: $PGHOST"
 echo "Port: $PGPORT"
 echo "User: $PGUSER"
 echo "Database: $DB_NAME"
+echo "----------------------------------------"
 
-# Crear estructura completa del filestore para evitar errores en sintaxis
-FILESTORE_DIR="/tmp/odoo/filestore/$DB_NAME"
-echo "Creating filestore directory structure..."
-mkdir -p "$FILESTORE_DIR"
+# --- Funciones de Comprobación (Tu Lógica Mantenida) ---
 
-# Crear subdirectorios hexadecimales (00-ff) para evitar FileNotFoundError
-for i in {0..15}; do
-    for j in {0..15}; do
-        hex_dir=$(printf "%x%x" $i $j)
-        mkdir -p "$FILESTORE_DIR/$hex_dir"
+wait_for_postgres() {
+    echo "Waiting for PostgreSQL to be ready..."
+    n=0
+    until [ $n -ge 30 ]; do
+       pg_isready -q && return 0
+       n=$((n+1))
+       echo "PostgreSQL is unavailable - sleeping for 1 second..."
+       sleep 1
     done
-done
-
-echo "Filestore structure created"
-
-# Crear directorio de logs
-LOG_DIR="/mnt/extra-addons/marketing_eyetracking/log"
-mkdir -p "$LOG_DIR" || true
-
-# Función para verificar conexión a PostgreSQL
-check_postgres_connection() {
-    psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d postgres -c "SELECT 1;" &>/dev/null
-}
-
-# Función para verificar si la base de datos existe
-check_database_exists() {
-    psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d postgres -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"
-}
-
-# Función para verificar si la BD está inicializada
-check_db_initialized() {
-    # Verificar conexión primero
-    if ! psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "SELECT 1;" &>/dev/null; then
-        return 1
-    fi
-    
-    # Verificar si módulos base están instalados
-    psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "SELECT 1 FROM ir_module_module WHERE name='web' AND state='installed' LIMIT 1;" 2>/dev/null | grep -q "1"
-}
-
-# Función para limpiar referencias de archivos huérfanos
-clean_orphaned_attachments() {
-    echo "Cleaning orphaned file references..."
-    local sql_query="
-    DELETE FROM ir_attachment 
-    WHERE store_fname IS NOT NULL 
-    AND store_fname != '' 
-    AND type = 'binary'
-    AND res_model != 'ir.ui.view';
-    
-    DELETE FROM ir_attachment 
-    WHERE res_model = 'ir.ui.view' 
-    AND name LIKE '%.assets_%';
-    "
-    
-    psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "$sql_query" 2>/dev/null || true
-    echo "Orphaned attachments cleaned"
-}
-
-# Verificar conexión a PostgreSQL
-echo "Checking PostgreSQL connection..."
-if ! check_postgres_connection; then
-    echo "ERROR: Cannot connect to PostgreSQL"
-    echo "Please verify database credentials and network connectivity"
+    echo "ERROR: Could not connect to PostgreSQL after 30 seconds."
     exit 1
-fi
+}
 
-echo "PostgreSQL connection successful"
+check_database_exists() {
+    psql -d postgres -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"
+}
 
-# Verificar si la base de datos existe
+check_db_initialized() {
+    psql -d "$DB_NAME" -tc "SELECT 1 FROM ir_module_module WHERE name='web' AND state='installed';" | grep -q 1
+}
+
+# --- Lógica Principal de Arranque ---
+
+wait_for_postgres
+echo "PostgreSQL connection successful."
+
 if check_database_exists; then
-    echo "Database '$DB_NAME' exists"
-    
+    echo "Database '$DB_NAME' already exists."
     if check_db_initialized; then
-        echo "Database properly initialized. Cleaning orphaned files..."
-        
-        # Limpiar archivos huérfanos antes de iniciar
-        clean_orphaned_attachments
-        
-        echo "Starting Odoo..."
-        exec odoo --config="$CONFIG_FILE" --log-level=info
+        echo "Database is already initialized. Starting Odoo server..."
+        exec odoo --config="$CONFIG_FILE"
     else
-        echo "Database exists but not initialized. Initializing..."
-        
-        # Limpiar archivos huérfanos primero
-        clean_orphaned_attachments
-        
-        echo "Installing base modules..."
-        odoo --config="$CONFIG_FILE" -d "$DB_NAME" -i base,web --stop-after-init --log-level=info --without-demo=all
-        
-        echo "Starting Odoo..."
-        exec odoo --config="$CONFIG_FILE" --log-level=info
+        echo "Database exists but is not initialized. Initializing core modules..."
+        odoo --config="$CONFIG_FILE" -i base,web --stop-after-init --without-demo=all
+        echo "Initialization complete. Starting Odoo server..."
+        exec odoo --config="$CONFIG_FILE"
     fi
 else
-    echo "Database '$DB_NAME' does not exist. Creating..."
-    
-    # Crear la base de datos
-    createdb -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" "$DB_NAME"
-    
-    echo "Initializing database with base modules..."
-    odoo --config="$CONFIG_FILE" -d "$DB_NAME" -i base,web --stop-after-init --log-level=info --without-demo=all
-    
-    echo "Starting Odoo with new database..."
-    exec odoo --config="$CONFIG_FILE" --log-level=info
+    echo "Database '$DB_NAME' does not exist. Odoo will create and initialize it."
+    odoo --config="$CONFIG_FILE" -i base,web --stop-after-init --without-demo=all
+    echo "Database created and initialized. Starting Odoo server..."
+    exec odoo --config="$CONFIG_FILE"
 fi
