@@ -1,42 +1,49 @@
-# odoo.conf.template
 [options]
-; Las variables con $ serán reemplazadas por el script start.sh
-db_user = $DB_USER
-db_password = $DB_PASSWORD
-db_host = $DB_HOST
-db_port = $DB_PORT
-db_name = $DB_NAME
+# --- Configuración de Base de Datos ---
+db_user = __DB_USER__
+db_password = __DB_PASSWORD__
+db_host = __DB_HOST__
+db_port = __DB_PORT__
+db_name = __DB_NAME__
 proxy_mode = True
 
-; Rutas dentro del entorno de Render
+# --- Rutas ---
 addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
-data_dir = /var/lib/odoo
 
+# --- FILESTORE TEMPORAL (NO PERSISTENTE) ---
+data_dir = /tmp/odoo
+
+# --- Logging ---
 log_handler = :INFO
 log_level = info
-; Es mejor loguear a la salida estándar en entornos como Render
-; logfile = /mnt/extra-addons/marketing_eyetracking/log
+logfile = /mnt/extra-addons/marketing_eyetracking/log
 
+# --- Configuración de Servidor ---
 http_port = 8069
 longpolling_port = 8071
 
-workers = 2 ; Ajusta según tu plan de Render
-max_cron_threads = 1
+# Configuraciones de workers (0 para contenedores)
+workers = 0
+max_cron_threads = 0
 
+# Configuraciones de memoria y performance
 limit_memory_hard = 1073741824
 limit_memory_soft = 805306368
 limit_request = 8192
 limit_time_cpu = 300
 limit_time_real = 600
+limit_time_real_cron = 900
 
+# Configuraciones específicas para evitar problemas
 unaccent = True
 db_maxconn = 16
 db_template = template0
 
-xmlrpc = True
+# Configuraciones de red
 xmlrpc_port = 8069
 xmlrpc_interface = 0.0.0.0
 
+# Configuraciones adicionales para estabilidad
 server_wide_modules = base,web
 without_demo = all
 db_sslmode = prefer
