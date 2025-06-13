@@ -9,3 +9,16 @@ node_modules
 *.log
 .DS_Store
 Thumbs.db
+
+# Excluir filestore y archivos temporales
+filestore/
+**/filestore/**
+sessions/
+**/sessions/**
+*.pyc
+__pycache__/
+.pytest_cache/
+
+# Excluir logs específicos de módulos
+**/log/**
+*.log

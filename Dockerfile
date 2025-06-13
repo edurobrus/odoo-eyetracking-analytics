@@ -10,11 +10,11 @@ RUN apt-get update && apt-get install -y \
     postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-# Crear directorios necesarios
+# Crear directorios necesarios (SIN FILESTORE PERSISTENTE)
 RUN mkdir -p /var/lib/odoo/.local/share/Odoo/sessions && \
     mkdir -p /mnt/extra-addons && \
-    mkdir -p /var/log/odoo && \
-    chown -R odoo:odoo /var/lib/odoo/.local /mnt/extra-addons /var/log/odoo
+    mkdir -p /tmp/odoo && \
+    chown -R odoo:odoo /var/lib/odoo /mnt/extra-addons /tmp/odoo
 
 # Copiar módulos personalizados
 COPY ./custom-addons /mnt/extra-addons
