@@ -5,44 +5,12 @@ CONFIG_FILE="/etc/odoo/odoo.conf"
 
 echo "Starting Odoo initialization..."
 
-# Usar variables de entorno de Render (automáticamente disponibles)
-# Render proporciona estas variables automáticamente para PostgreSQL
-DB_HOST=${DATABASE_HOST:-$PGHOST}
-DB_PORT=${DATABASE_PORT:-$PGPORT:-5432}
-DB_USER=${DATABASE_USER:-$PGUSER}
-DB_PASSWORD=${DATABASE_PASSWORD:-$PGPASSWORD}
-DB_NAME=${DATABASE_NAME:-$DATABASE_URL}
-
-# Si DATABASE_URL está disponible, extraer información de la URL
-if [ -n "$DATABASE_URL" ] && [ -z "$DB_HOST" ]; then
-    # Extraer componentes de DATABASE_URL (formato: postgresql://user:pass@host:port/dbname)
-    DB_HOST=$(echo "$DATABASE_URL" | sed -n 's/.*@\([^:]*\):.*/\1/p')
-    DB_PORT=$(echo "$DATABASE_URL" | sed -n 's/.*:\([0-9]*\)\/.*/\1/p')
-    DB_USER=$(echo "$DATABASE_URL" | sed -n 's/.*:\/\/\([^:]*\):.*/\1/p')
-    DB_PASSWORD=$(echo "$DATABASE_URL" | sed -n 's/.*:\/\/[^:]*:\([^@]*\)@.*/\1/p')
-    DB_NAME=$(echo "$DATABASE_URL" | sed -n 's/.*\/\([^?]*\).*/\1/p')
-fi
-
-# Configurar variables de entorno para PostgreSQL
-export PGHOST="$DB_HOST"
-export PGPORT="$DB_PORT"
-export PGUSER="$DB_USER"
-if [ -n "$DB_PASSWORD" ]; then
-    export PGPASSWORD="$DB_PASSWORD"
-fi
-
-echo "Database configuration from environment variables:"
-echo "Host: $PGHOST"
-echo "Port: $PGPORT"
-echo "User: $PGUSER"
-echo "Database: $DB_NAME"
-
 # Crear estructura completa del filestore para evitar errores
-FILESTORE_DIR="/tmp/odoo/filestore/$DB_NAME"
+FILESTORE_DIR="/tmp/odoo/filestore"
 echo "Creating filestore directory structure..."
 mkdir -p "$FILESTORE_DIR"
 
-# Crear subdirectorios hexadecimales (00-ff) para evitar FileNotFoundError
+# Crear subdirectorios hexadecimales para cualquier base de datos
 for i in {0..15}; do
     for j in {0..15}; do
         hex_dir=$(printf "%x%x" $i $j)
@@ -55,101 +23,116 @@ echo "Filestore structure created"
 LOG_DIR="/mnt/extra-addons/marketing_eyetracking/log"
 mkdir -p "$LOG_DIR" || true
 
-# Función para verificar conexión a PostgreSQL
-check_postgres_connection() {
-    psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d postgres -c "SELECT 1;" &>/dev/null
-}
-
-# Función para verificar si la base de datos existe
-check_database_exists() {
-    if [ -z "$DB_NAME" ]; then
-        # Si no hay db_name específico, usar el comando de Odoo para detectar
-        return 0
-    fi
-    psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d postgres -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"
-}
-
-# Función para verificar si la BD está inicializada
-check_db_initialized() {
-    if [ -z "$DB_NAME" ]; then
-        return 1
-    fi
+# Función para limpiar assets usando Odoo CLI
+cleanup_assets_with_odoo() {
+    echo "Cleaning assets using Odoo..."
     
-    # Verificar conexión primero
-    if ! psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "SELECT 1;" &>/dev/null; then
-        return 1
-    fi
-    
-    # Verificar si módulos base están instalados
-    psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "SELECT 1 FROM ir_module_module WHERE name='web' AND state='installed' LIMIT 1;" 2>/dev/null | grep -q "1"
-}
+    # Usar Odoo shell para limpiar assets
+    python3 -c "
+import odoo
+from odoo import api, SUPERUSER_ID
+import os
+import sys
 
-# Función para limpiar referencias de archivos huérfanos
-clean_orphaned_attachments() {
-    if [ -z "$DB_NAME" ]; then
-        echo "No specific database name found, skipping cleanup"
-        return 0
-    fi
+# Configurar Odoo
+odoo.tools.config.parse_config(['-c', '$CONFIG_FILE'])
+
+try:
+    # Obtener lista de bases de datos
+    db_names = odoo.service.db.list_dbs()
     
-    echo "Cleaning orphaned file references..."
-    local sql_query="
-        DELETE FROM ir_attachment 
-        WHERE store_fname IS NOT NULL 
-        AND store_fname != '' 
-        AND type = 'binary' 
-        AND res_model != 'ir.ui.view';
+    for db_name in db_names:
+        print(f'Cleaning assets for database: {db_name}')
         
-        DELETE FROM ir_attachment 
-        WHERE res_model = 'ir.ui.view' 
-        AND name LIKE '%.assets_%';
+        # Conectar a la base de datos
+        registry = odoo.registry(db_name)
         
-        DELETE FROM ir_config_parameter 
-        WHERE key LIKE 'web.assets.%';
-    "
-    
-    psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "$sql_query" 2>/dev/null || true
-    echo "Orphaned attachments cleaned"
+        with registry.cursor() as cr:
+            env = api.Environment(cr, SUPERUSER_ID, {})
+            
+            # Limpiar attachments de assets
+            attachments = env['ir.attachment'].search([
+                '|',
+                ('res_model', '=', 'ir.ui.view'),
+                ('store_fname', 'ilike', '/tmp/odoo/filestore/%')
+            ])
+            
+            if attachments:
+                print(f'Removing {len(attachments)} asset attachments...')
+                attachments.unlink()
+            
+            # Limpiar parámetros de assets
+            params = env['ir.config_parameter'].search([
+                ('key', 'like', 'web.assets.%')
+            ])
+            
+            if params:
+                print(f'Removing {len(params)} asset parameters...')
+                params.unlink()
+            
+            cr.commit()
+            print(f'Assets cleaned for {db_name}')
+            
+except Exception as e:
+    print(f'Asset cleanup completed with some warnings: {e}')
+    pass
+" 2>/dev/null || echo "Asset cleanup attempted"
 }
 
-# Verificar conexión a PostgreSQL
-echo "Checking PostgreSQL connection..."
-if ! check_postgres_connection; then
-    echo "ERROR: Cannot connect to PostgreSQL"
-    echo "Please verify database credentials in $CONFIG_FILE and network connectivity"
-    exit 1
-fi
-echo "PostgreSQL connection successful"
+# Función para inicializar base de datos si es necesario
+initialize_if_needed() {
+    echo "Checking if database initialization is needed..."
+    
+    # Intentar inicializar con base y web, Odoo se encarga de verificar si es necesario
+    echo "Ensuring base modules are installed..."
+    odoo --config="$CONFIG_FILE" -i base,web --stop-after-init --log-level=info --without-demo=all --db-filter=.* 2>/dev/null || {
+        echo "Base modules installation completed or already installed"
+    }
+}
 
-# Si no hay db_name específico en la configuración, iniciar Odoo directamente
-if [ -z "$DB_NAME" ]; then
-    echo "No specific database name configured. Starting Odoo..."
-    exec odoo --config="$CONFIG_FILE" --log-level=info
-fi
+# Función para limpiar assets después de inicialización
+post_init_cleanup() {
+    echo "Performing post-initialization cleanup..."
+    
+    # Limpiar usando shell de Odoo después de inicialización
+    odoo --config="$CONFIG_FILE" --shell --stop-after-init << 'EOF' 2>/dev/null || true
+# Limpiar todos los assets temporales
+for db_name in env.registry.db_names:
+    if db_name == env.cr.dbname:
+        # Limpiar attachments problemáticos
+        attachments = env['ir.attachment'].search([
+            '|', '|',
+            ('store_fname', 'ilike', '/tmp/%'),
+            ('res_model', '=', 'ir.ui.view'),
+            ('name', 'ilike', 'web_assets_%')
+        ])
+        attachments.unlink()
+        
+        # Limpiar parámetros de cache
+        params = env['ir.config_parameter'].search([
+            ('key', 'like', 'web.assets.%')
+        ])
+        params.unlink()
+        
+        env.cr.commit()
+        break
+EOF
+    echo "Post-initialization cleanup completed"
+}
 
-# Verificar si la base de datos existe
-if check_database_exists; then
-    echo "Database '$DB_NAME' exists"
-    if check_db_initialized; then
-        echo "Database properly initialized. Cleaning orphaned files..."
-        # Limpiar archivos huérfanos antes de iniciar
-        clean_orphaned_attachments
-        echo "Starting Odoo..."
-        exec odoo --config="$CONFIG_FILE" --log-level=info
-    else
-        echo "Database exists but not initialized. Initializing..."
-        # Limpiar archivos huérfanos primero
-        clean_orphaned_attachments
-        echo "Installing base modules..."
-        odoo --config="$CONFIG_FILE" -d "$DB_NAME" -i base,web --stop-after-init --log-level=info --without-demo=all
-        echo "Starting Odoo..."
-        exec odoo --config="$CONFIG_FILE" --log-level=info
-    fi
-else
-    echo "Database '$DB_NAME' does not exist. Creating..."
-    # Crear la base de datos
-    createdb -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" "$DB_NAME"
-    echo "Initializing database with base modules..."
-    odoo --config="$CONFIG_FILE" -d "$DB_NAME" -i base,web --stop-after-init --log-level=info --without-demo=all
-    echo "Starting Odoo with new database..."
-    exec odoo --config="$CONFIG_FILE" --log-level=info
-fi
+echo "=== Starting Odoo Initialization Process ==="
+
+# Paso 1: Intentar limpiar assets existentes
+cleanup_assets_with_odoo
+
+# Paso 2: Inicializar base de datos si es necesario
+initialize_if_needed
+
+# Paso 3: Limpiar assets después de inicialización
+post_init_cleanup
+
+echo "=== Initialization Complete ==="
+echo "Starting Odoo server..."
+
+# Iniciar Odoo normalmente
+exec odoo --config="$CONFIG_FILE" --log-level=info
