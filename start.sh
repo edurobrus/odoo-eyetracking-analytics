@@ -5,6 +5,17 @@ CONFIG_FILE="/etc/odoo/odoo.conf"
 DB_NAME="odoo_7epq"
 
 echo "Starting Odoo initialization..."
+
+# Configurar variables de PostgreSQL usando los valores específicos
+export PGPASSWORD="SKn4D5WmQGtEyfnshoI8nwCmnm7jyJnX"
+export PGUSER="odoo_7epq_user"
+export PGHOST="dpg-d166ulemcj7s7381cq5g-a.oregon-postgres.render.com"
+export PGPORT="5432"
+
+echo "Database configuration:"
+echo "Host: $PGHOST"
+echo "Port: $PGPORT"
+echo "User: $PGUSER"
 echo "Database: $DB_NAME"
 
 # Crear estructura completa del filestore para evitar errores
@@ -19,173 +30,96 @@ for i in {0..15}; do
         mkdir -p "$FILESTORE_DIR/$hex_dir"
     done
 done
+
 echo "Filestore structure created"
 
 # Crear directorio de logs
 LOG_DIR="/mnt/extra-addons/marketing_eyetracking/log"
 mkdir -p "$LOG_DIR" || true
 
-# Función para verificar si la base de datos existe y está inicializada usando Odoo
-check_database_with_odoo() {
-    echo "Checking database status with Odoo..."
-    
-    # Intentar conectar a la base de datos específica
-    if odoo --config="$CONFIG_FILE" -d "$DB_NAME" --test-enable --stop-after-init --log-level=error 2>/dev/null; then
-        echo "Database '$DB_NAME' exists and is accessible"
-        return 0
-    else
-        echo "Database '$DB_NAME' does not exist or is not accessible"
+# Función para verificar conexión a PostgreSQL
+check_postgres_connection() {
+    psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d postgres -c "SELECT 1;" &>/dev/null
+}
+
+# Función para verificar si la base de datos existe
+check_database_exists() {
+    psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d postgres -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"
+}
+
+# Función para verificar si la BD está inicializada
+check_db_initialized() {
+    # Verificar conexión primero
+    if ! psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "SELECT 1;" &>/dev/null; then
         return 1
     fi
+    
+    # Verificar si módulos base están instalados
+    psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "SELECT 1 FROM ir_module_module WHERE name='web' AND state='installed' LIMIT 1;" 2>/dev/null | grep -q "1"
 }
 
-# Función para verificar si los módulos base están instalados
-check_modules_installed() {
-    echo "Checking if base modules are installed..."
+# Función para limpiar referencias de archivos huérfanos
+clean_orphaned_attachments() {
+    echo "Cleaning orphaned file references..."
+    local sql_query="
+    DELETE FROM ir_attachment 
+    WHERE store_fname IS NOT NULL 
+    AND store_fname != '' 
+    AND type = 'binary'
+    AND res_model != 'ir.ui.view';
     
-    # Crear un script Python temporal para verificar módulos
-    cat > /tmp/check_modules.py << 'EOF'
-import sys
-import odoo
-from odoo import api, SUPERUSER_ID
-
-try:
-    # Configurar Odoo
-    odoo.tools.config.parse_config(sys.argv[1:])
-    db_name = odoo.tools.config['db_name']
+    DELETE FROM ir_attachment 
+    WHERE res_model = 'ir.ui.view' 
+    AND name LIKE '%.assets_%';
+    "
     
-    if not db_name:
-        sys.exit(1)
-    
-    # Conectar a la base de datos
-    registry = odoo.registry(db_name)
-    
-    with registry.cursor() as cr:
-        env = api.Environment(cr, SUPERUSER_ID, {})
-        
-        # Verificar si el módulo web está instalado
-        web_module = env['ir.module.module'].search([
-            ('name', '=', 'web'),
-            ('state', '=', 'installed')
-        ], limit=1)
-        
-        if web_module:
-            print("Base modules are installed")
-            sys.exit(0)
-        else:
-            print("Base modules are not installed")
-            sys.exit(1)
-            
-except Exception as e:
-    print("Error checking modules or database not initialized")
-    sys.exit(1)
-EOF
-
-    if python3 /tmp/check_modules.py --config="$CONFIG_FILE" -d "$DB_NAME" 2>/dev/null; then
-        rm -f /tmp/check_modules.py
-        return 0
-    else
-        rm -f /tmp/check_modules.py
-        return 1
-    fi
+    psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "$sql_query" 2>/dev/null || true
+    echo "Orphaned attachments cleaned"
 }
 
-# Función para limpiar attachments huérfanos usando Odoo
-clean_orphaned_attachments_with_odoo() {
-    echo "Cleaning orphaned file references with Odoo..."
-    
-    # Crear script Python para limpiar attachments
-    cat > /tmp/clean_attachments.py << 'EOF'
-import sys
-import odoo
-from odoo import api, SUPERUSER_ID
+# Verificar conexión a PostgreSQL
+echo "Checking PostgreSQL connection..."
+if ! check_postgres_connection; then
+    echo "ERROR: Cannot connect to PostgreSQL"
+    echo "Please verify database credentials and network connectivity"
+    exit 1
+fi
 
-try:
-    # Configurar Odoo
-    odoo.tools.config.parse_config(sys.argv[1:])
-    db_name = odoo.tools.config['db_name']
-    
-    if not db_name:
-        sys.exit(0)
-    
-    # Conectar a la base de datos
-    registry = odoo.registry(db_name)
-    
-    with registry.cursor() as cr:
-        env = api.Environment(cr, SUPERUSER_ID, {})
-        
-        # Limpiar attachments huérfanos
-        attachments_to_clean = env['ir.attachment'].search([
-            '|', '|',
-            '&', ('store_fname', '!=', False), ('store_fname', '!=', ''),
-            '&', ('type', '=', 'binary'), ('res_model', '!=', 'ir.ui.view'),
-            '&', ('res_model', '=', 'ir.ui.view'), ('name', 'like', '%.assets_%')
-        ])
-        
-        if attachments_to_clean:
-            print(f"Removing {len(attachments_to_clean)} orphaned attachments")
-            attachments_to_clean.unlink()
-        
-        # Limpiar parámetros de assets
-        asset_params = env['ir.config_parameter'].search([
-            ('key', 'like', 'web.assets.%')
-        ])
-        
-        if asset_params:
-            print(f"Removing {len(asset_params)} asset parameters")
-            asset_params.unlink()
-        
-        cr.commit()
-        print("Orphaned attachments cleaned successfully")
-        
-except Exception as e:
-    print(f"Cleanup completed with warnings: {e}")
-    pass
-EOF
+echo "PostgreSQL connection successful"
 
-    python3 /tmp/clean_attachments.py --config="$CONFIG_FILE" -d "$DB_NAME" 2>/dev/null || echo "Cleanup attempted"
-    rm -f /tmp/clean_attachments.py
-}
-
-# Función para crear e inicializar la base de datos
-create_and_initialize_database() {
-    echo "Creating and initializing database '$DB_NAME'..."
-    echo "Installing base modules..."
-    odoo --config="$CONFIG_FILE" -d "$DB_NAME" -i base,web --stop-after-init --log-level=info --without-demo=all
-    echo "Database initialized successfully"
-}
-
-# Función para inicializar base de datos existente
-initialize_existing_database() {
-    echo "Database exists but not initialized. Initializing..."
-    echo "Installing base modules..."
-    odoo --config="$CONFIG_FILE" -d "$DB_NAME" -i base,web --stop-after-init --log-level=info --without-demo=all
-    echo "Database initialized successfully"
-}
-
-# Lógica principal equivalente al script original
-echo "Checking database status..."
-
-if check_database_with_odoo; then
+# Verificar si la base de datos existe
+if check_database_exists; then
     echo "Database '$DB_NAME' exists"
     
-    if check_modules_installed; then
+    if check_db_initialized; then
         echo "Database properly initialized. Cleaning orphaned files..."
+        
         # Limpiar archivos huérfanos antes de iniciar
-        clean_orphaned_attachments_with_odoo
+        clean_orphaned_attachments
+        
         echo "Starting Odoo..."
         exec odoo --config="$CONFIG_FILE" --log-level=info
     else
         echo "Database exists but not initialized. Initializing..."
+        
         # Limpiar archivos huérfanos primero
-        clean_orphaned_attachments_with_odoo
-        initialize_existing_database
+        clean_orphaned_attachments
+        
+        echo "Installing base modules..."
+        odoo --config="$CONFIG_FILE" -d "$DB_NAME" -i base,web --stop-after-init --log-level=info --without-demo=all
+        
         echo "Starting Odoo..."
         exec odoo --config="$CONFIG_FILE" --log-level=info
     fi
 else
     echo "Database '$DB_NAME' does not exist. Creating..."
-    create_and_initialize_database
+    
+    # Crear la base de datos
+    createdb -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" "$DB_NAME"
+    
+    echo "Initializing database with base modules..."
+    odoo --config="$CONFIG_FILE" -d "$DB_NAME" -i base,web --stop-after-init --log-level=info --without-demo=all
+    
     echo "Starting Odoo with new database..."
     exec odoo --config="$CONFIG_FILE" --log-level=info
 fi
