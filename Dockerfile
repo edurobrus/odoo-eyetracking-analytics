@@ -8,6 +8,7 @@ USER root
 RUN apt-get update && apt-get install -y \
     python3-psycopg2 \
     postgresql-client \
+    wait-for-it \
     && rm -rf /var/lib/apt/lists/*
 
 # Crear directorios necesarios (SIN FILESTORE PERSISTENTE)
@@ -26,6 +27,12 @@ COPY ./start.py /usr/local/bin/start.py
 # Arreglar permisos
 RUN chown -R odoo:odoo /mnt/extra-addons /etc/odoo/odoo.conf /usr/local/bin/start.py && \
     chmod +x /usr/local/bin/start.py
+
+# Variables de entorno para la base de datos
+ENV DB_HOST=db \
+    DB_PORT=5432 \
+    DB_USER=odoo \
+    DB_PASSWORD=odoo
 
 # Volver al usuario odoo
 USER odoo

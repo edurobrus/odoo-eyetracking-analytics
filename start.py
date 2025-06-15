@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
-Script de inicio de Odoo en Python usando la API interna de Odoo
+Script de inicio de Odoo en Python para entorno Docker
 Utiliza la instancia de Odoo en ejecución para realizar las operaciones
 """
 
 import os
 import sys
 import logging
+import time
+import psycopg2
 from pathlib import Path
 
 # Agregar Odoo al path si no está
@@ -28,36 +30,69 @@ class OdooStarter:
     def __init__(self):
         self.config_file = "/etc/odoo/odoo.conf"
         
-        # Configurar Odoo con el archivo de configuración
-        config.parse_config(['-c', self.config_file])
-        
-        # Usar None para que Odoo maneje automáticamente la BD
-        self.db_name = None
+        # Obtener configuración de BD desde variables de entorno
+        self.db_host = os.environ.get('DB_HOST', 'db')
+        self.db_port = int(os.environ.get('DB_PORT', 5432))
+        self.db_user = os.environ.get('DB_USER', 'odoo')
+        self.db_password = os.environ.get('DB_PASSWORD', 'odoo')
+        self.db_name = os.environ.get('DB_NAME', 'odoo')
         
         self.log_dir = "/mnt/extra-addons/marketing_eyetracking/log"
         
         logger.info(f"Using Odoo configuration from: {self.config_file}")
-        logger.info("Database will be handled automatically by Odoo")
+        logger.info(f"Database connection: {self.db_user}@{self.db_host}:{self.db_port}")
+
+    def wait_for_database(self, max_attempts=30):
+        """Esperar a que la base de datos PostgreSQL esté disponible"""
+        logger.info(f"Waiting for database at {self.db_host}:{self.db_port}...")
+        
+        for attempt in range(max_attempts):
+            try:
+                conn = psycopg2.connect(
+                    host=self.db_host,
+                    port=self.db_port,
+                    user=self.db_user,
+                    password=self.db_password,
+                    database='postgres'  # Conectar a la BD por defecto
+                )
+                conn.close()
+                logger.info("Database server is ready!")
+                return True
+            except psycopg2.OperationalError as e:
+                logger.info(f"Database not ready (attempt {attempt + 1}/{max_attempts}): {e}")
+                time.sleep(2)
+        
+        logger.error("Database server is not available after waiting")
+        return False
+
+    def setup_odoo_config(self):
+        """Configurar Odoo con parámetros de BD desde variables de entorno"""
+        # Configurar parámetros de BD dinámicamente
+        config_params = [
+            '-c', self.config_file,
+            f'--db_host={self.db_host}',
+            f'--db_port={self.db_port}',
+            f'--db_user={self.db_user}',
+            f'--db_password={self.db_password}',
+        ]
+        
+        config.parse_config(config_params)
+        logger.info("Odoo configuration updated with database parameters")
 
     def create_filestore_structure(self):
         """Crear estructura completa del filestore"""
         logger.info("Creating filestore directory structure...")
         
-        # Si no tenemos nombre específico, crear estructura general
-        if self.db_name:
-            filestore_dir = f"/tmp/odoo/filestore/{self.db_name}"
-        else:
-            filestore_dir = "/tmp/odoo/filestore"
+        filestore_dir = f"/tmp/odoo/filestore/{self.db_name}"
         
         # Crear directorio principal
         Path(filestore_dir).mkdir(parents=True, exist_ok=True)
         
-        # Crear subdirectorios hexadecimales (00-ff) solo si tenemos BD específica
-        if self.db_name:
-            for i in range(16):
-                for j in range(16):
-                    hex_dir = f"{i:x}{j:x}"
-                    Path(f"{filestore_dir}/{hex_dir}").mkdir(parents=True, exist_ok=True)
+        # Crear subdirectorios hexadecimales (00-ff)
+        for i in range(16):
+            for j in range(16):
+                hex_dir = f"{i:x}{j:x}"
+                Path(f"{filestore_dir}/{hex_dir}").mkdir(parents=True, exist_ok=True)
         
         logger.info("Filestore structure created")
 
@@ -70,37 +105,60 @@ class OdooStarter:
             logger.warning(f"Could not create log directory: {e}")
 
     def check_database_exists(self):
-        """Verificar si la base de datos existe usando Odoo"""
+        """Verificar si la base de datos existe usando conexión directa"""
         try:
-            databases = db.list_dbs()
-            logger.info(f"Available databases: {databases}")
+            conn = psycopg2.connect(
+                host=self.db_host,
+                port=self.db_port,
+                user=self.db_user,
+                password=self.db_password,
+                database='postgres'
+            )
             
-            if self.db_name:
-                exists = self.db_name in databases
-                logger.info(f"Database '{self.db_name}' exists: {exists}")
-                return exists
-            else:
-                # Si no especificamos BD, asumimos que existe al menos una
-                return len(databases) > 0
-                
+            cursor = conn.cursor()
+            cursor.execute("SELECT 1 FROM pg_database WHERE datname = %s", (self.db_name,))
+            exists = cursor.fetchone() is not None
+            
+            cursor.close()
+            conn.close()
+            
+            logger.info(f"Database '{self.db_name}' exists: {exists}")
+            return exists
+            
         except Exception as e:
             logger.error(f"Error checking database existence: {e}")
+            return False
+
+    def create_database(self):
+        """Crear la base de datos usando conexión directa"""
+        logger.info(f"Creating database '{self.db_name}'...")
+        
+        try:
+            conn = psycopg2.connect(
+                host=self.db_host,
+                port=self.db_port,
+                user=self.db_user,
+                password=self.db_password,
+                database='postgres'
+            )
+            conn.autocommit = True
+            
+            cursor = conn.cursor()
+            cursor.execute(f'CREATE DATABASE "{self.db_name}" OWNER "{self.db_user}"')
+            
+            cursor.close()
+            conn.close()
+            
+            logger.info("Database created successfully")
+            return True
+        except Exception as e:
+            logger.error(f"Error creating database: {e}")
             return False
 
     def check_db_initialized(self):
         """Verificar si la BD está inicializada usando Odoo"""
         try:
-            # Si no hay nombre específico, usar la primera BD disponible
-            db_name = self.db_name
-            if not db_name:
-                databases = db.list_dbs()
-                if databases:
-                    db_name = databases[0]
-                else:
-                    return False
-            
-            # Intentar conectar a la base de datos
-            registry = odoo.registry(db_name)
+            registry = odoo.registry(self.db_name)
             with registry.cursor() as cr:
                 env = api.Environment(cr, SUPERUSER_ID, {})
                 # Verificar si el módulo web está instalado
@@ -109,10 +167,39 @@ class OdooStarter:
                     ('state', '=', 'installed')
                 ], limit=1)
                 initialized = bool(web_module)
-                logger.info(f"Database {db_name} initialized: {initialized}")
+                logger.info(f"Database {self.db_name} initialized: {initialized}")
                 return initialized
         except Exception as e:
             logger.info(f"Database not initialized: {e}")
+            return False
+
+    def initialize_database(self):
+        """Inicializar base de datos con módulos base usando Odoo"""
+        logger.info("Installing base modules...")
+        
+        try:
+            registry = odoo.registry(self.db_name)
+            with registry.cursor() as cr:
+                env = api.Environment(cr, SUPERUSER_ID, {})
+                
+                # Instalar módulos base
+                modules_to_install = ['base', 'web']
+                
+                for module_name in modules_to_install:
+                    module = env['ir.module.module'].search([
+                        ('name', '=', module_name)
+                    ], limit=1)
+                    
+                    if module and module.state not in ['installed', 'to install']:
+                        module.button_immediate_install()
+                        logger.info(f"Module '{module_name}' installed")
+                
+                cr.commit()
+                logger.info("Base modules installed successfully")
+                return True
+                
+        except Exception as e:
+            logger.error(f"Error initializing database: {e}")
             return False
 
     def clean_orphaned_attachments(self):
@@ -120,17 +207,7 @@ class OdooStarter:
         logger.info("Cleaning orphaned file references...")
         
         try:
-            # Determinar qué BD usar
-            db_name = self.db_name
-            if not db_name:
-                databases = db.list_dbs()
-                if databases:
-                    db_name = databases[0]
-                else:
-                    logger.warning("No database found for cleaning")
-                    return
-            
-            registry = odoo.registry(db_name)
+            registry = odoo.registry(self.db_name)
             with registry.cursor() as cr:
                 env = api.Environment(cr, SUPERUSER_ID, {})
                 
@@ -164,69 +241,13 @@ class OdooStarter:
         except Exception as e:
             logger.warning(f"Error cleaning orphaned attachments: {e}")
 
-    def create_database(self):
-        """Crear la base de datos usando Odoo"""
-        if not self.db_name:
-            logger.warning("No database name specified, skipping database creation")
-            return True
-            
-        logger.info(f"Creating database '{self.db_name}'...")
-        
-        try:
-            # Crear base de datos usando la API de Odoo
-            db.exp_create_database(self.db_name, False, 'en_US', 'admin')
-            logger.info("Database created successfully")
-            return True
-        except Exception as e:
-            logger.error(f"Error creating database: {e}")
-            return False
-
-    def initialize_database(self):
-        """Inicializar base de datos con módulos base usando Odoo"""
-        logger.info("Installing base modules...")
-        
-        try:
-            # Determinar qué BD usar
-            db_name = self.db_name
-            if not db_name:
-                databases = db.list_dbs()
-                if databases:
-                    db_name = databases[0]
-                else:
-                    logger.error("No database available for initialization")
-                    return False
-            
-            registry = odoo.registry(db_name)
-            with registry.cursor() as cr:
-                env = api.Environment(cr, SUPERUSER_ID, {})
-                
-                # Instalar módulos base
-                modules_to_install = ['base', 'web']
-                
-                for module_name in modules_to_install:
-                    module = env['ir.module.module'].search([
-                        ('name', '=', module_name)
-                    ], limit=1)
-                    
-                    if module and module.state not in ['installed', 'to install']:
-                        module.button_immediate_install()
-                        logger.info(f"Module '{module_name}' installed")
-                
-                cr.commit()
-                logger.info("Base modules installed successfully")
-                return True
-                
-        except Exception as e:
-            logger.error(f"Error initializing database: {e}")
-            return False
-
     def start_odoo_server(self):
         """Iniciar el servidor de Odoo"""
         logger.info("Starting Odoo server...")
         
         try:
-            # Configurar Odoo
-            odoo.tools.config.parse_config(['-c', self.config_file])
+            # Configurar Odoo con parámetros finales
+            self.setup_odoo_config()
             
             # Iniciar el servidor
             odoo.service.server.start(preload=[], stop=False)
@@ -240,6 +261,14 @@ class OdooStarter:
     def run(self):
         """Función principal de ejecución"""
         logger.info("Starting Odoo initialization...")
+        
+        # Esperar a que la BD esté disponible
+        if not self.wait_for_database():
+            logger.error("Database server is not available")
+            sys.exit(1)
+        
+        # Configurar Odoo inicial
+        self.setup_odoo_config()
         
         # Crear estructura de filestore
         self.create_filestore_structure()
@@ -261,19 +290,16 @@ class OdooStarter:
                         logger.error("Failed to initialize database")
                         sys.exit(1)
             else:
-                if self.db_name:
-                    logger.info(f"Database '{self.db_name}' does not exist. Creating...")
-                    
-                    if self.create_database():
-                        logger.info("Initializing database with base modules...")
-                        if not self.initialize_database():
-                            logger.error("Failed to initialize new database")
-                            sys.exit(1)
-                    else:
-                        logger.error("Failed to create database")
+                logger.info(f"Database '{self.db_name}' does not exist. Creating...")
+                
+                if self.create_database():
+                    logger.info("Initializing database with base modules...")
+                    if not self.initialize_database():
+                        logger.error("Failed to initialize new database")
                         sys.exit(1)
                 else:
-                    logger.info("No specific database configured, starting Odoo...")
+                    logger.error("Failed to create database")
+                    sys.exit(1)
             
             # Iniciar servidor de Odoo
             self.start_odoo_server()
