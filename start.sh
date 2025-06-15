@@ -2,7 +2,7 @@
 set -e
 
 CONFIG_FILE="${CONFIG_FILE:-/etc/odoo/odoo.conf}"
-DB_NAME="${DB_NAME:-odoo_7epq}"
+DB_NAME="${DB_NAME}"
 
 echo "Starting Odoo initialization..."
 

@@ -1,24 +1,56 @@
-.git
+# Ignorar todo por defecto
+*
+
+# Incluir solo lo necesario para el deployment
+!custom-addons/
+!Dockerfile
+!odoo.conf
+!start.sh
+!render.yaml
+
+# Ignorar archivos específicos dentro de custom-addons
+custom-addons/**/*.pyc
+custom-addons/**/__pycache__/
+custom-addons/**/.DS_Store
+custom-addons/**/Thumbs.db
+custom-addons/**/*.log
+custom-addons/**/.git/
+
+# Ignorar archivos temporales y de desarrollo
+**/.pytest_cache/
+**/.coverage
+**/*.egg-info/
+**/.vscode/
+**/.idea/
+**/*.swp
+**/*.swo
+**/*~
+
+# Git y GitHub
+.git/
+.github/
 .gitignore
+
+# Documentación y archivos de proyecto
 README.md
-docs/
-*.md
-.env
-.env.*
-node_modules
-*.log
-.DS_Store
-Thumbs.db
+CONTRIBUTING.md
+COPYRIGHT
+LICENSE
+SECURITY.md
+MANIFEST.in
+doc/
+debian/
 
-# Excluir filestore y archivos temporales
-filestore/
-**/filestore/**
-sessions/
-**/sessions/**
-*.pyc
-__pycache__/
-.pytest_cache/
+# Archivos de configuración de desarrollo
+odoo.conf.local.example
+odoo.conf.render.example
+setup.cfg
+setup.py
+requirements.txt
+wait-for-psql.py
+entrypoint.sh
 
-# Excluir logs específicos de módulos
-**/log/**
-*.log
+# Código fuente de Odoo (ya viene en la imagen base)
+odoo/
+addons/
+odoo-bin
