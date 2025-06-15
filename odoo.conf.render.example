@@ -1,12 +1,4 @@
 [options]
-# --- Configuración de Base de Datos ---
-db_user = odoo_7epq_user
-db_password = SKn4D5WmQGtEyfnshoI8nwCmnm7jyJnX
-db_host = dpg-d166ulemcj7s7381cq5g-a
-db_port = 5432
-db_name = odoo_7epq
-proxy_mode = True
-
 # --- Rutas ---
 addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
 
@@ -47,3 +39,5 @@ xmlrpc_interface = 0.0.0.0
 server_wide_modules = base,web
 without_demo = all
 db_sslmode = prefer
+
+# NOTA: La configuración de BD se pasa por parámetros desde start.sh
