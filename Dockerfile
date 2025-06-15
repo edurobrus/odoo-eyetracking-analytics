@@ -19,13 +19,13 @@ RUN mkdir -p /var/lib/odoo/.local/share/Odoo/sessions && \
 # Copiar módulos personalizados
 COPY ./custom-addons /mnt/extra-addons
 
-# Copiar configuración y script de inicio
+# Copiar configuración y script de inicio en Python
 COPY ./odoo.conf /etc/odoo/odoo.conf
-COPY ./start.sh /usr/local/bin/start.sh
+COPY ./start.py /usr/local/bin/start.py
 
 # Arreglar permisos
-RUN chown -R odoo:odoo /mnt/extra-addons /etc/odoo/odoo.conf && \
-    chmod +x /usr/local/bin/start.sh
+RUN chown -R odoo:odoo /mnt/extra-addons /etc/odoo/odoo.conf /usr/local/bin/start.py && \
+    chmod +x /usr/local/bin/start.py
 
 # Volver al usuario odoo
 USER odoo
@@ -33,5 +33,5 @@ USER odoo
 # Exponer puertos
 EXPOSE 8069 8071
 
-# Comando por defecto
-CMD ["/usr/local/bin/start.sh"]
+# Comando por defecto usando el script de Python
+CMD ["python3", "/usr/local/bin/start.py"]
