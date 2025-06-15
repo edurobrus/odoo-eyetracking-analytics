@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: odoo-app
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    branch: main
+    healthCheckPath: /web/health
+    port: 8069
+    dockerCommand: /usr/local/bin/start.sh
+    envVars:
+      - key: CONFIG_FILE
+        value: /etc/odoo/odoo.conf

@@ -8,7 +8,6 @@ USER root
 RUN apt-get update && apt-get install -y \
     python3-psycopg2 \
     postgresql-client \
-    wait-for-it \
     && rm -rf /var/lib/apt/lists/*
 
 # Crear directorios necesarios (SIN FILESTORE PERSISTENTE)
@@ -20,19 +19,13 @@ RUN mkdir -p /var/lib/odoo/.local/share/Odoo/sessions && \
 # Copiar módulos personalizados
 COPY ./custom-addons /mnt/extra-addons
 
-# Copiar configuración y script de inicio en Python
+# Copiar configuración y script de inicio
 COPY ./odoo.conf /etc/odoo/odoo.conf
-COPY ./start.py /usr/local/bin/start.py
+COPY ./start.sh /usr/local/bin/start.sh
 
 # Arreglar permisos
-RUN chown -R odoo:odoo /mnt/extra-addons /etc/odoo/odoo.conf /usr/local/bin/start.py && \
-    chmod +x /usr/local/bin/start.py
-
-# Variables de entorno para la base de datos
-ENV DB_HOST=db \
-    DB_PORT=5432 \
-    DB_USER=odoo \
-    DB_PASSWORD=odoo
+RUN chown -R odoo:odoo /mnt/extra-addons /etc/odoo/odoo.conf && \
+    chmod +x /usr/local/bin/start.sh
 
 # Volver al usuario odoo
 USER odoo
@@ -40,5 +33,5 @@ USER odoo
 # Exponer puertos
 EXPOSE 8069 8071
 
-# Comando por defecto usando el script de Python
-CMD ["python3", "/usr/local/bin/start.py"]
+# Comando por defecto
+CMD ["/usr/local/bin/start.sh"]
