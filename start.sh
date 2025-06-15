@@ -17,11 +17,11 @@ fi
 export PGPASSWORD="$PGPASSWORD"
 export PGUSER="$PGUSER"
 export PGHOST="$PGHOST"
-export PGPORT="${PGPORT:-5432}"
+export PGPORT=5432
 
 echo "Database configuration:"
 echo "Host: $PGHOST"
-echo "Port: $PGPORT"
+echo "Port: 5432"
 echo "User: $PGUSER"
 echo "Database: $DB_NAME"
 
@@ -45,20 +45,20 @@ mkdir -p "$LOG_DIR" || true
 
 # Función para verificar conexión a PostgreSQL
 check_postgres_connection() {
-  psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d postgres -c "SELECT 1;" &>/dev/null
+  psql -h "$PGHOST" -p 5432 -U "$PGUSER" -d postgres -c "SELECT 1;" &>/dev/null
 }
 
 # Función para verificar si la base de datos existe
 check_database_exists() {
-  psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d postgres -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"
+  psql -h "$PGHOST" -p 5432 -U "$PGUSER" -d postgres -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"
 }
 
 # Función para verificar si la BD está inicializada
 check_db_initialized() {
-  if ! psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "SELECT 1;" &>/dev/null; then
+  if ! psql -h "$PGHOST" -p 5432 -U "$PGUSER" -d "$DB_NAME" -c "SELECT 1;" &>/dev/null; then
     return 1
   fi
-  psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c \
+  psql -h "$PGHOST" -p 5432 -U "$PGUSER" -d "$DB_NAME" -c \
     "SELECT 1 FROM ir_module_module WHERE name='web' AND state='installed' LIMIT 1;" 2>/dev/null | grep -q "1"
 }
 
@@ -76,7 +76,7 @@ clean_orphaned_attachments() {
     WHERE resmodel = 'ir.ui.view'
       AND name LIKE '%.assets%';
   "
-  psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "$sql_query" 2>/dev/null || true
+  psql -h "$PGHOST" -p 5432 -U "$PGUSER" -d "$DB_NAME" -c "$sql_query" 2>/dev/null || true
   echo "Orphaned attachments cleaned."
 }
 
@@ -107,7 +107,7 @@ if check_database_exists; then
   fi
 else
   echo "Database '$DB_NAME' does not exist. Creating..."
-  createdb -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" "$DB_NAME"
+  createdb -h "$PGHOST" -p 5432 -U "$PGUSER" "$DB_NAME"
   echo "Initializing database with base modules..."
   odoo --config="$CONFIG_FILE" -d "$DB_NAME" -i base,web --stop-after-init --log-level=info --without-demo=all
   echo "Starting Odoo with new database..."
