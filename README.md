@@ -33,7 +33,7 @@ A diferencia de las soluciones tradicionales que requieren hardware costoso, est
 
 *   **Backend:** Odoo 16, Python 3.
 *   **Frontend (Módulo Odoo):** JavaScript, Framework OWL (Odoo Web Library), XML.
-*   **Frontend (Cliente):** WebGazer.js, MediaPipe, Chart.js, D3.js, SweetAlert, html2canvas.
+*   **Frontend (Cliente):** WebGazer.js, Chart.js, D3.js, SweetAlert, html2canvas.
 *   **Base de Datos:** PostgreSQL.
 *   **Despliegue:** Docker, Render.com.
 
