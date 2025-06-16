@@ -105,7 +105,7 @@ Este proyecto está diseñado para ser desplegado fácilmente usando **Docker** 
 
 *   **Dockerfile:** Se proporciona un `Dockerfile` que empaqueta Odoo y el módulo personalizado.
 *   **Automatización:** El despliegue a Render está automatizado mediante **GitHub Actions**. Un `push` a la rama `main` iniciará el proceso de construcción y despliegue.
-*   **Configuración:** Para que funcione, es necesario configurar los `secrets` de GitHub Actions que serán utilizados durante el despliegue. Se proporciona un fichero de ejemplo `odoo.conf.render.example` como configuración de despliegue para luego copiar y desplegar con cp s`odoo.conf.render.example odoo.conf`.
+*   **Configuración:** Para que funcione, es necesario configurar los `secrets` de GitHub Actions que serán utilizados durante el despliegue. Se proporciona un fichero de ejemplo `odoo.conf.render.example` como configuración de despliegue para luego copiar y desplegar con cp `odoo.conf.render.example odoo.conf` Tambien hay que tener en cuenta que en render hay que configurar las variables de PGHOST, PGUSER, PGPASSWORD, DB_NAME, PGPORT.
 
 ## Autor
 
