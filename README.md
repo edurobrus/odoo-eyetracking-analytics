@@ -9,7 +9,7 @@ Un módulo avanzado de Odoo 16 para integrar el análisis de comportamiento visu
 
 **marketing_eyetracking** transforma una webcam estándar en una potente herramienta de investigación de mercados. Este módulo permite a los analistas de marketing realizar estudios de eye-tracking directamente desde la interfaz de Odoo, para entender cómo los usuarios interactúan visualmente con las interfaces, campañas y productos.
 
-A diferencia de las soluciones tradicionales que requieren hardware costoso, este proyecto utiliza tecnologías de IA de vanguardia como **WebGazer.js** para ejecutarse enteramente en el navegador del cliente, garantizando la privacidad y la accesibilidad. Tambien hemos añadido una configuracion para poder tener con google analitycs un mayor seguimiento del comportamiento de los usuarios
+A diferencia de las soluciones tradicionales que requieren hardware costoso, este proyecto utiliza tecnologías de IA de vanguardia como **MediaPipe** para la detección de landmarks faciales y **WebGazer.js** para la estimación de la mirada. Todo el procesamiento se ejecuta enteramente en el navegador del cliente, garantizando la privacidad y la accesibilidad. Adicionalmente, se integra con **Google Analytics** para permitir un seguimiento extendido del comportamiento de los usuarios.
 
 ## 🚀 Características Principales
 
@@ -33,17 +33,18 @@ A diferencia de las soluciones tradicionales que requieren hardware costoso, est
 
 *   **Backend:** Odoo 16, Python 3.
 *   **Frontend (Módulo Odoo):** JavaScript, Framework OWL (Odoo Web Library), XML.
-*   **Frontend (Cliente):** WebGazer.js, Chart.js, D3.js, SweetAlert, html2canvas.
+*   **Frontend (Cliente):** WebGazer.js, MediaPipe, Chart.js, D3.js, SweetAlert, html2canvas.
 *   **Base de Datos:** PostgreSQL.
-*   **Despliegue:** Docker, Render.com.
+*   **Despliegue:** Docker, Render.com, GitHub Actions.
 
 ## ⚙️ Instalación y Ejecución
 
 Sigue estos pasos para poner en marcha el proyecto en un entorno de desarrollo local.
 
 ### Requisitos Previos
-*   Tener una instancia de Odoo 16 funcionando. Puedes seguir la [guía de instalación oficial](https://www.odoo.com/documentation/16.0/administration/install/install.html).
+*   Tener una instalación base de Odoo 16. Puedes seguir la [guía de instalación oficial](https://www.odoo.com/documentation/16.0/administration/install/install.html).
 *   Tener Python 3 y `pip` instalados.
+*   Tener Docker y Docker Compose (recomendado) instalados.
 
 ### 1. Clonar el Repositorio
 Obtén el código fuente del proyecto desde GitHub.
@@ -54,20 +55,21 @@ cd odoo-eyetracking-analytics
 ```
 
 ### 2. Configuración para Ejecución Local
-Este proyecto incluye ficheros de configuración de ejemplo. Para ejecutarlo en local, copia el fichero de ejemplo.
+Este proyecto incluye ficheros de configuración de ejemplo. Para ejecutarlo en local, copia el fichero de ejemplo y ajústalo si es necesario.
 
 ```bash
 # Copia el fichero de configuración de ejemplo para uso local
 cp odoo.conf.local.example odoo.conf
 ```
-Asegúrate de que el fichero `odoo.conf` tiene la ruta correcta a tu carpeta de `custom-addons` (que está en este repositorio).
+Asegúrate de que el fichero `odoo.conf` tiene la ruta correcta a tu carpeta de `custom-addons` (que es el directorio `marketing_eyetracking` en este repositorio).
 
 ### 3. Ejecutar Odoo
 Inicia el servidor de Odoo utilizando el fichero de configuración local.
 
 ```bash
-# Desde el directorio raíz del proyecto Odoo
-python3 odoo-bin -c /ruta/al/repositorio/odoo-eyetracking-analytics/odoo.conf
+# Asumiendo que estás en el directorio raíz de una instalación estándar de Odoo
+# y has clonado este repo dentro de un directorio de addons.
+python3 odoo-bin -c odoo.conf
 ```
 
 ### 4. Instalar el Módulo en Odoo
@@ -76,6 +78,12 @@ python3 odoo-bin -c /ruta/al/repositorio/odoo-eyetracking-analytics/odoo.conf
 *   Haz clic en **"Actualizar lista de aplicaciones"**.
 *   Busca "Marketing Eye-Tracking" (o `marketing_eyetracking`) en la barra de búsqueda.
 *   Haz clic en **"Instalar"**. El módulo `web` es una dependencia y se instalará automáticamente si no lo está ya.
+
+### Comandos útiles para desarrolladores
+```bash
+# Crear la estructura base de un nuevo módulo
+python3 odoo-bin scaffold <nombre_del_modulo> ./custom-addons
+```
 
 ## 📖 Cómo Usarlo
 
@@ -87,12 +95,12 @@ Una vez instalado, el módulo es muy fácil de usar:
 
 2.  **Iniciar la Sesión de Seguimiento:**
     *   Abre el análisis que acabas de crear y haz clic en el botón **"Empezar Eye-Tracking"**.
-    *   Sigue las instrucciones en pantalla: concede permiso a la cámara y elige el modo de captura (con o sin grabación de pantalla).
+    *   Sigue las instrucciones en pantalla: concede permiso a la cámara y elige el modo de captura.
     *   Completa el breve proceso de calibración mirando a los puntos indicados.
 
 3.  **Ver los Resultados:**
     *   Una vez finalizada la sesión, vuelve al registro del análisis en Odoo.
-    *   La pestaña **"User Actions"** te mostrará las páginas de Odoo que visitaste durante el análisis.
+    *   La pestaña **"User Actions"** te mostrará las páginas de Odoo que visitaste.
     *   Si elegiste el modo de grabación, el vídeo estará disponible para su reproducción.
 
 4.  **Analizar los Gráficos:**
@@ -103,9 +111,18 @@ Una vez instalado, el módulo es muy fácil de usar:
 
 Este proyecto está diseñado para ser desplegado fácilmente usando **Docker** y **Render.com**.
 
-*   **Dockerfile:** Se proporciona un `Dockerfile` que empaqueta Odoo y el módulo personalizado.
+*   **Dockerfile:** Se proporciona un `Dockerfile` que empaqueta Odoo y el módulo personalizado, listo para ser construido.
 *   **Automatización:** El despliegue a Render está automatizado mediante **GitHub Actions**. Un `push` a la rama `main` iniciará el proceso de construcción y despliegue.
-*   **Configuración:** Para que funcione, es necesario configurar los `secrets` de GitHub Actions que serán utilizados durante el despliegue. Se proporciona un fichero de ejemplo `odoo.conf.render.example` como configuración de despliegue para luego copiar y desplegar con cp `odoo.conf.render.example odoo.conf` Tambien hay que tener en cuenta que en render hay que configurar las variables de PGHOST, PGUSER, PGPASSWORD, DB_NAME, PGPORT.
+*   **Configuración en Render:**
+    1.  Crea un nuevo "Web Service" en Render y conéctalo a tu repositorio de GitHub.
+    2.  Render detectará el `Dockerfile` y lo usará para el despliegue.
+    3.  En la configuración del servicio, ve a la sección "Environment" y añade las siguientes variables de entorno para la conexión a tu base de datos PostgreSQL (también alojada en Render):
+        *   `PGHOST`: El host de tu base de datos.
+        *   `PGUSER`: El nombre de usuario de la base de datos.
+        *   `PGPASSWORD`: La contraseña.
+        *   `DB_NAME`: El nombre de la base de datos.
+        *   `PGPORT`: El puerto de la base de datos.
+*   **Configuración para Despliegue:** Antes de hacer el `push`, asegúrate de que el fichero `odoo.conf` que se usará en producción (copiado a partir de `odoo.conf.render.example`) está correctamente configurado para leer estas variables de entorno.
 
 ## Autor
 
