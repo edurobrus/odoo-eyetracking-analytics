@@ -7,7 +7,7 @@ Un módulo avanzado de Odoo 16 para integrar el análisis de comportamiento visu
 
 ## Visión General
 
-**marketing_eyetracking** transforma una webcam estándar en una potente herramienta de investigación de mercados. Este módulo permite a los analistas de marketing realizar estudios de eye-tracking directamente desde la interfaz de Odoo, para entender cómo los usuarios interactúan visualmente con las interfaces, campañas y productos.
+**marketing_eyetracking** transforma una webcam estándar en una potente herramienta de investigación de mercados. Este módulo permite a los analistas de marketing realizar estudios de eye-tracking directamente desde la interfaz, para entender cómo los usuarios interactúan visualmente con las interfaces, campañas y productos.
 
 A diferencia de las soluciones tradicionales que requieren hardware costoso, este proyecto utiliza tecnologías de IA de vanguardia como **MediaPipe** para la detección de landmarks faciales y **WebGazer.js** para la estimación de la mirada. Todo el procesamiento se ejecuta enteramente en el navegador del cliente, garantizando la privacidad y la accesibilidad. Adicionalmente, se integra con **Google Analytics** para permitir un seguimiento extendido del comportamiento de los usuarios.
 
