@@ -1,3 +1,4 @@
+#!/bin/bash
 set -e
 
 # Entrypoint para Odoo 16 con manejo de filestore volátil
