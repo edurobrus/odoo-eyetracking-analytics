@@ -11,7 +11,7 @@ class MarketingEyetracking(http.Controller):
     def clear_log(self):
         # Get the module path dynamically
         module_path = get_module_path("marketing_eyetracking")
-        log_path = os.path.join(module_path, "log", "odoo.log")
+        log_path = "/var/odoo/data/logs/odoo.log"
 
         if os.path.exists(log_path):
             open(log_path, "w").close()
