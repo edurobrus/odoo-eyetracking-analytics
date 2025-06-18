@@ -34,4 +34,4 @@ USER odoo
 EXPOSE 8069 8071
 
 # Comando por defecto
-ENTRYPOINT ["/usr/local/bin/start.sh"]
+ENTRYPOINT ["bash", "/usr/local/bin/start.sh"]
