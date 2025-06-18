@@ -12,15 +12,6 @@ if [ -z "$PGHOST" ] || [ -z "$PGUSER" ] || [ -z "$PGPASSWORD" ]; then
   exit 1
 fi
 
-# Directorio de logs en el disco persistente
-PERSISTENT_LOG_DIR="/var/odoo/data/logs"
-
-# Crear el directorio si no existe
-mkdir -p "$PERSISTENT_LOG_DIR"
-
-# Asegurar que el usuario 'odoo' tiene permisos
-chown -R odoo:odoo /var/odoo/data
-
 # Configurar variables de PostgreSQL
 export PGPASSWORD="$PGPASSWORD"
 export PGUSER="$PGUSER"
