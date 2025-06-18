@@ -70,7 +70,7 @@ clean_orphaned_attachments() {
       AND store_fname != ''
       AND type = 'binary'
       AND res_model != 'ir.ui.view';
-     
+
     DELETE FROM ir_attachment
     WHERE resmodel = 'ir.ui.view'
       AND name LIKE '%.assets%';
