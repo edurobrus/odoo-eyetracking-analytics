@@ -131,27 +131,20 @@ class EyetrackingAnalysis(models.Model):
 
     @api.model
     def save_gaze_data(self, gaze_points, video_data):
-        log_path = os.path.join(os.path.dirname(__file__), "../log/odoo.log")
         date_start = fields.Datetime.now()
         date_end = fields.Datetime.now()
-
-        if os.path.exists(log_path):
-            with open(log_path, "r", encoding="utf-8") as log_file:
-                first_line = log_file.readline().strip()
-                match = re.search(r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})", first_line)
-                if match:
-                    log_datetime_str = match.group(1)
-                    date_start = datetime.strptime(
-                        log_datetime_str, "%Y-%m-%d %H:%M:%S"
-                    )
-                    date_start = pytz.UTC.localize(date_start)
-                    date_start = date_start.astimezone(pytz.UTC)
-
-        date_end = fields.Datetime.now().astimezone(pytz.UTC)
-        date_start = date_start.replace(tzinfo=None)
-        date_end = date_end.replace(tzinfo=None)
+        if gaze_points:
+            first_point_ts = gaze_points[0].get("timestamp")
+            if first_point_ts:
+                date_start = datetime.fromisoformat(first_point_ts)
+            last_point_ts = gaze_points[-1].get("timestamp")
+            if last_point_ts:
+                date_end = datetime.fromisoformat(last_point_ts)
+        if hasattr(date_start, 'tzinfo') and date_start.tzinfo:
+            date_start = date_start.replace(tzinfo=None)
+        if hasattr(date_end, 'tzinfo') and date_end.tzinfo:
+            date_end = date_end.replace(tzinfo=None)
         record = self.create({"date_start": date_start, "date_end": date_end})
-
         for point in gaze_points:
             self.env["eyetracking.gaze.point"].create(
                 {
@@ -165,6 +158,8 @@ class EyetrackingAnalysis(models.Model):
                     ),
                 }
             )
+            
+        # Si existe video_data, se crea el registro de la grabación.
         if video_data:
             self.env["eyetracking.screen.recording"].create(
                 {
