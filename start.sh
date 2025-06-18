@@ -1,4 +1,3 @@
-#!/bin/bash
 set -e
 
 CONFIG_FILE="${CONFIG_FILE:-/etc/odoo/odoo.conf}"

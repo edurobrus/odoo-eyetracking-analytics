@@ -19,13 +19,13 @@ RUN mkdir -p /var/lib/odoo/.local/share/Odoo/sessions && \
 # Copiar módulos personalizados
 COPY ./custom-addons /mnt/extra-addons
 
-# Copiar configuración y script de inicio
+# Copiar configuración y scripts
 COPY ./odoo.conf /etc/odoo/odoo.conf
-COPY ./start.sh /usr/local/bin/start.sh
+COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
 
 # Arreglar permisos
 RUN chown -R odoo:odoo /mnt/extra-addons /etc/odoo/odoo.conf && \
-    chmod +x /usr/local/bin/start.sh
+    chmod +x /usr/local/bin/entrypoint.sh
 
 # Volver al usuario odoo
 USER odoo
@@ -33,5 +33,12 @@ USER odoo
 # Exponer puertos
 EXPOSE 8069 8071
 
+# Variables de entorno opcionales
+ENV REGENERATE_ASSETS=false
+ENV CLEAN_START=false
+
+# Usar entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
 # Comando por defecto
-CMD ["/usr/local/bin/start.sh"]
+CMD ["odoo"]
