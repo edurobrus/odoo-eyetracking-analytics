@@ -54,29 +54,48 @@ check_database_exists() {
 
 # Función para verificar si la BD está inicializada
 check_db_initialized() {
-  if ! psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "SELECT 1;" &>/dev/null; then
+  if ! psql -h "$PGHOST" -p "$PGHOST" -U "$PGUSER" -d "$DB_NAME" -c "SELECT 1;" &>/dev/null; then
     return 1
   fi
   psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c \
     "SELECT 1 FROM ir_module_module WHERE name='web' AND state='installed' LIMIT 1;" 2>/dev/null | grep -q "1"
 }
 
-# Limpiar archivos huérfanos
+# Limpiar archivos huérfanos - MEJORADO
 clean_orphaned_attachments() {
   echo "Cleaning orphaned file references..."
   local sql_query="
+    -- Eliminar attachments que apuntan a archivos que no existen
     DELETE FROM ir_attachment
     WHERE store_fname IS NOT NULL
       AND store_fname != ''
-      AND type = 'binary'
-      AND res_model != 'ir.ui.view';
+      AND type = 'binary';
 
+    -- Limpiar assets compilados para forzar regeneración
     DELETE FROM ir_attachment
-    WHERE resmodel = 'ir.ui.view'
+    WHERE res_model = 'ir.ui.view'
       AND name LIKE '%.assets%';
+
+    -- Limpiar cache de QWeb
+    DELETE FROM ir_attachment
+    WHERE res_model = 'ir.ui.view'
+      AND name LIKE '%compiled%';
+
+    -- Resetear ir.ui.view para forzar recompilación
+    UPDATE ir_ui_view SET arch_updated = TRUE WHERE type = 'qweb';
   "
   psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$DB_NAME" -c "$sql_query" 2>/dev/null || true
-  echo "Orphaned attachments cleaned."
+  echo "Orphaned attachments and compiled assets cleaned."
+}
+
+# Función para regenerar assets
+regenerate_assets() {
+  echo "Regenerating web assets..."
+  # Usar el comando de Odoo para regenerar assets
+  odoo --config="$CONFIG_FILE" $DB_PARAMS -d "$DB_NAME" \
+    --stop-after-init --log-level=error \
+    -u web 2>/dev/null || true
+  echo "Assets regeneration completed."
 }
 
 # Verificar conexión a PostgreSQL
@@ -97,6 +116,11 @@ if check_database_exists; then
   if check_db_initialized; then
     echo "Database properly initialized. Cleaning orphaned files..."
     clean_orphaned_attachments
+    
+    # Regenerar assets si es necesario
+    echo "Regenerating assets..."
+    regenerate_assets
+    
     echo "Starting Odoo..."
     exec odoo --config="$CONFIG_FILE" $DB_PARAMS --log-level=info
   else
@@ -104,6 +128,7 @@ if check_database_exists; then
     clean_orphaned_attachments
     echo "Installing base modules..."
     odoo --config="$CONFIG_FILE" $DB_PARAMS -d "$DB_NAME" -i base,web --stop-after-init --log-level=info --without-demo=all
+    regenerate_assets
     echo "Starting Odoo..."
     exec odoo --config="$CONFIG_FILE" $DB_PARAMS --log-level=info
   fi
